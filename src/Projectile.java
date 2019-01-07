@@ -7,16 +7,20 @@ public class Projectile extends JComponent {
     double ex; // enemy x
     double ey; // enemy y
     String imagePath;
-    String damageTypeAttributes;
+    byte damageType;
+    double[] slow;
+    double[] burn;
     double damage;
     double speed;
     double explosionRadius;
 
     private Point objectP = new Point();
 
-    public Projectile (String imagePath, String damageTypeAttributes, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
         this.imagePath = imagePath;
-        this.damageTypeAttributes = damageTypeAttributes;
+        this.damageType = damageType;
+        this.slow = slow;
+        this.burn = burn;
         this.damage = damage;
         this.speed = speed;
         this.explosionRadius = explosionRadius;
