@@ -11,4 +11,8 @@ public class Path {
     public byte getDirection() {
         return direction;
     }
+
+    public double getDistance() {
+        return distance;
+    }
 }

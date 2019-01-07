@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Queue;
 
 public class Enemy {
@@ -16,6 +17,8 @@ public class Enemy {
     private Queue<Path> paths;
     private Path currentPath;
 
+    private Rectangle boundingBox;
+
     private int x;
     private int y;
     private int distanceLeft;
@@ -33,47 +36,89 @@ public class Enemy {
         this.y = y;
         this.slow = new double[]{0,0};
         this.burn = new double[]{0,0};
+        this.boundingBox = new Rectangle(x,y,50,50); //placeholder values replace later
     }
 
     public boolean update(double timeElapsed) {
         if(currentHealth > 0) {
             move(timeElapsed);
+            burnDmg(timeElapsed);
             return true;
         } else {
             return false;
         }
     }
 
+    private void burnDmg(double timeElapsed) {
+        if(burn[0] > 0) {
+            takeDmg(burn[1]*timeElapsed*100, DamageTypes.EXPLOSIVE);
+            burn[0] -= timeElapsed;
+        }
+    }
+
     private void move(double timeElapsed) {
         byte direction = currentPath.getDirection();
-        if(direction == 0){
-            this.y -= speed*timeElapsed*100;
-        } else if(direction==1) {
-            this.y += speed*timeElapsed*100;
-        } else if(direction==2) {
-            this.x += speed*timeElapsed*100;
-        } else if(direction==3) {
-            this.x -= speed*timeElapsed*100;
+        if(slow[0] > 0) {
+            if(direction == 0){
+                this.y -= (speed*timeElapsed*100)/(slow[1] + 1);
+            } else if(direction==1) {
+                this.y += (speed*timeElapsed*100)/(slow[1] + 1);
+            } else if(direction==2) {
+                this.x += (speed*timeElapsed*100)/(slow[1] + 1);
+            } else if(direction==3) {
+                this.x -= (speed*timeElapsed*100)/(slow[1] + 1);
+            }
+
+        } else {
+            if (direction == 0) {
+                this.y -= speed * timeElapsed * 100;
+            } else if (direction == 1) {
+                this.y += speed * timeElapsed * 100;
+            } else if (direction == 2) {
+                this.x += speed * timeElapsed * 100;
+            } else if (direction == 3) {
+                this.x -= speed * timeElapsed * 100;
+            }
+        }
+
+        if(this.currentPath.getDistance() <= 0) {
+            if(direction == 0){
+                this.y -= currentPath.getDistance();
+            } else if(direction==1) {
+                this.y += currentPath.getDistance();
+            } else if(direction==2) {
+                this.x += currentPath.getDistance();
+            } else if(direction==3) {
+                this.x -= currentPath.getDistance();
+            }
+            currentPath = paths.poll();
+        }
+    }
+
+    public void draw(Graphics g) {
+
+    }
+
+    public void takeDmg(double damage, byte dmgType) {
+        if (attributes.getShielding() > 0 && dmgType != DamageTypes.PIERCE) {
+            attributes.setShielding(attributes.getShielding() - calculateDmgTaken(damage, dmgType));
+        } else {
+            currentHealth -= calculateDmgTaken(damage, dmgType);
         }
     }
 
     //fill out this method later
-    public void takeDmg(double damage, byte dmgType) { //traits as in the traits of the projectile fired
-        currentHealth -= calculateDmgTaken(damage, dmgType);
-    }
-
-    //fill out this method later
     private double calculateDmgTaken(double dmg, byte dmgType) {
-        return dmg*ResistCalc.multiplier(attributes.getDmgResist(dmgType));
+        return dmg* Calculations.calcDmg(attributes.getDmgResist(dmgType));
     }
 
     public void becomeSlowed(double amt, double power) {
-        this.slow[0] = amt*ResistCalc.multiplier(attributes.getSlowResist());
+        this.slow[0] = amt* Calculations.calcDmg(attributes.getSlowResist());
         this.slow[1] = power;
     }
 
     public void becomeBurned(double amt, double power) {
-        this.burn[0] = amt*ResistCalc.multiplier(attributes.getBurnResist());
+        this.burn[0] = amt* Calculations.calcDmg(attributes.getBurnResist());
         this.slow[1] = power;
     }
 
