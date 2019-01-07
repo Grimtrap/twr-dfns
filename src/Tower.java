@@ -11,7 +11,7 @@ abstract class Tower {
     boolean groundTargeting;
     boolean airTargeting;
     //Circle range;
-    //ArrayList<Enemies> enemies = new ArrayList<>(); // stores all enemies in range of tower
+    ArrayList<Enemy> enemies = new ArrayList<>(); // stores all enemies in range of tower
 
     public Tower (double x, double y){
         this.x = x;

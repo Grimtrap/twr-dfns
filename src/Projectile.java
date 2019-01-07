@@ -42,6 +42,6 @@ public class Projectile extends JComponent {
     }
     public void draw(Graphics g) {
         super.paintComponent(g);
-        g.fillOval(0, 0, 50, 50);
+        g.fillOval(0, 0, 50, 50); //draw image
     }
 }
