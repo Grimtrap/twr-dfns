@@ -18,10 +18,11 @@ public class Map {
      * makes a map for the game
      * @param mapName name of the file/map without extension
      */
-    public Map(String mapName) {
+    public Map(String mapName) throws IOException {
         this.mapName = mapName;
         mapFile = new File(mapName + ".txt");
         start = new double[2];
+        construct();
     }
 
     private void construct() throws IOException {
