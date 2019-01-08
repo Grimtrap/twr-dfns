@@ -10,7 +10,7 @@ abstract class Tower {
     double rate;
     boolean groundTargeting;
     boolean airTargeting;
-    //Circle range;
+    Circle range;
     ArrayList<Enemy> enemies = new ArrayList<>(); // stores all enemies in range of tower
 
     public Tower (double x, double y){
@@ -39,7 +39,6 @@ abstract class Tower {
     }
 
     public void update(double timeElapsed){
-
     }
 
     public void findTargets(){
