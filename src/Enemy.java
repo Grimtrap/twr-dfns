@@ -14,8 +14,8 @@ public class Enemy {
 
     private int goldGranted;
     private Attributes attributes;
-    private Queue<Path> paths;
-    private Path currentPath;
+    private Queue<Pathing> pathings;
+    private Pathing currentPathing;
 
     private Rectangle boundingBox;
 
@@ -23,7 +23,7 @@ public class Enemy {
     private int y;
     private int distanceLeft;
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Path> pathQueue, int x, int y) {
+    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue, int x, int y) {
         //BIG REMINDER TO REPLACE THE PATHQUEUETHING WITH A HOMEMADE QUEUE LOL (I THINK)
         this.imagePath = imagePath;
         this.maxHealth = maxHealth;
@@ -31,7 +31,7 @@ public class Enemy {
         this.speed = speed;
         this.goldGranted = goldGranted;
         this.attributes = attributes;
-        this.paths = pathQueue;
+        this.pathings = pathingQueue;
         this.x = x;
         this.y = y;
         this.slow = new double[]{0,0};
@@ -57,7 +57,7 @@ public class Enemy {
     }
 
     private void move(double timeElapsed) {
-        byte direction = currentPath.getDirection();
+        byte direction = currentPathing.getDirection();
         if(slow[0] > 0) {
             if(direction == 0){
                 this.y -= (speed*timeElapsed*100)/(slow[1] + 1);
@@ -81,17 +81,17 @@ public class Enemy {
             }
         }
 
-        if(this.currentPath.getDistance() <= 0) {
+        if(this.currentPathing.getDistance() <= 0) {
             if(direction == 0){
-                this.y -= currentPath.getDistance();
+                this.y -= currentPathing.getDistance();
             } else if(direction==1) {
-                this.y += currentPath.getDistance();
+                this.y += currentPathing.getDistance();
             } else if(direction==2) {
-                this.x += currentPath.getDistance();
+                this.x += currentPathing.getDistance();
             } else if(direction==3) {
-                this.x -= currentPath.getDistance();
+                this.x -= currentPathing.getDistance();
             }
-            currentPath = paths.poll();
+            currentPathing = pathings.poll();
         }
     }
 
@@ -164,12 +164,12 @@ public class Enemy {
         this.attributes = attributes;
     }
 
-    public Queue<Path> getPaths() {
-        return paths;
+    public Queue<Pathing> getPathings() {
+        return pathings;
     }
 
-    public void setPaths(Queue<Path> paths) {
-        this.paths = paths;
+    public void setPathings(Queue<Pathing> pathings) {
+        this.pathings = pathings;
     }
 
     public int getX() {
