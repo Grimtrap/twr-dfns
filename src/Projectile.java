@@ -45,14 +45,14 @@ public class Projectile extends JComponent {
 
     public void update(){
         objectP = this.getLocation();
-        double xDirection =  5* Math.cos(-(Math.atan2(ex - x, ex - y))+ 90);
-        double yDirection = 5* Math.sin(-(Math.atan2(ex - x, ex - y))+ 90);
-        x = (objectP.x + (int)(xDirection));
-        y = (objectP.y + (int)(yDirection));
+        double xDirection =  5 * Math.cos(-(Math.atan2(ex - x, ey - y))+ 90);
+        double yDirection = 5 * Math.sin(-(Math.atan2(ex - x, ey - y))+ 90);
+        x = (objectP.x + (int)(xDirection * speed));
+        y = (objectP.y + (int)(yDirection * speed));
         setLocation((int)(x),(int)(y));
-
         repaint();
     }
+
     public void draw(Graphics g) {
         super.paintComponent(g);
         g.fillOval(0, 0, 50, 50); //draw image
