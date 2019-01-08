@@ -1,9 +1,9 @@
-public class Path {
+public class Pathing {
 
     private byte direction;
     private double distance;
 
-    public Path(double distance, byte direction) {
+    public Pathing(double distance, byte direction) {
         this.distance = distance;
         this.direction = direction;
     }
