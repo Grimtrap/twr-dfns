@@ -8,4 +8,8 @@ public class Circle {
         this.y = y;
         this.radius = radius;
     }
+
+    public void setRadius(double r){
+        this.radius = r;
+    }
 }
