@@ -20,7 +20,7 @@ public class Map {
      */
     public Map(String mapName) throws IOException {
         this.mapName = mapName;
-        mapFile = new File(mapName + ".txt");
+        mapFile = new File("maps/" + mapName + ".txt");
         start = new double[2];
         construct();
     }

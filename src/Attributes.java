@@ -8,7 +8,12 @@ public class Attributes {
     private boolean flying;
 
     public Attributes() {
-        dmgResists = new double[3];
+        dmgResists = new double[]{0,0,0};
+        slowResist = 0;
+        burnResist = 0;
+        shielding = 0;
+        regen = 0;
+        flying = false;
     }
 
     public double getDmgResist(int dmgType) {

@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Queue;
 
 public class Enemy {
@@ -30,19 +33,27 @@ public class Enemy {
 
     }
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue) {
+    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue) throws IOException {
 
         this.imagePath = imagePath;
         image = new BufferedImage(75, 75, BufferedImage.TYPE_INT_ARGB);
+        ImageIO.write(image, "png", new File("resources/" + imagePath));
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
         this.goldGranted = goldGranted;
         this.attributes = attributes;
         this.pathings = pathingQueue;
+        this.currentPathing = pathings.poll();
         this.slow = new double[]{0,0};
         this.burn = new double[]{0,0};
         this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later
+        tempSetCoordTest();
+    }
+
+    private void tempSetCoordTest() {
+        this.x = 300;
+        this.y = 300;
     }
 
     public boolean update(double timeElapsed) {
@@ -68,6 +79,8 @@ public class Enemy {
     }
 
     private void move(double timeElapsed) {
+
+
         byte direction = currentPathing.getDirection();
 
         if(slow[0] > 0) {
