@@ -46,6 +46,13 @@ abstract class Tower {
     }
 
     public void findTargets(){
+        ArrayList<Enemy> all = new ArrayList<>(); //import array of all enemies in game
+        ArrayList<Enemy> within = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++){
+            if (Math.pow((all.get(i).getX() - x),2) + Math.pow((all.get(i).getY() - y),2) < Math.pow((range.getRadius() - x),2)){
+                within.add(all.get(i));
+            }
+        }
     }
 
     abstract void attack();
