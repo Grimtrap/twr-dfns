@@ -11,6 +11,10 @@ public class CryoGunTower extends Tower {
         this.dmg = 5;
         this.rate = 5;
         this.range = new Circle(x, y, 5);
+        //this.projectileImagePath = ;
+        //this.damageType = ;
+        //this.projectileSpeed = ;
+        this.projectileExplosionRadius = 0;
     }
 
     public void attack(){

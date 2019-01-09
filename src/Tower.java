@@ -12,6 +12,10 @@ abstract class Tower {
     boolean airTargeting;
     Circle range;
     ArrayList<Enemy> enemies = new ArrayList<>(); // stores all enemies in range of tower
+    String projectileImagePath;
+    byte damageType;
+    double projectileSpeed;
+    double projectileExplosionRadius;
 
     public Tower (double x, double y){
         this.x = x;

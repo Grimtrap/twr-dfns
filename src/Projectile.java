@@ -43,6 +43,31 @@ public class Projectile extends JComponent {
 
     }
 
+    public Projectile (String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+        this.imagePath = imagePath;
+        this.damageType = damageType;
+        this.slow = slow;
+        this.burn = burn;
+        this.damage = damage;
+        this.speed = speed;
+        this.explosionRadius = explosionRadius;
+        this.x = x;
+        this.y = y;
+        this.ex = ex;
+        this.ey = ey;
+
+        //Creates action listener updates projectile based on timer
+        ActionListener travel = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                update();
+            }
+        };
+        Timer t = new Timer (500, travel);
+        t.start();
+
+    }
+
     public void update(){
         objectP = this.getLocation();
         double xDirection =  5 * Math.cos(-(Math.atan2(ex - x, ey - y))+ 90);
