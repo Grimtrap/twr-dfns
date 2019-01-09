@@ -1,9 +1,12 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Queue;
 
 public class Enemy {
 
     private String imagePath;
+
+    private BufferedImage image;
 
     private double maxHealth;
     private double currentHealth;
@@ -19,24 +22,27 @@ public class Enemy {
 
     private Rectangle boundingBox;
 
-    private int x;
-    private int y;
-    private int distanceLeft;
+    private double x;
+    private double y;
+    private double distanceLeft;
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue, int x, int y) {
-        //BIG REMINDER TO REPLACE THE PATHQUEUETHING WITH A HOMEMADE QUEUE LOL (I THINK)
+    public Enemy(int difficulty) {
+
+    }
+
+    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue) {
+
         this.imagePath = imagePath;
+        image = new BufferedImage(75, 75, BufferedImage.TYPE_INT_ARGB);
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
         this.goldGranted = goldGranted;
         this.attributes = attributes;
         this.pathings = pathingQueue;
-        this.x = x;
-        this.y = y;
         this.slow = new double[]{0,0};
         this.burn = new double[]{0,0};
-        this.boundingBox = new Rectangle(x,y,50,50); //placeholder values replace later
+        this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later
     }
 
     public boolean update(double timeElapsed) {
@@ -49,6 +55,11 @@ public class Enemy {
         }
     }
 
+    public void setCoords(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     private void burnDmg(double timeElapsed) {
         if(burn[0] > 0) {
             takeDmg(burn[1]*timeElapsed*100, DamageTypes.EXPLOSIVE);
@@ -58,6 +69,7 @@ public class Enemy {
 
     private void move(double timeElapsed) {
         byte direction = currentPathing.getDirection();
+
         if(slow[0] > 0) {
             if(direction == 0){
                 this.y -= (speed*timeElapsed*100)/(slow[1] + 1);
@@ -69,6 +81,10 @@ public class Enemy {
                 this.x -= (speed*timeElapsed*100)/(slow[1] + 1);
             }
 
+            this.distanceLeft -= (speed*timeElapsed*100)/(slow[1] + 1);
+
+            slow[0] -= timeElapsed;
+
         } else {
             if (direction == 0) {
                 this.y -= speed * timeElapsed * 100;
@@ -79,6 +95,8 @@ public class Enemy {
             } else if (direction == 3) {
                 this.x -= speed * timeElapsed * 100;
             }
+
+            this.distanceLeft -= (speed*timeElapsed*100);
         }
 
         if(this.currentPathing.getDistance() <= 0) {
@@ -92,11 +110,12 @@ public class Enemy {
                 this.x -= currentPathing.getDistance();
             }
             currentPathing = pathings.poll();
+            distanceLeft = currentPathing.getDistance();
         }
     }
 
     public void draw(Graphics g) {
-
+        g.drawImage(image, (int)x, (int)y, null);
     }
 
     public void takeDmg(double damage, byte dmgType) {
@@ -172,7 +191,7 @@ public class Enemy {
         this.pathings = pathings;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -180,7 +199,7 @@ public class Enemy {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
