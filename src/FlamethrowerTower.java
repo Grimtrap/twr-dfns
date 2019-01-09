@@ -18,7 +18,8 @@ public class FlamethrowerTower extends Tower {
     }
 
     public void attack(){
-        //need to create an array of enemies within its range
+        //create an array of enemies within its range
+        findTargets();
         //fires at the enemy closest to base
         //Creates action listener updates projectile based on timer
         ActionListener shoot = new ActionListener() {
