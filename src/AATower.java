@@ -6,15 +6,15 @@ public class AATower extends Tower {
 
     public AATower(double x, double y) {
         super(x, y);
-        this.groundTargeting = false;
-        this.airTargeting = true;
-        this.dmg = 5;
-        this.rate = 5;
-        this.range = new Circle(x, y, 5);
-        //this.projectileImagePath = ;
-        //this.damageType = ;
-        //this.projectileSpeed = ;
-        this.projectileExplosionRadius = 0;
+        setGroundTargeting(false);
+        setAirTargeting(true);
+        //setDamage();
+        //setFireRate();
+        //setRange(new Circle(x, y, ));
+        //setProjectileImagePath();
+        //setDamageType();
+        //setProjectileSpeed();
+        setProjectileExplosionRadius(0);
     }
 
     public void attack(){
@@ -27,7 +27,7 @@ public class AATower extends Tower {
                 //new Projectile();
             }
         };
-        Timer t = new Timer ((int)(rate), shoot);
+        Timer t = new Timer ((int)(getFireRate()), shoot);
         t.start();
     }
 }

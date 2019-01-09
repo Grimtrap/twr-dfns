@@ -6,15 +6,15 @@ public class MachineGunTower extends Tower {
 
     public MachineGunTower(double x, double y) {
         super(x, y);
-        this.groundTargeting = true;
-        this.airTargeting = true;
-        this.dmg = 5;
-        this.rate = 5;
-        this.range = new Circle(x, y, 5);
-        //this.projectileImagePath = ;
-        //this.damageType = ;
-        //this.projectileSpeed = ;
-        this.projectileExplosionRadius = 0;
+        setGroundTargeting(true);
+        setAirTargeting(true);
+        //setDamage();
+        //setFireRate();
+        //setRange(new Circle(x, y, ));
+        //setProjectileImagePath();
+        //setDamageType();
+        //setProjectileSpeed();
+        setProjectileExplosionRadius(0);
     }
 
     public void attack(){
@@ -27,7 +27,7 @@ public class MachineGunTower extends Tower {
                 //new Projectile();
             }
         };
-        Timer t = new Timer ((int)(rate), shoot);
+        Timer t = new Timer ((int)(getFireRate()), shoot);
         t.start();
     }
 }
