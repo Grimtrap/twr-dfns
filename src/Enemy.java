@@ -36,8 +36,7 @@ public class Enemy {
     public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue) throws IOException {
 
         this.imagePath = imagePath;
-        image = new BufferedImage(75, 75, BufferedImage.TYPE_INT_ARGB);
-        ImageIO.write(image, "png", new File("resources/" + imagePath));
+        image = ImageIO.read(new File("resources/" + imagePath));
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
@@ -45,6 +44,7 @@ public class Enemy {
         this.attributes = attributes;
         this.pathings = pathingQueue;
         this.currentPathing = pathings.poll();
+        this.distanceLeft = currentPathing.getDistance();
         this.slow = new double[]{0,0};
         this.burn = new double[]{0,0};
         this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later
@@ -112,15 +112,15 @@ public class Enemy {
             this.distanceLeft -= (speed*timeElapsed*100);
         }
 
-        if(this.currentPathing.getDistance() <= 0) {
+        if(this.distanceLeft <= 0) {
             if(direction == 0){
-                this.y -= currentPathing.getDistance();
+                this.y += distanceLeft;
             } else if(direction==1) {
-                this.y += currentPathing.getDistance();
+                this.y -= distanceLeft;
             } else if(direction==2) {
-                this.x += currentPathing.getDistance();
+                this.x -= distanceLeft;
             } else if(direction==3) {
-                this.x -= currentPathing.getDistance();
+                this.x += distanceLeft;
             }
             currentPathing = pathings.poll();
             distanceLeft = currentPathing.getDistance();

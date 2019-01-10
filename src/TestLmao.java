@@ -27,11 +27,14 @@ public class TestLmao extends JFrame {
 
         public GamePanel() throws IOException {
             clock = new Clock();
-            enemies.add(new Enemy("lati.png", 2,2,2, new Attributes(), map.getPathings()));
+            Enemy a = new Enemy("lati.png", 2,2,2, new Attributes(), map.getPathings());
+            a.setCoords(0,500);
+            enemies.add(a);
         }
 
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
+            g.drawRect(0,0,500,500);
             setDoubleBuffered(true);
             clock.update();
 
