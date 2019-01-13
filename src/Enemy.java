@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Queue;
 
-public class Enemy {
+public class Enemy implements Cloneable {
 
     private String imagePath;
 
@@ -33,10 +33,14 @@ public class Enemy {
 
     }
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue) throws IOException {
+    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue){
 
         this.imagePath = imagePath;
-        image = ImageIO.read(new File("resources/" + imagePath));
+        try {
+            image = ImageIO.read(new File("resources/" + imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
@@ -51,9 +55,19 @@ public class Enemy {
         tempSetCoordTest();
     }
 
+    @Deprecated
     private void tempSetCoordTest() {
         this.x = 300;
         this.y = 300;
+    }
+
+    public Object clone() {
+        try {
+            return (Enemy)super.clone();
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public boolean update(double timeElapsed) {
