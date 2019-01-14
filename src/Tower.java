@@ -56,6 +56,9 @@ abstract class Tower {
         return within;
     }
 
+    public void selectTarget(){
+    }
+
     abstract void attack();
 
     public Image getImage() {
