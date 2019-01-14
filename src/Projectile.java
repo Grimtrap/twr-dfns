@@ -4,21 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Projectile extends JComponent {
-    double x; // tower x
-    double y; // tower y
-    double ex; // enemy x
-    double ey; // enemy y
-    String imagePath;
-    byte damageType;
-    double[] slow;
-    double[] burn;
-    double damage;
-    double speed;
-    double explosionRadius;
+    double x; // x
+    double y; // y
+    private double ex; // enemy x
+    private double ey; // enemy y
+    private String imagePath;
+    private DamageTypes damageType;
+    private double[] slow;
+    private double[] burn;
+    private double damage;
+    private double speed;
+    private double explosionRadius;
 
     private Point objectP = new Point();
 
-    public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    public Projectile (String imagePath, DamageTypes damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
         this.imagePath = imagePath;
         this.damageType = damageType;
         this.slow = slow;
@@ -43,11 +43,9 @@ public class Projectile extends JComponent {
 
     }
 
-    public Projectile (String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    public Projectile (String imagePath, DamageTypes damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
         this.imagePath = imagePath;
         this.damageType = damageType;
-        this.slow = slow;
-        this.burn = burn;
         this.damage = damage;
         this.speed = speed;
         this.explosionRadius = explosionRadius;
@@ -80,6 +78,6 @@ public class Projectile extends JComponent {
 
     public void draw(Graphics g) {
         super.paintComponent(g);
-        g.fillOval(0, 0, 50, 50); //draw image
+        g.fillOval((int)(x), (int)(y), 50, 50); //draw image
     }
 }
