@@ -45,7 +45,7 @@ abstract class Tower {
     public void update(double timeElapsed){
     }
 
-    public void findTargets(){
+    public ArrayList<Enemy> findTargets(){
         ArrayList<Enemy> all = new ArrayList<>(); //import array of all enemies in game
         ArrayList<Enemy> within = new ArrayList<>();
         for (int i = 0; i < all.size(); i++){
@@ -53,6 +53,7 @@ abstract class Tower {
                 within.add(all.get(i));
             }
         }
+        return within;
     }
 
     abstract void attack();
