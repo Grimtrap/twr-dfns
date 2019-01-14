@@ -8,8 +8,8 @@ public class SniperTower extends Tower {
         super(x, y);
         setGroundTargeting(true);
         setAirTargeting(true);
-        //setDamage();
-        //setFireRate();
+        setDamage(50);
+        setFireRate(1000);
         //setRange(new Circle(x, y, ));
         //setProjectileImagePath();
         //setDamageType();

@@ -8,8 +8,8 @@ public class ShotgunTower extends Tower {
         super(x, y);
         setGroundTargeting(true);
         setAirTargeting(false);
-        //setDamage();
-        //setFireRate();
+        setDamage(30);
+        setFireRate(1000);
         //setRange(new Circle(x, y, ));
         //setProjectileImagePath();
         //setDamageType();

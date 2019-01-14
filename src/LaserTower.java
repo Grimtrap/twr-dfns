@@ -8,8 +8,8 @@ public class LaserTower extends Tower {
         super(x, y);
         setGroundTargeting(true);
         setAirTargeting(true);
-        //setDamage();
-        //setFireRate();
+        setDamage(10);
+        setFireRate(100);
         //setRange(new Circle(x, y, ));
         //setProjectileImagePath();
         //setDamageType();
