@@ -1,4 +1,4 @@
-public class Attributes {
+public class Attributes implements Cloneable{
 
     private double[] dmgResists;
     private double slowResist;
@@ -14,6 +14,15 @@ public class Attributes {
         shielding = 0;
         regen = 0;
         flying = false;
+    }
+
+    public Attributes clone() {
+        try {
+            return (Attributes)super.clone();
+        } catch(CloneNotSupportedException e) {
+            System.err.println("clone not supported");
+        }
+        return null;
     }
 
     public double getDmgResist(int dmgType) {

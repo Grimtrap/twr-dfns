@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Enemy implements Cloneable {
@@ -33,7 +34,7 @@ public class Enemy implements Cloneable {
 
     }
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, Queue<Pathing> pathingQueue){
+    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
 
         this.imagePath = imagePath;
         try {
@@ -45,14 +46,22 @@ public class Enemy implements Cloneable {
         this.currentHealth = maxHealth;
         this.speed = speed;
         this.goldGranted = goldGranted;
-        this.attributes = attributes;
-        this.pathings = pathingQueue;
+        this.attributes = attributes.clone();
+        this.pathings = clonePaths(pathingQueue);
         this.currentPathing = pathings.poll();
         this.distanceLeft = currentPathing.getDistance();
-        this.slow = new double[]{0,0};
+        this.slow = new double[]{0,0}; //duration, then power
         this.burn = new double[]{0,0};
         this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later maybe
         tempSetCoordTest();
+    }
+
+    private LinkedList<Pathing> clonePaths(Queue<Pathing> pathingQueue) {
+        LinkedList<Pathing> path = new LinkedList<Pathing>();
+        for(Pathing p: pathingQueue) {
+            path.add(p.clone());
+        }
+        return path;
     }
 
     @Deprecated
@@ -61,9 +70,12 @@ public class Enemy implements Cloneable {
         this.y = 300;
     }
 
-    public Object clone() {
+    public Enemy clone() {
         try {
-            return (Enemy)super.clone();
+            Enemy enemy = (Enemy)super.clone();
+            enemy.setPathings(this.clonePaths(pathings));
+            enemy.setAttributes(this.attributes.clone());
+            return enemy;
         } catch(Exception e) {
             e.printStackTrace();
             return null;
@@ -218,7 +230,7 @@ public class Enemy implements Cloneable {
         return pathings;
     }
 
-    public void setPathings(Queue<Pathing> pathings) {
+    public void setPathings(LinkedList<Pathing> pathings) {
         this.pathings = pathings;
     }
 

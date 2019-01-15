@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class EnemySpawner {
@@ -41,7 +42,7 @@ public class EnemySpawner {
     public Enemy getNextEnemy(int currentIndex) {
         if(enemiesLeft[currentIndex] > 0) {
             enemiesLeft[currentIndex] -=1;
-            Enemy next = (Enemy)currentEnemies[currentIndex].clone();
+            Enemy next = currentEnemies[currentIndex].clone();
             next.setCoords(map.getStart()[0],map.getStart()[1]);
             return next;
         } else if(enemiesLeft.length < currentIndex+1){
@@ -60,7 +61,8 @@ public class EnemySpawner {
         for(int i =0; i < currentEnemies.length; i++) {
             Attributes a = new Attributes();
             double[] healthSpeed = genHealthAndSpeed();
-            this.currentEnemies[i] = new Enemy("lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
+            LinkedList<Pathing> paths = map.getPathings();
+            this.currentEnemies[i] = new Enemy("lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, paths);
         }
 
     }

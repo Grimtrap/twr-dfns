@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class Map {
 
-    private Queue pathings = new LinkedList<Pathing>();
+    private LinkedList<Pathing> pathings = new LinkedList<Pathing>();
     private double[] start;
     private String mapName;
     private File mapFile;
@@ -33,7 +33,7 @@ public class Map {
     private void construct() throws IOException {
         Scanner in = new Scanner(mapFile);
         String[] rawCoords = in.nextLine().split(" ");
-        start[0] = Double.parseDouble(rawCoords[0]);
+        start[0] = Double.parseDouble(rawCoords[0]); //numbers of the first line are coords
         start[1] = Double.parseDouble(rawCoords[1]);
         while(in.hasNextLine()) {
             String[] current = in.nextLine().split(" ");
@@ -55,8 +55,12 @@ public class Map {
         return -1;
     }
 
-    public Queue<Pathing> getPathings() {
-        return new LinkedList<Pathing>(pathings);
+    public LinkedList<Pathing> getPathings() {
+        LinkedList<Pathing> path = new LinkedList<Pathing>();
+        for(Pathing p: pathings) {
+            path.add(p.clone());
+        }
+        return path;
     }
 
     public double[] getStart() {
