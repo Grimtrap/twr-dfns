@@ -51,7 +51,7 @@ public class Enemy implements Cloneable {
         this.distanceLeft = currentPathing.getDistance();
         this.slow = new double[]{0,0};
         this.burn = new double[]{0,0};
-        this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later
+        this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later maybe
         tempSetCoordTest();
     }
 
@@ -72,8 +72,12 @@ public class Enemy implements Cloneable {
 
     public boolean update(double timeElapsed) {
         if(currentHealth > 0) {
-            move(timeElapsed);
-            burnDmg(timeElapsed);
+            try {
+                move(timeElapsed);
+                burnDmg(timeElapsed);
+            } catch (NullPointerException e) {
+                this.setCoords(-1,-1);
+            }
             return true;
         } else {
             return false;
@@ -216,6 +220,14 @@ public class Enemy implements Cloneable {
 
     public void setPathings(Queue<Pathing> pathings) {
         this.pathings = pathings;
+    }
+
+    public Rectangle getBoundingBox() {
+        return boundingBox;
+    }
+
+    public void setBoundingBox(Rectangle boundingBox) {
+        this.boundingBox = boundingBox;
     }
 
     public double getX() {

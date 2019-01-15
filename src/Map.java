@@ -8,6 +8,7 @@ import java.util.Scanner;
  * Has a path for the enemies to follow
  */
 public class Map {
+
     private Queue pathings = new LinkedList<Pathing>();
     private double[] start;
     private String mapName;
@@ -25,6 +26,10 @@ public class Map {
         construct();
     }
 
+    /**
+     * Constructs a map from the text file
+     * @throws IOException exception
+     */
     private void construct() throws IOException {
         Scanner in = new Scanner(mapFile);
         String[] rawCoords = in.nextLine().split(" ");
@@ -52,5 +57,13 @@ public class Map {
 
     public Queue<Pathing> getPathings() {
         return new LinkedList<Pathing>(pathings);
+    }
+
+    public double[] getStart() {
+        return start;
+    }
+
+    public void setStart(double[] start) {
+        this.start = start;
     }
 }

@@ -11,8 +11,12 @@ public class EnemySpawner {
     private Random random = new Random();
 
 
-    public EnemySpawner(String mapName) throws IOException {
-        map = new Map("lol");
+    public EnemySpawner(String mapName) {
+        try {
+            map = new Map("lol");
+        } catch(IOException e) {
+            System.out.println("Map not found"); //maybe put something else here too
+        }
     }
 
     public void generateWave(int difficulty) {
@@ -21,10 +25,22 @@ public class EnemySpawner {
         currentEnemies = new Enemy[difficulty/100 +1];
     }
 
+    public boolean canSpawnMore() {
+        for(int e: enemiesLeft) {
+            if(e > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Enemy getNextEnemy(int currentIndex) {
         if(enemiesLeft[currentIndex] > 0) {
             enemiesLeft[currentIndex] -=1;
-            return currentEnemies[currentIndex];
+            Enemy next = (Enemy)currentEnemies[currentIndex].clone();
+            next.setCoords(map.getStart()[0],map.getStart()[1]);
+            return next;
         } else if(enemiesLeft.length < currentIndex+1){
             return getNextEnemy(currentIndex+1); //recursively traverses the array till all enemies are spawned i guess
         } else {
@@ -41,7 +57,7 @@ public class EnemySpawner {
         for(int i =0; i < currentEnemies.length; i++) {
             Attributes a = new Attributes();
             double[] healthSpeed = genHealthAndSpeed();
-            this.currentEnemies[i] = new Enemy("resources/bad.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
+            this.currentEnemies[i] = new Enemy("resources/lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
         }
 
     }
