@@ -76,7 +76,7 @@ public class Enemy implements Cloneable {
                 move(timeElapsed);
                 burnDmg(timeElapsed);
             } catch (NullPointerException e) {
-                this.setCoords(-1,-1);
+                this.setCoords(-1000,-1000);
             }
             return true;
         } else {

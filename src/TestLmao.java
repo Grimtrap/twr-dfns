@@ -26,18 +26,21 @@ public class TestLmao extends JFrame {
     private class GamePanel extends JPanel {
         private Clock clock;
         private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+        private EnemySpawner spawner;
+        private int currentWave;
 
 
         public GamePanel() throws IOException {
             clock = new Clock();
 
-
+            spawner = new EnemySpawner(mapName);
+            spawner.generateWave(0);
+            enemies.add(spawner.getNextEnemy(0));
         }
 
         public void paintComponent(Graphics g) {
 
-            double duration = 200;
-            EnemySpawner spawner = new EnemySpawner(mapName);
+            double duration = 5;
             super.paintComponent(g);
             g.drawRect(0,0,500,500);
             setDoubleBuffered(true);
@@ -45,8 +48,8 @@ public class TestLmao extends JFrame {
 
             duration -= clock.getElapsedTime();
 
-            if(duration <= 0) {
-                duration = 200;
+            if(duration <= 0 && spawner.canSpawnMore()) {
+                duration = 5;
             }
 
             for(Enemy e: enemies) {

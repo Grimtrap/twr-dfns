@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 public class EnemySpawner {
@@ -21,8 +22,10 @@ public class EnemySpawner {
 
     public void generateWave(int difficulty) {
         //amt of waves is determined by difficulty which is determined by the current wave
-        enemiesLeft = new int[difficulty/100 +1];
+        enemiesLeft = new int[difficulty/100+1];
+        Arrays.fill(enemiesLeft, 10);
         currentEnemies = new Enemy[difficulty/100 +1];
+        generateEnemies();
     }
 
     public boolean canSpawnMore() {
@@ -57,7 +60,7 @@ public class EnemySpawner {
         for(int i =0; i < currentEnemies.length; i++) {
             Attributes a = new Attributes();
             double[] healthSpeed = genHealthAndSpeed();
-            this.currentEnemies[i] = new Enemy("resources/lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
+            this.currentEnemies[i] = new Enemy("lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
         }
 
     }
