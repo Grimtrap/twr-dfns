@@ -10,7 +10,7 @@ public class TestLmao extends JFrame {
     private String mapName;
 
     public TestLmao(String mapName) throws IOException {
-        super("Twr Dfns lmao");
+        super("Tower Defense lmao");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
