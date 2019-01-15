@@ -3,45 +3,67 @@ import java.util.Random;
 
 public class EnemySpawner {
 
-    private int enemiesLeft;
-    private int difficultyLeft;
+    private int[] enemiesLeft;
     private int currentDifficulty;
-    private Enemy currentEnemy;
+    private Enemy[] currentEnemies;
     private Map map;
 
-    public EnemySpawner(int difficulty) {
-        this.difficultyLeft = difficulty;
-    }
+    private Random random = new Random();
+
 
     public EnemySpawner(String mapName) throws IOException {
         map = new Map("lol");
-        this.difficultyLeft = 100;
-        this.enemiesLeft = 10;
-        enemiesLeft = 10;
     }
 
-    public Enemy getNextEnemy() {
-        enemiesLeft -= 1;
-        return (Enemy)currentEnemy.clone();
+    public void generateWave(int difficulty) {
+        //amt of waves is determined by difficulty which is determined by the current wave
+        enemiesLeft = new int[difficulty/100 +1];
+        currentEnemies = new Enemy[difficulty/100 +1];
+    }
+
+    public Enemy getNextEnemy(int currentIndex) {
+        if(enemiesLeft[currentIndex] > 0) {
+            enemiesLeft[currentIndex] -=1;
+            return currentEnemies[currentIndex];
+        } else if(enemiesLeft.length < currentIndex+1){
+            return getNextEnemy(currentIndex+1); //recursively traverses the array till all enemies are spawned i guess
+        } else {
+            return null;
+        }
     }
 
     public void setDifficulty(int amt) {
         currentDifficulty = amt;
-        difficultyLeft = amt;
     }
 
-    private void generateEnemy() {
-        Random random = new Random();
+    private void generateEnemies() {
 
-        Attributes a = new Attributes();
-        if(currentDifficulty < 10) {
-            a.setBurnResist(0);
-            a.setFlying(false);
-            a.setRegen(0);
-            a.setShielding(0);
-            a.setSlowResist(0);
-            this.currentEnemy = new Enemy("resources/bad.png", 100, 3, 3, a, map.getPathings());
+        for(int i =0; i < currentEnemies.length; i++) {
+            Attributes a = new Attributes();
+            double[] healthSpeed = genHealthAndSpeed();
+            this.currentEnemies[i] = new Enemy("resources/bad.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, map.getPathings());
         }
 
     }
+
+    private Attributes genAttributes() {
+        return null; //BETTER FIX THIS LATER LOL
+    }
+
+    private double[] genHealthAndSpeed() {
+        double multiplier = genMultiplier();
+        double[] healthAndSpeed = new double[2]; //0 for health, 1 for speed
+        healthAndSpeed[0] = (100+currentDifficulty)*multiplier;
+        healthAndSpeed[1] = 3*(1+(1-multiplier));
+        return healthAndSpeed;
+    }
+
+    private double genMultiplier() {
+        return (random.nextInt(50) + 80)/100.0;
+    }
+
+    public int getEnemiesLeft(int i) {
+        return enemiesLeft[i];
+    }
+
 }
