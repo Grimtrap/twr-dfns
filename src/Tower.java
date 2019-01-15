@@ -6,6 +6,8 @@ abstract class Tower {
     private Image image;
     private double x;
     private double y;
+    private double targetX;
+    private double targetY;
     private double dmg;
     private double rate;
     private boolean groundTargeting;
@@ -160,5 +162,21 @@ abstract class Tower {
 
     public void setProjectileExplosionRadius(double projectileExplosionRadius) {
         this.projectileExplosionRadius = projectileExplosionRadius;
+    }
+
+    public double getTargetX() {
+        return targetX;
+    }
+
+    public void setTargetX(double targetX) {
+        this.targetX = targetX;
+    }
+
+    public double getTargetY() {
+        return targetY;
+    }
+
+    public void setTargetY(double targetY) {
+        this.targetY = targetY;
     }
 }
