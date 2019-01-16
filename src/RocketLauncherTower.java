@@ -23,6 +23,7 @@ public class RocketLauncherTower extends Tower {
         //fires at the enemy closest to base
         this.setTargetX(this.getEnemies().get(0).getX());
         this.setTargetY(this.getEnemies().get(0).getY());
+        this.setTarget(this.getEnemies().get(0));
         //Creates action listener updates projectile based on timer
         ActionListener shoot = new ActionListener() {
             @Override

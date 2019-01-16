@@ -9,7 +9,8 @@ public class Projectile extends JComponent {
     private double ex; // enemy x
     private double ey; // enemy y
     private String imagePath;
-    private DamageTypes damageType;
+    private byte damageType;
+    private Enemy target;
     private double[] slow;
     private double[] burn;
     private double damage;
@@ -18,7 +19,7 @@ public class Projectile extends JComponent {
 
     private Point objectP = new Point();
 
-    public Projectile (String imagePath, DamageTypes damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
         this.imagePath = imagePath;
         this.damageType = damageType;
         this.slow = slow;
@@ -43,7 +44,7 @@ public class Projectile extends JComponent {
 
     }
 
-    public Projectile (String imagePath, DamageTypes damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    public Projectile (String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
         this.imagePath = imagePath;
         this.damageType = damageType;
         this.damage = damage;
@@ -53,6 +54,7 @@ public class Projectile extends JComponent {
         this.y = y;
         this.ex = ex;
         this.ey = ey;
+        this.target = target;
 
         //Creates action listener updates projectile based on timer
         ActionListener travel = new ActionListener() {
@@ -66,18 +68,25 @@ public class Projectile extends JComponent {
 
     }
 
-    public void update(){
+    private void update(){
         objectP = this.getLocation();
         double xDirection =  5 * Math.cos(-(Math.atan2(ex - x, ey - y))+ 90);
         double yDirection = 5 * Math.sin(-(Math.atan2(ex - x, ey - y))+ 90);
         x = (objectP.x + (int)(xDirection * speed));
         y = (objectP.y + (int)(yDirection * speed));
         setLocation((int)(x),(int)(y));
+        if (this.hit(x,y,this.target.getBoundingBox())){
+            target.takeDmg(damage, damageType);
+        }
         repaint();
     }
 
     public void draw(Graphics g) {
         super.paintComponent(g);
         g.fillOval((int)(x), (int)(y), 50, 50); //draw image
+    }
+
+    private boolean hit(double x, double y, Rectangle box){
+        return x < box.x && x > (box.x + box.width) && y > box.y && y < (box.y + box.height);
     }
 }
