@@ -11,29 +11,31 @@ public class LaserTower extends Tower {
         setAirTargeting(true);
         setDamage(10);
         setFireRate(100);
-        //setRange(new Circle(x, y, ));
+        setRange(new Circle(x, y, 100));
         //setProjectileImagePath();
         //setDamageType();
-        //setProjectileSpeed();
+        setProjectileSpeed(50);
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/LaserGunBody.png"));
     }
 
     public void attack(){
         //create an array of enemies within its range
-        setEnemies(findTargets());
+        //setWithin(findTargets());
         //fires at the enemy closest to base
-        this.setTarget(this.getEnemies().get(0));
-        //Creates action listener updates projectile based on timer
-        ActionListener shoot = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setTargetX(getEnemies().get(0).getX());
-                setTargetY(getEnemies().get(0).getY());
-                new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(),getX(), getY(), getTargetX(), getTargetY(),getTarget());
-            }
-        };
-        Timer t = new Timer ((int)(getFireRate()), shoot);
-        t.start();
+        if(getWithin() != null) {
+            setTarget(getWithin().getFirst());
+            //Creates action listener updates projectile based on timer
+            ActionListener shoot = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    setTargetX(getWithin().get(0).getX());
+                    setTargetY(getWithin().get(0).getY());
+                    new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
+                }
+            };
+            Timer t = new Timer((int) (getFireRate()), shoot);
+            t.start();
+        }
     }
 }

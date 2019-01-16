@@ -29,6 +29,7 @@ public class TestLmao extends JFrame {
         private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
         private EnemySpawner spawner;
         private int currentWave;
+        private LinkedList<Tower> towers = new LinkedList<>();
 
 
         public GamePanel() {
@@ -36,6 +37,9 @@ public class TestLmao extends JFrame {
             duration = 0;
             spawner = new EnemySpawner(mapName);
             spawner.generateWave(0);
+            towers.add(new AATower(0,500));
+            towers.add(new RifleTower(100,500));
+            towers.add(new MachineGunTower(500,500));
         }
 
         public void paintComponent(Graphics g) {
@@ -56,6 +60,15 @@ public class TestLmao extends JFrame {
                 e.draw(g);
             }
 
+            for(Tower t: towers){
+                t.setEnemies(enemies);
+                t.draw(g);
+                t.setWithin(t.findTargets());
+                //System.out.println(t.getWithin());
+                /*if (t.getWithin() != null) {
+                    t.attack();
+                }*/
+            }
             repaint();
         }
 
