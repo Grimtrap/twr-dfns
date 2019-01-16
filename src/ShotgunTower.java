@@ -21,15 +21,15 @@ public class ShotgunTower extends Tower {
 
     public void attack(){
         //create an array of enemies within its range
-        setEnemies(findTargets());
+        setWithin(findTargets());
         //fires at the enemy closest to base
-        this.setTarget(this.getEnemies().get(0));
+        this.setTarget(this.getWithin().get(0));
         //Creates action listener updates projectile based on timer
         ActionListener shoot = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setTargetX(getEnemies().get(0).getX());
-                setTargetY(getEnemies().get(0).getY());
+                setTargetX(getWithin().get(0).getX());
+                setTargetY(getWithin().get(0).getY());
                 new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(),getX(), getY(), getTargetX(), getTargetY(),getTarget());
             }
         };

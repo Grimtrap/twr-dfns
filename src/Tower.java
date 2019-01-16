@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 abstract class Tower {
 
@@ -13,7 +14,8 @@ abstract class Tower {
     private boolean groundTargeting;
     private boolean airTargeting;
     private Circle range;
-    private ArrayList<Enemy> enemies = new ArrayList<>(); // stores all enemies in range of tower
+    private LinkedList<Enemy> enemies = new LinkedList<>(); // stores all enemies in range of tower
+    private LinkedList<Enemy> within = new LinkedList<>();
     private Enemy target;
     private String projectileImagePath;
     private byte damageType;
@@ -48,12 +50,11 @@ abstract class Tower {
     public void update(double timeElapsed){
     }
 
-    public ArrayList<Enemy> findTargets(){
-        ArrayList<Enemy> all = new ArrayList<>(); //import array of all enemies in game
-        ArrayList<Enemy> within = new ArrayList<>();
-        for (int i = 0; i < all.size(); i++){
-            if (Math.pow((all.get(i).getX() - x),2) + Math.pow((all.get(i).getY() - y),2) < Math.pow((range.getRadius() - x),2)){
-                within.add(all.get(i));
+    public LinkedList<Enemy> findTargets(){
+        LinkedList<Enemy> within = new LinkedList<>();
+        for (int i = 0; i < enemies.size(); i++){
+            if (Math.pow((enemies.get(i).getX() - x),2) + Math.pow((enemies.get(i).getY() - y),2) < Math.pow((range.getRadius() - x),2)){
+                within.add(enemies.get(i));
             }
         }
         return within;
@@ -125,11 +126,11 @@ abstract class Tower {
         this.range = range;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public LinkedList<Enemy> getEnemies() {
         return enemies;
     }
 
-    public void setEnemies(ArrayList<Enemy> enemies) {
+    public void setEnemies(LinkedList<Enemy> enemies) {
         this.enemies = enemies;
     }
 
@@ -187,5 +188,13 @@ abstract class Tower {
 
     public void setTarget(Enemy target) {
         this.target = target;
+    }
+
+    public LinkedList<Enemy> getWithin() {
+        return within;
+    }
+
+    public void setWithin(LinkedList<Enemy> within) {
+        this.within = within;
     }
 }
