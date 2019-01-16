@@ -53,7 +53,7 @@ abstract class Tower {
     public LinkedList<Enemy> findTargets(){
         LinkedList<Enemy> within = new LinkedList<>();
         for (int i = 0; i < enemies.size(); i++){
-            if (Math.pow((enemies.get(i).getX() - x),2) + Math.pow((enemies.get(i).getY() - y),2) < Math.pow((range.getRadius() - x),2)){
+            if (Math.pow((enemies.get(i).getX() - x),2) + Math.pow((enemies.get(i).getY() - y),2) < Math.pow((range.getRadius()),2)){
                 within.add(enemies.get(i));
             }
         }

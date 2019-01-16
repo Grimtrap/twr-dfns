@@ -11,20 +11,20 @@ public class FlamethrowerTower extends Tower {
         setAirTargeting(false);
         setDamage(5);
         //setFireRate();
-        //setRange(new Circle(x, y, ));
+        setRange(new Circle(x, y, 100));
         //setProjectileImagePath();
         //setDamageType();
-        //setProjectileSpeed();
+        setProjectileSpeed(50);
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/FlamethrowerBody.png"));
     }
 
     public void attack(){
         //create an array of enemies within its range
-        setWithin(findTargets());
+        //setWithin(findTargets());
         //fires at the enemy closest to base
         if(getWithin() != null) {
-            this.setTarget(this.getWithin().get(0));
+            setTarget(getWithin().getFirst());
             //Creates action listener updates projectile based on timer
             ActionListener shoot = new ActionListener() {
                 @Override
