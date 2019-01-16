@@ -21,14 +21,14 @@ public class RifleTower extends Tower {
         //create an array of enemies within its range
         setEnemies(findTargets());
         //fires at the enemy closest to base
-        this.setTargetX(this.getEnemies().get(0).getX());
-        this.setTargetY(this.getEnemies().get(0).getY());
         this.setTarget(this.getEnemies().get(0));
         //Creates action listener updates projectile based on timer
         ActionListener shoot = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new Projectile();
+                setTargetX(getEnemies().get(0).getX());
+                setTargetY(getEnemies().get(0).getY());
+                new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(),getX(), getY(), getTargetX(), getTargetY(),getTarget());
             }
         };
         Timer t = new Timer ((int)(getFireRate()), shoot);

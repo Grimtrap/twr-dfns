@@ -16,7 +16,7 @@ abstract class Tower {
     private ArrayList<Enemy> enemies = new ArrayList<>(); // stores all enemies in range of tower
     private Enemy target;
     private String projectileImagePath;
-    private DamageTypes damageType;
+    private byte damageType;
     private double projectileSpeed;
     private double projectileExplosionRadius;
 
@@ -141,11 +141,11 @@ abstract class Tower {
         this.projectileImagePath = projectileImagePath;
     }
 
-    public DamageTypes getDamageType() {
+    public byte getDamageType() {
         return damageType;
     }
 
-    public void setDamageType(DamageTypes damageType) {
+    public void setDamageType(byte damageType) {
         this.damageType = damageType;
     }
 
