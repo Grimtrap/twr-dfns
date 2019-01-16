@@ -1,13 +1,13 @@
 import java.util.LinkedList;
 
-public class ThreadTest extends Thread {
+public class UpdaterThread extends Thread {
     private LinkedList<Enemy> enemies = new LinkedList<>();
     public boolean running;
     private Clock clock;
     private EnemySpawner spawner;
     private double duration;
 
-    public ThreadTest(LinkedList<Enemy> enemies, EnemySpawner spawner) {
+    public UpdaterThread(LinkedList<Enemy> enemies, EnemySpawner spawner) {
         this.enemies = enemies;
         this.clock = new Clock();
         this.running = true;
@@ -15,8 +15,8 @@ public class ThreadTest extends Thread {
         duration = 0.5;
     }
 
-    public void run() {
-        while(true) {
+    public synchronized void run() {
+        while(running) {
             clock.update();
             duration -= clock.getElapsedTime();
 
