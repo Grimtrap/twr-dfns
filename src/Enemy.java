@@ -70,7 +70,7 @@ public class Enemy implements Cloneable {
         this.y = 300;
     }
 
-    public Enemy clone() {
+    public Enemy clone() { //should i make this more efficient?
         try {
             Enemy enemy = (Enemy)super.clone();
             enemy.setPathings(this.clonePaths(pathings));
