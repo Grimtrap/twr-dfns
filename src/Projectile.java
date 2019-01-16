@@ -16,10 +16,11 @@ public class Projectile extends JComponent {
     private double damage;
     private double speed;
     private double explosionRadius;
+    private boolean active = true;
 
     private Point objectP = new Point();
 
-    public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+    /*public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
         this.imagePath = imagePath;
         this.damageType = damageType;
         this.slow = slow;
@@ -39,10 +40,10 @@ public class Projectile extends JComponent {
                 update();
             }
         };
-        Timer t = new Timer (500, travel);
+        Timer t = new Timer (50, travel);
         t.start();
 
-    }
+    }*/
 
     public Projectile (String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
         this.imagePath = imagePath;
@@ -63,7 +64,7 @@ public class Projectile extends JComponent {
                 update();
             }
         };
-        Timer t = new Timer (500, travel);
+        Timer t = new Timer (50, travel);
         t.start();
 
     }
@@ -77,8 +78,10 @@ public class Projectile extends JComponent {
         setLocation((int)(x),(int)(y));
         if (this.hit(x,y,this.target.getBoundingBox())){
             target.takeDmg(damage, damageType);
+            // need to stop timer and remove projectile from screen
+        }else {
+            repaint();
         }
-        repaint();
     }
 
     public void draw(Graphics g) {
