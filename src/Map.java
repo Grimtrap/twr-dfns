@@ -19,7 +19,7 @@ public class Map {
      * makes a map for the game
      * @param mapName name of the file/map without extension
      */
-    public Map(String mapName) throws IOException {
+    public Map(String mapName) {
         this.mapName = mapName;
         mapFile = new File("maps/" + mapName + ".txt");
         start = new double[2];
@@ -28,17 +28,22 @@ public class Map {
 
     /**
      * Constructs a map from the text file
-     * @throws IOException exception
      */
-    private void construct() throws IOException {
-        Scanner in = new Scanner(mapFile);
-        String[] rawCoords = in.nextLine().split(" ");
-        start[0] = Double.parseDouble(rawCoords[0]); //numbers of the first line are coords
-        start[1] = Double.parseDouble(rawCoords[1]);
-        while(in.hasNextLine()) {
-            String[] current = in.nextLine().split(" ");
-            System.out.println(current[0] +" "+ current[1]);
-            pathings.add(new Pathing(Double.parseDouble(current[1]), toDirection(current[0].charAt(0))));
+    private void construct() {
+        Scanner in;
+        try {
+            in = new Scanner(mapFile);
+
+            String[] rawCoords = in.nextLine().split(" ");
+            start[0] = Double.parseDouble(rawCoords[0]); //numbers of the first line are coords
+            start[1] = Double.parseDouble(rawCoords[1]);
+            while (in.hasNextLine()) {
+                String[] current = in.nextLine().split(" ");
+                System.out.println(current[0] + " " + current[1]);
+                pathings.add(new Pathing(Double.parseDouble(current[1]), toDirection(current[0].charAt(0))));
+            }
+        } catch(FileNotFoundException e1) {
+            e1.printStackTrace();
         }
     }
 

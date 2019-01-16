@@ -14,11 +14,7 @@ public class EnemySpawner {
 
 
     public EnemySpawner(String mapName) {
-        try {
-            map = new Map("lol");
-        } catch(IOException e) {
-            System.out.println("Map not found"); //maybe put something else here too
-        }
+        map = new Map(mapName);
     }
 
     public void generateWave(int difficulty) {

@@ -8,14 +8,16 @@ public class TestLmao extends JFrame {
 
     private Map map;
     private String mapName;
+    private LinkedList<Enemy> enemies;
 
-    public TestLmao(String mapName) throws IOException {
+    public TestLmao(String mapName, LinkedList<Enemy> enemies){
         super("Tower Defense lmao");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.mapName = mapName;
         this.map = new Map(mapName);
+        this.enemies = enemies;
         this.setSize(1920,1080);
         this.add(new GamePanel());
         this.setVisible(true);
@@ -26,41 +28,31 @@ public class TestLmao extends JFrame {
     private class GamePanel extends JPanel {
         private Clock clock;
         private double duration;
-        private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
-        private EnemySpawner spawner;
-        private int currentWave;
-
 
         public GamePanel() {
             clock = new Clock();
-            duration = 0;
-            spawner = new EnemySpawner(mapName);
-            spawner.generateWave(0);
+            duration = 0.5;
         }
 
-        public void paintComponent(Graphics g) {
+
+
+        protected void paintComponent(Graphics g) {
 
             super.paintComponent(g);
+
             setDoubleBuffered(true);
             clock.update();
 
             duration -= clock.getElapsedTime();
 
-            if(duration <= 0 && spawner.canSpawnMore()) {
-                spawnEnemy();
-                duration = 0.5;
-            }
+            g.drawRect(0,400,500,500);
+
 
             for(Enemy e: enemies) {
-                e.update(clock.getElapsedTime());
                 e.draw(g);
             }
 
             repaint();
-        }
-
-        public void spawnEnemy() {
-            enemies.add(spawner.getNextEnemy(0));
         }
     }
 
