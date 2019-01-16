@@ -38,8 +38,8 @@ public class TestLmao extends JFrame {
             spawner = new EnemySpawner(mapName);
             spawner.generateWave(0);
             towers.add(new AATower(0,0));
-            towers.add(new RifleTower(0,0));
-            towers.add(new MachineGunTower(0,0));
+            towers.add(new RifleTower(100,0));
+            towers.add(new MachineGunTower(500,0));
         }
 
         public void paintComponent(Graphics g) {
@@ -53,7 +53,7 @@ public class TestLmao extends JFrame {
             for(Tower t: towers){
                 t.setEnemies(enemies);
                 t.draw(g);
-                t.attack();
+                //t.attack();
             }
 
             if(duration <= 0 && spawner.canSpawnMore()) {
