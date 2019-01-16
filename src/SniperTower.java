@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,7 @@ public class SniperTower extends Tower {
         //setDamageType();
         //setProjectileSpeed();
         setProjectileExplosionRadius(0);
+        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/SniperRifleBody.png"));
     }
 
     public void attack(){

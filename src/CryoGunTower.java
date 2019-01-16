@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +15,7 @@ public class CryoGunTower extends Tower {
         //setProjectileImagePath();
         //setDamageType();
         //setProjectileSpeed();
-        setProjectileExplosionRadius(0);
+        setProjectileExplosionRadius(0);setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/CryoGunBody.png"));
     }
 
     public void attack(){

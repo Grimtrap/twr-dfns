@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,7 @@ public class RocketLauncherTower extends Tower {
         //setDamageType();
         //setProjectileSpeed();
         //setProjectileExplosionRadius();
+        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/SAMMissileBody.png"));
     }
 
     public void attack(){

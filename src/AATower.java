@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class AATower extends Tower {
         //setDamageType();
         //setProjectileSpeed();
         setProjectileExplosionRadius(0);
+        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/AAGunBody.png"));
     }
 
     public void attack(){
