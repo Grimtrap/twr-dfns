@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class TowerMenu extends Frame {
     private Button BasicGun;
@@ -17,6 +20,13 @@ public class TowerMenu extends Frame {
     private Button SAMLauncher;
 
     public TowerMenu(){
+        File BasicGunFile = new File("BasicGunBody.png");
+        try{
+            BufferedImage BasicGunImage = ImageIO.read(getClass().getResource("resources/lati.png"));
+            //BufferedImage BasicGunImage = ImageIO.read(BasicGunFile);
+        }catch (Exception ex){
+            System.out.println("Can't find file");
+        }
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         BasicGun = new Button("Basic Gun");
         MachineGun = new Button("Machine Gun");
@@ -40,7 +50,7 @@ public class TowerMenu extends Frame {
         add(ShrapnelTower);
         add(AAGun);
         add(SAMLauncher);
-        setSize(500,1000);
+        setSize(400,1000);
         setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override
