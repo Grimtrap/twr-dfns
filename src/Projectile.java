@@ -79,6 +79,7 @@ public class Projectile extends JComponent {
         setLocation((int)(x),(int)(y));
         if (this.hit(x,y,this.target.getBoundingBox())){
             target.takeDmg(damage, damageType);
+            this.setActive(false);
             // need to stop timer and remove projectile from screen
         }else {
             repaint();
@@ -100,5 +101,13 @@ public class Projectile extends JComponent {
 
     public void setDrawn(boolean drawn) {
         this.drawn = drawn;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
