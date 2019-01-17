@@ -18,6 +18,7 @@ public class TowerMenu extends Frame {
     private JButton ShrapnelTower;
     private JButton AAGun;
     private JButton SAMLauncher;
+    private JButton sellButton;
 
     public TowerMenu(){
         ImageIcon BasicGunImage = new ImageIcon("resources/Towers/BasicGunBody.png");
@@ -31,7 +32,8 @@ public class TowerMenu extends Frame {
         ImageIcon CryoGunImage = new ImageIcon("resources/Towers/CryoGunBody.png");
         ImageIcon AAGunImage = new ImageIcon("resources/Towers/AAGunBody.png");
         ImageIcon SAMLauncherImage = new ImageIcon("resources/Towers/SAMMissileBody.png");
-        setLayout(new GridLayout(11, 1));
+        ImageIcon GoldImage = new ImageIcon("resources/Gold.png");
+        setLayout(new GridLayout(12, 1));
 
         BasicGun = new JButton("BASIC GUN", BasicGunImage);
         MachineGun = new JButton("MACHINE GUN", MachineGunImage);
@@ -44,6 +46,7 @@ public class TowerMenu extends Frame {
         CryoGun = new JButton("CRYO GUN", CryoGunImage);
         AAGun = new JButton("AA GUN", AAGunImage);
         SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
+        sellButton = new JButton("SELL", GoldImage);
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
@@ -55,6 +58,7 @@ public class TowerMenu extends Frame {
         add(CryoGun);
         add(AAGun);
         add(SAMLauncher);
+        add(sellButton);
         setSize(250,1000);
         setVisible(true);
 
