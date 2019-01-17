@@ -44,9 +44,11 @@ public class GameFrame extends JFrame {
                 e.draw(g);
             }
 
+            /*
             for(Tower twr: towers) {
-                //twr.draw(g) //this is grayed out for now lol
+                twr.draw(g)
             }
+            */
 
             repaint();
         }

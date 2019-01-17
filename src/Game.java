@@ -11,9 +11,11 @@ public class Game {
 
     private Map map;
     private LinkedList<Enemy> enemies;
+    private LinkedList<Tower> towers;
     private Clock clock;
     private EnemySpawner spawner;
-    private UpdaterThread t;
+    private UpdaterThread enemyThread;
+    private TowersThread towerThread;
 
     /**
      * creates a new game
@@ -22,11 +24,14 @@ public class Game {
     public Game(String mapName) {
         map = new Map(mapName);
         enemies = new LinkedList<>();
+        towers = new LinkedList<>();
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
+        enemyThread = new UpdaterThread(enemies, spawner);
+        enemyThread.start();
+        towerThread = new TowersThread(towers);
+        towerThread.start();
         spawner.generateWave(0);
-        t = new UpdaterThread(enemies, spawner);
-        t.start();
         SwingUtilities.invokeLater(() -> {
             try {
                 new GameFrame(enemies, null);
