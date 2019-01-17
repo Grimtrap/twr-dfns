@@ -17,6 +17,7 @@ public class Projectile extends JComponent {
     private double speed;
     private double explosionRadius;
     private boolean active = true;
+    private boolean drawn = false;
 
     private Point objectP = new Point();
 
@@ -69,10 +70,10 @@ public class Projectile extends JComponent {
 
     }
 
-    private void update(){
+    public void update(){
         objectP = this.getLocation();
-        double xDirection =  5 * Math.cos(-(Math.atan2(ex - x, ey - y))+ 90);
-        double yDirection = 5 * Math.sin(-(Math.atan2(ex - x, ey - y))+ 90);
+        double xDirection =  5 * Math.cos(-(Math.atan2(target.getX() - x, target.getY() - y))+ 90);
+        double yDirection = 5 * Math.sin(-(Math.atan2(target.getX() - x, target.getY() - y))+ 90);
         x = (objectP.x + (int)(xDirection * speed));
         y = (objectP.y + (int)(yDirection * speed));
         setLocation((int)(x),(int)(y));
@@ -86,10 +87,18 @@ public class Projectile extends JComponent {
 
     public void draw(Graphics g) {
         super.paintComponent(g);
-        g.fillOval((int)(x), (int)(y), 50, 50); //draw image
+        g.fillOval((int)(x), (int)(y), 5, 5); //draw image
     }
 
     private boolean hit(double x, double y, Rectangle box){
         return x < box.x && x > (box.x + box.width) && y > box.y && y < (box.y + box.height);
+    }
+
+    public boolean isDrawn() {
+        return drawn;
+    }
+
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 }
