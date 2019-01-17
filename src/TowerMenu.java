@@ -24,39 +24,40 @@ public class TowerMenu extends Frame {
         ImageIcon MachineGunImage = new ImageIcon("resources/Towers/MachineGunBody.png");
         ImageIcon ShotGunImage = new ImageIcon("resources/Towers/ShotgunBody.png");
         ImageIcon SniperRifleImage = new ImageIcon("resources/Towers/SniperRifleBody.png");
+        ImageIcon ShrapnelTowerImage = new ImageIcon("resources/Towers/ShrapnelTower.png");
         ImageIcon MissileLauncherImage = new ImageIcon("resources/Towers/MissileLauncherBody.png");
         ImageIcon FlameThrowerImage = new ImageIcon("resources/Towers/FlamethrowerBody.png");
         ImageIcon LaserGunImage = new ImageIcon("resources/Towers/LaserGunBody.png");
         ImageIcon CryoGunImage = new ImageIcon("resources/Towers/CryoGunBody.png");
-        ImageIcon ShrapnelTowerImage = new ImageIcon("resources/Towers/ShrapnelTower.png");
         ImageIcon AAGunImage = new ImageIcon("resources/Towers/AAGunBody.png");
         ImageIcon SAMLauncherImage = new ImageIcon("resources/Towers/SAMMissileBody.png");
+        setLayout(new GridLayout(11, 1));
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        BasicGun = new JButton("Basic Gun", BasicGunImage);
-        MachineGun = new JButton("Machine Gun", MachineGunImage);
-        ShotGun = new JButton("Shotgun", ShotGunImage);
-        SniperRifle = new JButton("Sniper Rifle", SniperRifleImage);
-        MissileLauncher = new JButton("Missile Launcher", MissileLauncherImage);
-        FlameThrower = new JButton("Flamethrower", FlameThrowerImage);
-        LaserGun = new JButton("Laser Gun", LaserGunImage);
-        CryoGun = new JButton("Cryo Gun", CryoGunImage);
-        ShrapnelTower = new JButton("Shrapnel Tower", ShrapnelTowerImage);
-        AAGun = new JButton("AA Gun", AAGunImage);
-        SAMLauncher = new JButton("SAM Launcher", SAMLauncherImage);
+        BasicGun = new JButton("BASIC GUN", BasicGunImage);
+        MachineGun = new JButton("MACHINE GUN", MachineGunImage);
+        ShotGun = new JButton("SHOTGUN", ShotGunImage);
+        SniperRifle = new JButton("SNIPER RIFLE", SniperRifleImage);
+        ShrapnelTower = new JButton("SHRAPNEL TOWER", ShrapnelTowerImage);
+        MissileLauncher = new JButton("MISSILE LAUNCHER", MissileLauncherImage);
+        FlameThrower = new JButton("FLAMETHROWER", FlameThrowerImage);
+        LaserGun = new JButton("LASER GUN", LaserGunImage);
+        CryoGun = new JButton("CRYO GUN", CryoGunImage);
+        AAGun = new JButton("AA GUN", AAGunImage);
+        SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
         add(SniperRifle);
+        add(ShrapnelTower);
         add(MissileLauncher);
         add(FlameThrower);
         add(LaserGun);
         add(CryoGun);
-        add(ShrapnelTower);
         add(AAGun);
         add(SAMLauncher);
-        setSize(400,1000);
+        setSize(250,1000);
         setVisible(true);
+
         // This closing method is temporary
         addWindowListener(new WindowAdapter() {
             @Override
