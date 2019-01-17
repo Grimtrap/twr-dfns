@@ -10,8 +10,12 @@ public class ProjectileThread extends Thread{
     }
 
     public synchronized void run() {
-        while(active) {
+        while(shot.isActive()) {
             shot.update();
+        }
+        if (!shot.isActive()){
+            this.interrupt();
+            return;
         }
     }
 

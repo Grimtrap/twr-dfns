@@ -59,14 +59,14 @@ public class Projectile extends JComponent {
         this.target = target;
 
         //Creates action listener updates projectile based on timer
-        ActionListener travel = new ActionListener() {
+        /*ActionListener travel = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update();
             }
         };
         Timer t = new Timer (50, travel);
-        t.start();
+        t.start()*/
 
     }
 
