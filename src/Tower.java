@@ -16,6 +16,8 @@ abstract class Tower {
     private Circle range;
     private LinkedList<Enemy> enemies = new LinkedList<>(); // stores all enemies in range of tower
     private LinkedList<Enemy> within = new LinkedList<>();
+    private LinkedList<Projectile> pro = new LinkedList<>();
+    private LinkedList<Thread> shots = new LinkedList<>();
     private Enemy target;
     private String projectileImagePath;
     private byte damageType;
@@ -50,14 +52,14 @@ abstract class Tower {
     public void update(double timeElapsed){
     }
 
-    public LinkedList<Enemy> findTargets(){
+    public void findTargets(LinkedList<Enemy> enemies){
         LinkedList<Enemy> within = new LinkedList<>();
         for (int i = 0; i < enemies.size(); i++){
             if (Math.pow((enemies.get(i).getX() - x),2) + Math.pow((enemies.get(i).getY() - y),2) < Math.pow((range.getRadius()),2)){
                 within.add(enemies.get(i));
             }
         }
-        return within;
+        this.setWithin(within);
     }
 
     abstract void attack();
@@ -196,5 +198,21 @@ abstract class Tower {
 
     public void setWithin(LinkedList<Enemy> within) {
         this.within = within;
+    }
+
+    public LinkedList<Thread> getShots() {
+        return shots;
+    }
+
+    public void setShots(LinkedList<Thread> shots) {
+        this.shots = shots;
+    }
+
+    public LinkedList<Projectile> getPro() {
+        return pro;
+    }
+
+    public void setPro(LinkedList<Projectile> pro) {
+        this.pro = pro;
     }
 }

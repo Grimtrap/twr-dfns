@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class GameFrame extends JFrame {
 
@@ -33,20 +32,30 @@ public class GameFrame extends JFrame {
         }
 
 
-
-        protected void paintComponent(Graphics g) {
+        protected synchronized void paintComponent(Graphics g) {
 
             super.paintComponent(g);
             setDoubleBuffered(true);
             g.drawRect(0,400,500,500);
 
-            for(Enemy e: enemies) {
-                e.draw(g);
+            synchronized (enemies) { //don't use foreach here, it causes weird exception
+                for(int i = 0; i<enemies.size(); i++) {
+                    enemies.get(i).draw(g);
+                }
             }
-
             /*
             for(Tower twr: towers) {
-                twr.draw(g)
+                twr.draw(g); //this is grayed out for now lol
+                twr.findTargets(enemies);
+                System.out.println(twr.getWithin());
+                if (twr.getWithin().size() != 0) {
+                    twr.attack();
+                }
+                for (int i = 0; i < twr.getPro().size(); i++){
+                    if (!twr.getPro().get(i).isDrawn()) {
+                        twr.getPro().get(i).draw(g);
+                    }
+                }
             }
             */
 

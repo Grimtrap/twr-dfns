@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -34,11 +35,12 @@ public class Game {
         spawner.generateWave(0);
         SwingUtilities.invokeLater(() -> {
             try {
-                new GameFrame(enemies, null);
+                new GameFrame(enemies, towers);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
+        towers.add(new RifleTower(0,100));
     }
 
     public void updateClock() {

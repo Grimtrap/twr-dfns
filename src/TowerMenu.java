@@ -7,51 +7,62 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class TowerMenu extends Frame {
-    private Button BasicGun;
-    private Button MachineGun;
-    private Button ShotGun;
-    private Button SniperRifle;
-    private Button MissileLauncher;
-    private Button FlameThrower;
-    private Button LaserGun;
-    private Button CryoGun;
-    private Button ShrapnelTower;
-    private Button AAGun;
-    private Button SAMLauncher;
+    private JButton BasicGun;
+    private JButton MachineGun;
+    private JButton ShotGun;
+    private JButton SniperRifle;
+    private JButton MissileLauncher;
+    private JButton FlameThrower;
+    private JButton LaserGun;
+    private JButton CryoGun;
+    private JButton ShrapnelTower;
+    private JButton AAGun;
+    private JButton SAMLauncher;
+    private JButton sellButton;
 
     public TowerMenu(){
-        File BasicGunFile = new File("BasicGunBody.png");
-        try{
-            BufferedImage BasicGunImage = ImageIO.read(getClass().getResource("resources/lati.png"));
-            //BufferedImage BasicGunImage = ImageIO.read(BasicGunFile);
-        }catch (Exception ex){
-            System.out.println("Can't find file");
-        }
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        BasicGun = new Button("Basic Gun");
-        MachineGun = new Button("Machine Gun");
-        ShotGun = new Button("Shotgun");
-        SniperRifle = new Button("Sniper Rifle");
-        MissileLauncher = new Button("Missile Launcher");
-        FlameThrower = new Button("Flamethrower");
-        LaserGun = new Button("Laser Gun");
-        CryoGun = new Button("Cryo Gun");
-        ShrapnelTower = new Button("Shrapnel Tower");
-        AAGun = new Button("AA Gun");
-        SAMLauncher = new Button("SAM Launcher");
+        ImageIcon BasicGunImage = new ImageIcon("resources/Towers/BasicGunBody.png");
+        ImageIcon MachineGunImage = new ImageIcon("resources/Towers/MachineGunBody.png");
+        ImageIcon ShotGunImage = new ImageIcon("resources/Towers/ShotgunBody.png");
+        ImageIcon SniperRifleImage = new ImageIcon("resources/Towers/SniperRifleBody.png");
+        ImageIcon ShrapnelTowerImage = new ImageIcon("resources/Towers/ShrapnelTower.png");
+        ImageIcon MissileLauncherImage = new ImageIcon("resources/Towers/MissileLauncherBody.png");
+        ImageIcon FlameThrowerImage = new ImageIcon("resources/Towers/FlamethrowerBody.png");
+        ImageIcon LaserGunImage = new ImageIcon("resources/Towers/LaserGunBody.png");
+        ImageIcon CryoGunImage = new ImageIcon("resources/Towers/CryoGunBody.png");
+        ImageIcon AAGunImage = new ImageIcon("resources/Towers/AAGunBody.png");
+        ImageIcon SAMLauncherImage = new ImageIcon("resources/Towers/SAMMissileBody.png");
+        ImageIcon GoldImage = new ImageIcon("resources/Gold.png");
+        setLayout(new GridLayout(12, 1));
+
+        BasicGun = new JButton("BASIC GUN", BasicGunImage);
+        MachineGun = new JButton("MACHINE GUN", MachineGunImage);
+        ShotGun = new JButton("SHOTGUN", ShotGunImage);
+        SniperRifle = new JButton("SNIPER RIFLE", SniperRifleImage);
+        ShrapnelTower = new JButton("SHRAPNEL TOWER", ShrapnelTowerImage);
+        MissileLauncher = new JButton("MISSILE LAUNCHER", MissileLauncherImage);
+        FlameThrower = new JButton("FLAMETHROWER", FlameThrowerImage);
+        LaserGun = new JButton("LASER GUN", LaserGunImage);
+        CryoGun = new JButton("CRYO GUN", CryoGunImage);
+        AAGun = new JButton("AA GUN", AAGunImage);
+        SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
+        sellButton = new JButton("SELL", GoldImage);
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
         add(SniperRifle);
+        add(ShrapnelTower);
         add(MissileLauncher);
         add(FlameThrower);
         add(LaserGun);
         add(CryoGun);
-        add(ShrapnelTower);
         add(AAGun);
         add(SAMLauncher);
-        setSize(400,1000);
+        add(sellButton);
+        setSize(250,1000);
         setVisible(true);
+
+        // This closing method is temporary
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

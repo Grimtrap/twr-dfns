@@ -55,16 +55,71 @@ public class EnemySpawner {
     private void generateEnemies() {
 
         for(int i =0; i < currentEnemies.length; i++) {
-            Attributes a = new Attributes();
+            Attributes a = genAttributes();
             double[] healthSpeed = genHealthAndSpeed();
             LinkedList<Pathing> paths = map.getPathings();
-            this.currentEnemies[i] = new Enemy("lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, paths);
+            this.currentEnemies[i] = new Enemy(determineImage(a, healthSpeed[0]), healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, paths);
         }
 
     }
 
+    private String determineImage(Attributes a, double health) {
+        String name = "";
+        double multiplier = health/(100+currentDifficulty);
+        if(multiplier >= 0.8 && multiplier < 0.9) {
+            name+="Tiny";
+        } else if(multiplier >= 0.9 && multiplier <= 1.0) {
+            name+="Small";
+        } else if(multiplier >= 1.0 && multiplier <= 1.1) {
+            name+="Medium";
+        } else {
+            name+="Large";
+        }
+
+        if(a.isFlying()) {
+            name += "Air";
+        } else {
+            name += "Ground";
+        }
+
+        name+="Enemy";
+
+        return name;
+    }
+
     private Attributes genAttributes() {
-        return null; //BETTER FIX THIS LATER LOL
+        Attributes a = new Attributes();
+        //generates attributes and amount based on difficulty
+        if(currentDifficulty > 100) {
+            int[] numOfAttributes = new int[currentDifficulty / 100];
+            if(random.nextBoolean()) { //only has a small chance to actually give attributes
+                for (int i : numOfAttributes) {
+                    //yes, there is a chance that it'll select one that's already been done and redo it
+                    //it's a feature
+                    if (random.nextBoolean())
+                        i = random.nextInt(4);
+                    if (i == 0) {
+                        a.setSlowResist(random.nextInt(500) / 10.0);
+                    }
+                    else if (i == 1) {
+                        a.setBurnResist(random.nextInt(500) / 10.0);
+                    }
+                    else if (i == 2) {
+                        if (random.nextInt(4) == 0) {
+                            a.setFlying(true);
+                        }
+                    }
+                    else if (i == 3) {
+                        a.setShielding(random.nextInt(currentDifficulty + 100) / 2.0);
+                    }
+                    else if (i == 4) {
+                        a.setRegen((currentDifficulty + 100) / 100.0);
+                    }
+                }
+            }
+
+        }
+        return a;
     }
 
     private double[] genHealthAndSpeed() {
@@ -76,7 +131,7 @@ public class EnemySpawner {
     }
 
     private double genMultiplier() {
-        return (random.nextInt(50) + 80)/100.0;
+        return (random.nextInt(40) + 70)/100.0;
     }
 
     public int getEnemiesLeft(int i) {

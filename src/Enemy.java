@@ -34,11 +34,11 @@ public class Enemy implements Cloneable {
 
     }
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
+    public Enemy(String imageName, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
 
-        this.imagePath = imagePath;
+        this.imagePath = imageName;
         try {
-            image = ImageIO.read(new File("resources/" + imagePath));
+            image = ImageIO.read(new File("resources/Enemies/" + imagePath + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,8 +52,7 @@ public class Enemy implements Cloneable {
         this.distanceLeft = currentPathing.getDistance();
         this.slow = new double[]{0,0}; //duration, then power
         this.burn = new double[]{0,0};
-        this.boundingBox = new Rectangle((int)x, (int)y,50,50); //placeholder values replace later maybe
-        tempSetCoordTest();
+        this.boundingBox = new Rectangle((int)x, (int)y,100,100);
     }
 
     private LinkedList<Pathing> clonePaths(Queue<Pathing> pathingQueue) {
