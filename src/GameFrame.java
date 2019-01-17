@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class GameFrame extends JFrame {
 
@@ -33,20 +32,22 @@ public class GameFrame extends JFrame {
         }
 
 
-
-        protected void paintComponent(Graphics g) {
+        protected synchronized void paintComponent(Graphics g) throws ConcurrentModificationException {
 
             super.paintComponent(g);
             setDoubleBuffered(true);
             g.drawRect(0,400,500,500);
 
-            for(Enemy e: enemies) {
-                e.draw(g);
+            synchronized (enemies) {
+                for (Enemy e : enemies) {
+                    e.draw(g);
+                }
             }
-
+            /*
             for(Tower twr: towers) {
                 //twr.draw(g) //this is grayed out for now lol
             }
+            */
 
             repaint();
         }

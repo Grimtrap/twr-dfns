@@ -34,11 +34,11 @@ public class Enemy implements Cloneable {
 
     }
 
-    public Enemy(double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
+    public Enemy(String imageName, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
 
-        this.imagePath = imagePath;
+        this.imagePath = imageName;
         try {
-            image = ImageIO.read(new File("resources/" + imagePath));
+            image = ImageIO.read(new File("resources/Enemies/" + imagePath + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

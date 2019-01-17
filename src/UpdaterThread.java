@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class UpdaterThread extends Thread {
-    private LinkedList<Enemy> enemies = new LinkedList<>();
+    private LinkedList<Enemy> enemies;
     public boolean running;
     private Clock clock;
     private EnemySpawner spawner;
