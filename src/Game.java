@@ -17,6 +17,8 @@ public class Game {
     private EnemySpawner spawner;
     private UpdaterThread enemyThread;
     private TowersThread towerThread;
+    private double gold;
+    private double livesLeft;
 
     /**
      * creates a new game
@@ -28,7 +30,7 @@ public class Game {
         towers = new LinkedList<>();
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
-        enemyThread = new UpdaterThread(enemies, spawner);
+        enemyThread = new UpdaterThread(enemies, spawner, this);
         enemyThread.start();
         towerThread = new TowersThread(towers);
         towerThread.start();
@@ -41,6 +43,8 @@ public class Game {
             }
         });
         towers.add(new RifleTower(0,100));
+        gold = 400;
+        livesLeft = 10;
     }
 
     public void updateClock() {
@@ -49,5 +53,14 @@ public class Game {
 
     public void spawnEnemy() {
         enemies.add(spawner.getNextEnemy(0));
+    }
+
+    public void loseLife() {
+        this.livesLeft -= 1;
+        System.out.println("oof");
+    }
+
+    public void gainGold(int amount) {
+        this.gold += amount;
     }
 }

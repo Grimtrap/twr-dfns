@@ -19,6 +19,8 @@ public class Enemy implements Cloneable {
     private double[] slow;
     private double[] burn;
 
+    private boolean reachedEnd;
+
     private int goldGranted;
     private Attributes attributes;
     private Queue<Pathing> pathings;
@@ -42,6 +44,7 @@ public class Enemy implements Cloneable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.reachedEnd = false;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
@@ -87,12 +90,16 @@ public class Enemy implements Cloneable {
                 move(timeElapsed);
                 burnDmg(timeElapsed);
             } catch (NullPointerException e) {
-                this.setCoords(-1000,-1000);
+                reachedEnd = true;
             }
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean hasReachedEnd() {
+        return reachedEnd;
     }
 
     public void setCoords(double x, double y) {
@@ -158,6 +165,10 @@ public class Enemy implements Cloneable {
 
     public void draw(Graphics g) {
         g.drawImage(image, (int)x, (int)y, null);
+        g.setColor(Color.RED);
+        g.fillRect((int)this.x, (int)this.y-20, 60, 15);
+        g.setColor(Color.GREEN);
+        g.fillRect((int)this.x, (int)this.y-20, (int)(60*(currentHealth/maxHealth)), 15);
     }
 
     public void takeDmg(double damage, byte dmgType) {

@@ -6,13 +6,15 @@ public class UpdaterThread extends Thread {
     private Clock clock;
     private EnemySpawner spawner;
     private double duration;
+    private Game game;
 
-    public UpdaterThread(LinkedList<Enemy> enemies, EnemySpawner spawner) {
+    public UpdaterThread(LinkedList<Enemy> enemies, EnemySpawner spawner, Game game) {
         this.enemies = enemies;
         this.clock = new Clock();
         this.running = true;
         this.spawner = spawner;
         duration = 0.5;
+        this.game = game;
     }
 
     public synchronized void run() {
@@ -27,9 +29,17 @@ public class UpdaterThread extends Thread {
                 }
             }
             if (!enemies.isEmpty()) {
-                for (Enemy e : enemies) {
-                    e.update(clock.getElapsedTime());
+                for (int i = 0; i < enemies.size(); i++) { //once again i fixed it by not using foreach LOL
+                    enemies.get(i).update(clock.getElapsedTime());
+                    if(enemies.get(i).getCurrentHealth() <=0) {
+                        enemies.remove(i);
+                    }
+                    if(enemies.get(i).hasReachedEnd()) {
+                        game.loseLife();
+                        enemies.remove(i);
+                    }
                 }
+
             }
 
         }
