@@ -34,7 +34,7 @@ public class Enemy implements Cloneable {
 
     }
 
-    public Enemy(String imagePath, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
+    public Enemy(double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
 
         this.imagePath = imagePath;
         try {

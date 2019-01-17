@@ -55,16 +55,36 @@ public class EnemySpawner {
     private void generateEnemies() {
 
         for(int i =0; i < currentEnemies.length; i++) {
-            Attributes a = new Attributes();
+            Attributes a = genAttributes();
             double[] healthSpeed = genHealthAndSpeed();
             LinkedList<Pathing> paths = map.getPathings();
-            this.currentEnemies[i] = new Enemy("lati.png", healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, paths);
+            this.currentEnemies[i] = new Enemy(healthSpeed[0], healthSpeed[1], 100+currentDifficulty/20, a, paths);
         }
 
     }
 
     private Attributes genAttributes() {
-        return null; //BETTER FIX THIS LATER LOL
+        Attributes a = new Attributes();
+        if(currentDifficulty > 100) {
+            int[] numOfAttributes = new int[currentDifficulty / 100];
+            for (int i : numOfAttributes) {
+                i = random.nextInt(4);
+                if (i == 0) {
+                    a.setSlowResist(random.nextInt(500)/10.0);
+                } if (i == 1) {
+                    a.setBurnResist(random.nextInt(500)/10.0);
+                } if (i == 2) {
+                    if(random.nextInt(4) == 0) {
+                        a.setFlying(true);
+                    }
+                } if (i == 3) {
+                    a.setShielding(random.nextInt(currentDifficulty+100)/2.0);
+                } if (i == 4) {
+                    a.setRegen((currentDifficulty+100)/100.0);
+                }
+            }
+        }
+        return a;
     }
 
     private double[] genHealthAndSpeed() {
