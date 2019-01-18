@@ -12,8 +12,8 @@ public class RifleTower extends Tower {
         super(x, y);
         setGroundTargeting(true);
         setAirTargeting(true);
-        setDamage(30);
-        setFireRate(1000);
+        setDamage(50);
+        setFireRate(100000000);
         setRange(new Circle(x, y, 1100));
         //setProjectileImagePath();
         //setDamageType();
@@ -21,12 +21,12 @@ public class RifleTower extends Tower {
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/BasicGunBody.png"));
         setClock(new Clock());
-        timeShot = 0;
+        timeShot = getFireRate();
         count = 0;
     }
 
     public void attack(double elapsedTime) {
-        if (getFireRate() >= timeShot) {
+        if (timeShot <= 0) {
             setTarget(getWithin().getFirst());
             Projectile temp;
             ProjectileThread p;
@@ -35,11 +35,11 @@ public class RifleTower extends Tower {
             p.start();
             getPro().add(temp);
             getShots().add(p);
-            timeShot = 0;
+            timeShot = getFireRate();
             count++;
             System.out.println(count);
         }else {
-            timeShot = timeShot + elapsedTime;
+            timeShot = timeShot - elapsedTime;
             //System.out.println(timeShot);
         }
     }
