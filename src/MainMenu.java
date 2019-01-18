@@ -36,6 +36,7 @@ public class MainMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     new Game(inputBox.getText());
+                    dispose();
                 } catch(Exception e1) {
                     JOptionPane.showMessageDialog(thisFrame,"File doesn't exist");
                 }
