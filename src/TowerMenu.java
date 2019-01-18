@@ -59,7 +59,7 @@ public class TowerMenu extends Frame {
         add(AAGun);
         add(SAMLauncher);
         add(sellButton);
-        setSize(500,1000);
+        setSize(500,1080);
         setVisible(true);
 
         // This closing method is temporary
