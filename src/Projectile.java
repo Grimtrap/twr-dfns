@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Projectile extends JComponent {
+    Tower tower;
     double x; // x
     double y; // y
     private double ex; // enemy x
@@ -46,7 +47,8 @@ public class Projectile extends JComponent {
 
     }*/
 
-    public Projectile (String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
+    public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
+        this.tower = tower;
         this.imagePath = imagePath;
         this.damageType = damageType;
         this.damage = damage;
@@ -80,6 +82,7 @@ public class Projectile extends JComponent {
         if (this.hit(x,y,this.target.getBoundingBox())){
             target.takeDmg(damage, damageType);
             this.setActive(false);
+            this.setVisible(false);
             // need to stop timer and remove projectile from screen
         }else {
             repaint();
@@ -109,5 +112,13 @@ public class Projectile extends JComponent {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Tower getTower() {
+        return tower;
+    }
+
+    public void setTower(Tower tower) {
+        this.tower = tower;
     }
 }

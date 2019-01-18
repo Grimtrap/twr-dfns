@@ -5,6 +5,7 @@ import java.util.LinkedList;
 abstract class Tower {
 
     private Image image;
+    private Clock clock;
     private double x;
     private double y;
     private double targetX;
@@ -62,7 +63,7 @@ abstract class Tower {
         this.setWithin(within);
     }
 
-    abstract void attack();
+    abstract void attack(double elapsedTime);
 
     public Image getImage() {
         return image;
@@ -214,5 +215,13 @@ abstract class Tower {
 
     public void setPro(LinkedList<Projectile> pro) {
         this.pro = pro;
+    }
+
+    public Clock getClock() {
+        return clock;
+    }
+
+    public void setClock(Clock clock) {
+        this.clock = clock;
     }
 }
