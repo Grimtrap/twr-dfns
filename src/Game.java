@@ -35,13 +35,7 @@ public class Game {
         towerThread = new TowersThread(towers);
         towerThread.start();
         spawner.generateWave(0);
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new GameFrame(enemies, towers);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map));
         towers.add(new RifleTower(0,100));
         gold = 400;
         livesLeft = 10;
