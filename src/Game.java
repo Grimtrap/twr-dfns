@@ -28,18 +28,17 @@ public class Game {
         map = new Map(mapName);
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
+        towers.add(new RifleTower(100,100));
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
         spawner.generateWave(0);
         enemyThread = new UpdaterThread(enemies, spawner, this);
         enemyThread.start();
-        towerThread = new TowersThread(towers);
+        towerThread = new TowersThread(towers, enemies);
         towerThread.start();
         SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map));
-        towers.add(new RifleTower(0,100));
         gold = 400;
         livesLeft = 10;
-        new RifleTower(100,100);
     }
 
     public void updateClock() {

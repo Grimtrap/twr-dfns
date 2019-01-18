@@ -75,19 +75,9 @@ public class GameFrame extends JFrame {
                 }
             }
 
-
-
-            for(Tower twr: towers) {
-                twr.draw(g); //this is grayed out for now lol
-                twr.findTargets(enemies);
-                System.out.println(twr.getWithin());
-                if (twr.getWithin().size() != 0) {
-                    twr.attack();
-                }
-                for (int i = 0; i < twr.getPro().size(); i++){
-                    if (!twr.getPro().get(i).isDrawn()) {
-                        twr.getPro().get(i).draw(g);
-                    }
+            synchronized (towers){
+                for(int i = 0; i<towers.size(); i++) {
+                    towers.get(i).draw(g);
                 }
             }
 

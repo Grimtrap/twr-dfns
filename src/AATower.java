@@ -20,7 +20,7 @@ public class AATower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/AAGunBody.png"));
     }
 
-    public void attack() {
+    public void attack(double elapsedTime) {
         //create an array of enemies within its range
         //setWithin(findTargets());
         //fires at the enemy closest to base
@@ -32,7 +32,7 @@ public class AATower extends Tower {
                 public void actionPerformed(ActionEvent e) {
                     setTargetX(getWithin().get(0).getX());
                     setTargetY(getWithin().get(0).getY());
-                    new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
+                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
                 }
             };
             Timer t = new Timer((int) (getFireRate()), shoot);

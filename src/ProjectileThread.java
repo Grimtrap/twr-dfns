@@ -14,6 +14,8 @@ public class ProjectileThread extends Thread{
             shot.update();
         }
         if (!shot.isActive()){
+            shot.getTower().getShots().remove(this);
+            shot.getTower().getPro().remove(shot);
             this.interrupt();
             return;
         }
