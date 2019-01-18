@@ -51,7 +51,6 @@ public class Game {
 
     public void loseLife() {
         this.livesLeft -= 1;
-        System.out.println("oof");
     }
 
     public void gainGold(int amount) {
