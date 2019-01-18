@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class AATower extends Tower {
 
-    public AATower(double x, double y) {
-        super(x, y);
+    public AATower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(false);
         setAirTargeting(true);
         setDamage(10);

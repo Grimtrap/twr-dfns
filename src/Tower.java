@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 abstract class Tower {
@@ -12,22 +11,27 @@ abstract class Tower {
     private double targetY;
     private double dmg;
     private double rate;
+    private double attackTime;
     private boolean groundTargeting;
     private boolean airTargeting;
     private Circle range;
     private LinkedList<Enemy> enemies = new LinkedList<>(); // stores all enemies in range of tower
-    private LinkedList<Enemy> within = new LinkedList<>();
-    private LinkedList<Projectile> pro = new LinkedList<>();
-    private LinkedList<Thread> shots = new LinkedList<>();
+    private LinkedList<Enemy> within;
+    private LinkedList<Projectile> projectiles;
+    private LinkedList<Thread> shots;
     private Enemy target;
     private String projectileImagePath;
     private byte damageType;
     private double projectileSpeed;
     private double projectileExplosionRadius;
 
-    public Tower (double x, double y){
+    public Tower (double x, double y, Game game){
         this.x = x;
         this.y = y;
+        enemies = game.getEnemies();
+        within = new LinkedList<>();
+        projectiles = new LinkedList<>();
+        shots = new LinkedList<>();
     }
 
     public void draw(Graphics g){
@@ -53,11 +57,17 @@ abstract class Tower {
     public void update(double timeElapsed){
     }
 
-    public void findTargets(LinkedList<Enemy> enemies){
+    public synchronized void findTargets(){
         LinkedList<Enemy> within = new LinkedList<>();
         for (int i = 0; i < enemies.size(); i++){
-            if (Math.pow((enemies.get(i).getX() - x),2) + Math.pow((enemies.get(i).getY() - y),2) < Math.pow((range.getRadius()),2)){
-                within.add(enemies.get(i));
+            if (Math.hypot((enemies.get(i).getX() -x), (enemies.get(i).getY() - y)) <= range.getRadius()){
+                if(enemies.get(i) != null && !enemies.get(i).hasReachedEnd() && !(enemies.get(i).getCurrentHealth() <=0)) {
+                    try {
+                        within.add(enemies.get(i));
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
             }
         }
         this.setWithin(within);
@@ -209,12 +219,12 @@ abstract class Tower {
         this.shots = shots;
     }
 
-    public LinkedList<Projectile> getPro() {
-        return pro;
+    public LinkedList<Projectile> getProjectiles() {
+        return projectiles;
     }
 
-    public void setPro(LinkedList<Projectile> pro) {
-        this.pro = pro;
+    public void setProjectiles(LinkedList<Projectile> projectiles) {
+        this.projectiles = projectiles;
     }
 
     public Clock getClock() {
@@ -223,5 +233,13 @@ abstract class Tower {
 
     public void setClock(Clock clock) {
         this.clock = clock;
+    }
+
+    public double getAttackTime() {
+        return attackTime;
+    }
+
+    public void setAttackTime(double attackTime) {
+        this.attackTime = attackTime;
     }
 }

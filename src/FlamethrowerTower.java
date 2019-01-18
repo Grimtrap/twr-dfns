@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class FlamethrowerTower extends Tower {
 
-    public FlamethrowerTower(double x, double y) {
-        super(x, y);
+    public FlamethrowerTower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(5);

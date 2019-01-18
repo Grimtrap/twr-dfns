@@ -161,6 +161,8 @@ public class Enemy implements Cloneable {
             currentPathing = pathings.poll();
             distanceLeft = currentPathing.getDistance();
         }
+
+        boundingBox.setLocation((int)x,(int)y);
     }
 
     public void draw(Graphics g) {

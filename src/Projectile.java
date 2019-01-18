@@ -3,10 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Projectile extends JComponent {
-    Tower tower;
-    double x; // x
-    double y; // y
+public class Projectile {
+    private Tower tower;
+    private double x; // x
+    private double y; // y
     private double ex; // enemy x
     private double ey; // enemy y
     private String imagePath;
@@ -19,6 +19,7 @@ public class Projectile extends JComponent {
     private double explosionRadius;
     private boolean active = true;
     private boolean drawn = false;
+    private Rectangle boundingBox;
 
     private Point objectP = new Point();
 
@@ -72,26 +73,28 @@ public class Projectile extends JComponent {
 
     }
 
-    public void update(){
-        objectP = this.getLocation();
-        double xDirection =  5 * Math.cos(-(Math.atan2(target.getX() - x, target.getY() - y))+ 90);
-        double yDirection = 5 * Math.sin(-(Math.atan2(target.getX() - x, target.getY() - y))+ 90);
-        x = (objectP.x + (int)(xDirection * speed));
-        y = (objectP.y + (int)(yDirection * speed));
-        setLocation((int)(x),(int)(y));
+    public void update(double elapsedTime){
+        double dy = target.getY() - y;
+        double dx = target.getX() - x;
+        double distance;
+
+        distance = Math.sqrt(dx * dx + dy * dy);
+
+        x += (int)(dx/distance * speed)*elapsedTime;
+        y += (int)(dy/distance * speed)*elapsedTime;
+        if(target == null || target.hasReachedEnd() || target.getCurrentHealth() <= 0) {
+            this.setActive(false);
+        }
         if (this.hit(x,y,this.target.getBoundingBox())){
             target.takeDmg(damage, damageType);
             this.setActive(false);
-            this.setVisible(false);
             // need to stop timer and remove projectile from screen
-        }else {
-            repaint();
         }
     }
 
     public void draw(Graphics g) {
-        super.paintComponent(g);
-        g.fillOval((int)(x), (int)(y), 5, 5); //draw image
+        g.setColor(Color.RED);
+        g.fillOval((int)(x), (int)(y), 50, 50); //draw image
     }
 
     private boolean hit(double x, double y, Rectangle box){

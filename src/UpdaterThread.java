@@ -33,8 +33,7 @@ public class UpdaterThread extends Thread {
                     enemies.get(i).update(clock.getElapsedTime());
                     if(enemies.get(i).getCurrentHealth() <=0) {
                         enemies.remove(i);
-                    }
-                    if(enemies.get(i).hasReachedEnd()) {
+                    } else if(enemies.get(i).hasReachedEnd()) {
                         game.loseLife();
                         enemies.remove(i);
                     }

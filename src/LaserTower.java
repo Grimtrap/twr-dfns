@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class LaserTower extends Tower {
 
-    public LaserTower(double x, double y) {
-        super(x, y);
+    public LaserTower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(10);

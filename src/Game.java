@@ -30,7 +30,7 @@ public class Game {
         towerMenu = new TowerMenu();
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
-        towers.add(new RifleTower(100,100));
+        towers.add(new RifleTower(100,100, this));
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
         spawner.generateWave(0);
@@ -43,12 +43,8 @@ public class Game {
         livesLeft = 10;
     }
 
-    public void updateClock() {
-        clock.update();
-    }
-
-    public void spawnEnemy() {
-        enemies.add(spawner.getNextEnemy(0));
+    public LinkedList<Enemy> getEnemies() {
+        return enemies;
     }
 
     public void loseLife() {

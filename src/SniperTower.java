@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class SniperTower extends Tower {
 
-    public SniperTower(double x, double y) {
-        super(x, y);
+    public SniperTower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(50);

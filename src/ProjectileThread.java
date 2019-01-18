@@ -1,23 +1,28 @@
 import java.util.LinkedList;
 
 public class ProjectileThread extends Thread{
-    private Projectile shot;
-    public boolean active;
+    private LinkedList<Projectile> projectiles;
+    public boolean running;
+    private Clock clock;
 
-    public ProjectileThread(Projectile shot) {
-        this.shot = shot;
-        this.active = true;
+    public ProjectileThread(LinkedList<Projectile> projectiles) {
+        this.projectiles = projectiles;
+        running=true;
+        clock = new Clock();
     }
 
     public synchronized void run() {
-        while(shot.isActive()) {
-            shot.update();
-        }
-        if (!shot.isActive()){
-            shot.getTower().getShots().remove(this);
-            shot.getTower().getPro().remove(shot);
-            this.interrupt();
-            return;
+        while(running) {
+            clock.update();
+            if (!projectiles.isEmpty()) {
+                for (int i = 0; i < projectiles.size(); i++) {
+                    if(!projectiles.get(i).isActive()) {
+                        projectiles.remove(i);
+                    }
+                    projectiles.get(i).update(3);
+                }
+            }
+
         }
     }
 

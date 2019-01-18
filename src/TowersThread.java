@@ -19,10 +19,7 @@ public class TowersThread extends Thread{
             clock.update();
             if (!towers.isEmpty()) {
                 for (Tower tower : towers) { //ay yo fix dis later lmao
-                    tower.findTargets(enemies);
-                    if (tower.getWithin().size() != 0) {
-                        tower.attack(clock.elapsedTime);
-                    }
+                    tower.update(clock.getElapsedTime());
                 }
             }
 

@@ -1,46 +1,53 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
+import java.util.LinkedList;
 
 public class RifleTower extends Tower {
-    double timeShot;
     int count;
+    private double fireRate;
 
-    public RifleTower(double x, double y) {
-        super(x, y);
+    public RifleTower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(50);
-        setFireRate(100000000);
+        this.fireRate = 0.5;
         setRange(new Circle(x, y, 1100));
         //setProjectileImagePath();
         //setDamageType();
-        setProjectileSpeed(1);
+        setProjectileSpeed(600);
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/BasicGunBody.png"));
         setClock(new Clock());
-        timeShot = getFireRate();
         count = 0;
     }
 
+    @Override
+    public void update(double timeElapsed) {
+        findTargets();
+        attack(timeElapsed);
+        LinkedList<Projectile> projectiles = getProjectiles();
+        for(int i = 0; i < projectiles.size(); i++) {
+            if(!projectiles.get(i).isActive()) {
+                projectiles.remove(i);
+            } else {
+                projectiles.get(i).update(timeElapsed);
+            }
+        }
+    }
+
     public void attack(double elapsedTime) {
-        if (timeShot <= 0) {
+        if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().getFirst());
-            Projectile temp;
-            ProjectileThread p;
-            temp = new Projectile(this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-            p = new ProjectileThread(temp);
-            p.start();
-            getPro().add(temp);
-            getShots().add(p);
-            timeShot = getFireRate();
+            getProjectiles().add(
+                    new Projectile(
+                            this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
+                    )
+            );
+            setAttackTime(fireRate);
             count++;
             System.out.println(count);
         }else {
-            timeShot = timeShot - elapsedTime;
-            //System.out.println(timeShot);
+            setAttackTime(getAttackTime() - elapsedTime);
         }
     }
 }

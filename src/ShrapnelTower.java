@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class ShrapnelTower extends Tower {
 
-    public ShrapnelTower(double x, double y) {
-        super(x, y);
+    public ShrapnelTower(double x, double y, Game game) {
+        super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(20);
