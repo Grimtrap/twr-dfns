@@ -73,7 +73,7 @@ public class TowerMenu extends Frame {
 
     }
 
-    public static void main(String[] args) {
-        TowerMenu menu = new TowerMenu();
-    }
+    //public static void main(String[] args) {
+        //TowerMenu menu = new TowerMenu();
+    //}
 }

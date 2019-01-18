@@ -26,7 +26,7 @@ public class RifleTower extends Tower {
     }
 
     public void attack(double elapsedTime) {
-        if (getFireRate() <= timeShot) {
+        if (getFireRate() >= timeShot) {
             setTarget(getWithin().getFirst());
             Projectile temp;
             ProjectileThread p;

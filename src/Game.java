@@ -19,6 +19,7 @@ public class Game {
     private TowersThread towerThread;
     private double gold;
     private double livesLeft;
+    private TowerMenu towerMenu;
 
     /**
      * creates a new game
@@ -26,6 +27,7 @@ public class Game {
      */
     public Game(String mapName) {
         map = new Map(mapName);
+        towerMenu = new TowerMenu();
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
         towers.add(new RifleTower(100,100));
