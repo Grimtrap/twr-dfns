@@ -92,7 +92,7 @@ public class Projectile extends JComponent {
     }
 
     private boolean hit(double x, double y, Rectangle box){
-        return x < box.x && x > (box.x + box.width) && y > box.y && y < (box.y + box.height);
+        return x > box.x && x < (box.x + box.width) && y > box.y && y < (box.y + box.height);
     }
 
     public boolean isDrawn() {

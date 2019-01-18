@@ -39,6 +39,7 @@ public class Game {
         towers.add(new RifleTower(0,100));
         gold = 400;
         livesLeft = 10;
+        new RifleTower(100,100);
     }
 
     public void updateClock() {

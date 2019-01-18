@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
 
 public class RifleTower extends Tower {
 
@@ -23,6 +24,7 @@ public class RifleTower extends Tower {
         setTarget(getWithin().getFirst());
         Projectile temp;
         Thread t;
+        ImageObserver observer;
         temp = new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
         t = new ProjectileThread(temp);
         t.start();

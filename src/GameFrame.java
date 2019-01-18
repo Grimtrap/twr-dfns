@@ -76,7 +76,7 @@ public class GameFrame extends JFrame {
             }
 
 
-            /*
+
             for(Tower twr: towers) {
                 twr.draw(g); //this is grayed out for now lol
                 twr.findTargets(enemies);
@@ -90,7 +90,7 @@ public class GameFrame extends JFrame {
                     }
                 }
             }
-            */
+
 
             repaint();
         }
