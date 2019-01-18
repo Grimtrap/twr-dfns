@@ -33,7 +33,7 @@ public class TowerMenu extends Frame {
         ImageIcon AAGunImage = new ImageIcon("resources/Towers/AAGunBody.png");
         ImageIcon SAMLauncherImage = new ImageIcon("resources/Towers/SAMMissileBody.png");
         ImageIcon GoldImage = new ImageIcon("resources/Gold.png");
-        setLayout(new GridLayout(12, 1));
+        setLayout(new GridLayout(10, 2));
 
         BasicGun = new JButton("BASIC GUN", BasicGunImage);
         MachineGun = new JButton("MACHINE GUN", MachineGunImage);
@@ -59,7 +59,7 @@ public class TowerMenu extends Frame {
         add(AAGun);
         add(SAMLauncher);
         add(sellButton);
-        setSize(250,1000);
+        setSize(500,1000);
         setVisible(true);
 
         // This closing method is temporary
