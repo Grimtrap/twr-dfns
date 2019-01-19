@@ -37,7 +37,6 @@ public class Game {
         towerMenu = new TowerMenu(this);
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
-        towers.add(new ShotgunTower(100,100, this));
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
         spawner.generateWave(0);
@@ -73,5 +72,13 @@ public class Game {
 
     public void setSelected(Tower selected) {
         this.selected = selected;
+    }
+
+    public TowersThread getTowerThread() {
+        return towerThread;
+    }
+
+    public void setTowerThread(TowersThread towerThread) {
+        this.towerThread = towerThread;
     }
 }

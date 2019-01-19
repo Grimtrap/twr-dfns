@@ -35,6 +35,10 @@ public class GameFrame extends JFrame {
                 game.getSelected().setX(x);
                 game.getSelected().setY(y);
                 towers.add(game.getSelected());
+                TowersThread t = new TowersThread(towers, enemies);
+                t.start();
+                game.getTowerThread().interrupt();
+                game.setTowerThread(t);
                 game.setSelected(null);
             }
         });

@@ -26,5 +26,11 @@ public class TowersThread extends Thread{
         }
     }
 
+    public LinkedList<Tower> getTowers() {
+        return towers;
+    }
 
+    public void setTowers(LinkedList<Tower> towers) {
+        this.towers = towers;
+    }
 }
