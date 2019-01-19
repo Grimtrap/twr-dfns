@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -9,7 +11,7 @@ import java.io.File;
 /**
  * TowerMenu.java
  * does menu things
- * @author Michael T.
+ * @author Michael T., Kyle T.
  * Last Updated: January 19, 2019
  */
 public class TowerMenu extends Frame {
@@ -25,8 +27,10 @@ public class TowerMenu extends Frame {
     private JButton AAGun;
     private JButton SAMLauncher;
     private JButton sellButton;
+    private Game game;
 
-    public TowerMenu(){
+    public TowerMenu(Game game){
+        this.game = game;
         ImageIcon BasicGunImage = new ImageIcon("resources/Towers/BasicGunBody.png");
         ImageIcon MachineGunImage = new ImageIcon("resources/Towers/MachineGunBody.png");
         ImageIcon ShotGunImage = new ImageIcon("resources/Towers/ShotgunBody.png");
@@ -42,17 +46,77 @@ public class TowerMenu extends Frame {
         setLayout(new GridLayout(10, 2));
 
         BasicGun = new JButton("BASIC GUN", BasicGunImage);
+        BasicGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new RifleTower(0,0,game));
+        }
+        } );
         MachineGun = new JButton("MACHINE GUN", MachineGunImage);
+        MachineGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new MachineGunTower(0,0,game));
+            }
+        } );
         ShotGun = new JButton("SHOTGUN", ShotGunImage);
+        ShotGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new ShotgunTower(0,0,game));
+            }
+        } );
         SniperRifle = new JButton("SNIPER RIFLE", SniperRifleImage);
+        SniperRifle.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new SniperTower(0,0,game));
+            }
+        } );
         ShrapnelTower = new JButton("SHRAPNEL TOWER", ShrapnelTowerImage);
+        ShrapnelTower.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new ShrapnelTower(0,0,game));
+            }
+        } );
         MissileLauncher = new JButton("MISSILE LAUNCHER", MissileLauncherImage);
+        MissileLauncher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new RocketLauncherTower(0,0,game));
+            }
+        } );
         FlameThrower = new JButton("FLAMETHROWER", FlameThrowerImage);
+        FlameThrower.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new FlamethrowerTower(0,0,game));
+            }
+        } );
         LaserGun = new JButton("LASER GUN", LaserGunImage);
+        LaserGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new LaserTower(0,0,game));
+            }
+        } );
         CryoGun = new JButton("CRYO GUN", CryoGunImage);
+        CryoGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new CryoGunTower(0,0,game));
+            }
+        } );
         AAGun = new JButton("AA GUN", AAGunImage);
-        SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
+        AAGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new AATower(0,0,game));
+            }
+        } );
+        /*SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
+        SAMLauncher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setSelected(new RifleTower(0,0,game));
+            }
+        } );*/
         sellButton = new JButton("SELL", GoldImage);
+        BasicGun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //insert code here
+            }
+        } );
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
@@ -63,7 +127,7 @@ public class TowerMenu extends Frame {
         add(LaserGun);
         add(CryoGun);
         add(AAGun);
-        add(SAMLauncher);
+        //add(SAMLauncher);
         add(sellButton);
         setSize(500,1080);
         setVisible(true);

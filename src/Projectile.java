@@ -1,4 +1,4 @@
-import sun.awt.image.ImageWatched;
+//import sun.awt.image.ImageWatched;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

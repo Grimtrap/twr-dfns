@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.*;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 public class GameFrame extends JFrame {
 
@@ -9,19 +13,31 @@ public class GameFrame extends JFrame {
     private LinkedList<Tower> towers;
     private Map map;
     private double[][] pathCoords;
+    private Game game;
 
-    public GameFrame(LinkedList<Enemy> enemies, LinkedList<Tower> towers, Map map){
+    public GameFrame(LinkedList<Enemy> enemies, LinkedList<Tower> towers, Map map, Game game){
         super("Tower Defense");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.map = map;
         this.enemies = enemies;
         this.towers = towers;
+        this.game = game;
         this.setSize(1920,1080);
         this.add(new GamePanel());
         coordsForPathing();
         this.setVisible(true);
 
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                int x = me.getX();
+                int y = me.getY();
+                game.getSelected().setX(x);
+                game.getSelected().setY(y);
+                towers.add(game.getSelected());
+                game.setSelected(null);
+            }
+        });
 
     }
 
@@ -102,6 +118,5 @@ public class GameFrame extends JFrame {
             }
         }
     }
-
 
 }
