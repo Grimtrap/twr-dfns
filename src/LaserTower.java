@@ -9,7 +9,7 @@ public class LaserTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
-        setDamage(10);
+        setDamage(0.15);
         setFireRate(100);
         setRange(new Circle(x, y, 100));
         //setProjectileImagePath();

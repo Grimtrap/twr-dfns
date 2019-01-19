@@ -10,7 +10,7 @@ public class ShrapnelTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(20);
-        setFireRate(1000);
+        setFireRate(1);
         setRange(new Circle(x, y, 100));
         //setProjectileImagePath();
         //setDamageType();

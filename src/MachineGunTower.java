@@ -10,7 +10,7 @@ public class MachineGunTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(7);
-        setFireRate(50);
+        setFireRate(0.1);
         setRange(new Circle(x, y, 100));
         //setProjectileImagePath();
         //setDamageType();

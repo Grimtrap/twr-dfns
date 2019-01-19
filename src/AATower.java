@@ -11,7 +11,7 @@ public class AATower extends Tower {
         setGroundTargeting(false);
         setAirTargeting(true);
         setDamage(10);
-        setFireRate(85);
+        setFireRate(0.1);
         setRange(new Circle(x, y, 100));
         //setProjectileImagePath();
         //setDamageType();
