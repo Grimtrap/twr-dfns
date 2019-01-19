@@ -1,3 +1,8 @@
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+
 public class Calculations {
 
 
@@ -23,7 +28,7 @@ public class Calculations {
      * @return angle formed by two points in radians
      */
     public static double getAngle(double x1, double y1, double x2, double y2) {
-        double angle = Math.atan2(y2-y1, x2-x1);
+        double angle = Math.PI/2 + Math.atan2(y2-y1, x2-x1);
 
         if(angle < 0) {
             angle += 2*Math.PI;
@@ -31,4 +36,13 @@ public class Calculations {
 
         return angle;
     }
+
+    public static double getMiddle(double n, double size) {
+        return n+size/2;
+    }
+
+    public static double Center(double n, double size) {
+        return n-size/2;
+    }
+
 }

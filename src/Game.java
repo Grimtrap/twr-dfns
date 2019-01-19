@@ -17,6 +17,8 @@ public class Game {
     private EnemySpawner spawner;
     private UpdaterThread enemyThread;
     private TowersThread towerThread;
+    private int wave;
+    private boolean isSpawning;
     private double gold;
     private double livesLeft;
     private TowerMenu towerMenu;
@@ -30,10 +32,11 @@ public class Game {
         towerMenu = new TowerMenu();
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
-        towers.add(new RifleTower(100,100, this));
+        towers.add(new CryoGunTower(100,100, this));
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
         spawner.generateWave(0);
+        wave = 0;
         enemyThread = new UpdaterThread(enemies, spawner, this);
         enemyThread.start();
         towerThread = new TowersThread(towers, enemies);

@@ -9,33 +9,33 @@ public class FlamethrowerTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(5);
-        //setFireRate();
-        setRange(new Circle(x, y, 100));
-        //setProjectileImagePath();
-        //setDamageType();
-        setProjectileSpeed(50);
+        setFireRate(0.1);
+        setDamage(10);
+        setRange(new Circle(x, y, 1000));
+        setProjectileSpeed(1000);
         setProjectileExplosionRadius(0);
+        setProjectileImagePath("resources/Projectiles/FlamethrowerBullet.png");
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/FlamethrowerBody.png"));
     }
 
     public void attack(double elapsedTime){
         //create an array of enemies within its range
-        //setWithin(findTargets());
         //fires at the enemy closest to base
-        if(getWithin() != null) {
+        if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().getFirst());
-            //Creates action listener updates projectile based on timer
-            ActionListener shoot = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setTargetX(getWithin().get(0).getX());
-                    setTargetY(getWithin().get(0).getY());
-                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-                }
-            };
-            Timer t = new Timer((int) (getFireRate()), shoot);
-            t.start();
+            Projectile p =
+                    new Projectile(
+                            this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
+                    );
+            p.setBurn(new double[]{5, 25});
+            getProjectiles().add(p);
+            setAttackTime(getFireRate());
+            SoundPlayer.playSound("Flamethrower.wav");
+        }else {
+            setAttackTime(getAttackTime() - elapsedTime);
         }
     }
+
+
+
 }

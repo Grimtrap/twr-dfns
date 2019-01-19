@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -66,12 +67,6 @@ public class Enemy implements Cloneable {
         return path;
     }
 
-    @Deprecated
-    private void tempSetCoordTest() {
-        this.x = 300;
-        this.y = 300;
-    }
-
     public Enemy clone() { //should i make this more efficient?
         try {
             Enemy enemy = (Enemy)super.clone();
@@ -109,7 +104,7 @@ public class Enemy implements Cloneable {
 
     private void burnDmg(double timeElapsed) {
         if(burn[0] > 0) {
-            takeDmg(burn[1]*timeElapsed*100, DamageTypes.EXPLOSIVE);
+            takeDmg(burn[1]*timeElapsed, DamageTypes.EXPLOSIVE);
             burn[0] -= timeElapsed;
         }
     }
@@ -120,13 +115,13 @@ public class Enemy implements Cloneable {
         byte direction = currentPathing.getDirection();
 
         if(slow[0] > 0) {
-            if(direction == 0){
+            if(direction == Directions.NORTH){
                 this.y -= (speed*timeElapsed*100)/(slow[1] + 1);
-            } else if(direction==1) {
+            } else if(direction==Directions.SOUTH) {
                 this.y += (speed*timeElapsed*100)/(slow[1] + 1);
-            } else if(direction==2) {
+            } else if(direction==Directions.EAST) {
                 this.x += (speed*timeElapsed*100)/(slow[1] + 1);
-            } else if(direction==3) {
+            } else if(direction==Directions.WEST) {
                 this.x -= (speed*timeElapsed*100)/(slow[1] + 1);
             }
 
@@ -135,13 +130,13 @@ public class Enemy implements Cloneable {
             slow[0] -= timeElapsed;
 
         } else {
-            if (direction == 0) {
+            if (direction == Directions.NORTH) {
                 this.y -= speed * timeElapsed * 100;
-            } else if (direction == 1) {
+            } else if (direction == Directions.SOUTH) {
                 this.y += speed * timeElapsed * 100;
-            } else if (direction == 2) {
+            } else if (direction == Directions.EAST) {
                 this.x += speed * timeElapsed * 100;
-            } else if (direction == 3) {
+            } else if (direction == Directions.WEST) {
                 this.x -= speed * timeElapsed * 100;
             }
 
@@ -166,7 +161,14 @@ public class Enemy implements Cloneable {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(image, (int)x, (int)y, null);
+        Graphics2D g2d = (Graphics2D) g;
+        if (currentPathing != null){
+            AffineTransform backup = g2d.getTransform();
+            AffineTransform a = AffineTransform.getRotateInstance(Math.PI*0.5*currentPathing.getDirection(), x, y);
+            g2d.setTransform(a);
+            g2d.drawImage(image, (int)x, (int)y, null);
+            g2d.setTransform(backup);
+         }
         g.setColor(Color.RED);
         g.fillRect((int)this.x, (int)this.y-20, 60, 15);
         g.setColor(Color.GREEN);
@@ -193,7 +195,7 @@ public class Enemy implements Cloneable {
 
     public void becomeBurned(double amt, double power) {
         this.burn[0] = amt* Calculations.calcDmg(attributes.getBurnResist());
-        this.slow[1] = power;
+        this.burn[1] = power;
     }
 
     //getters and setters are below

@@ -2,39 +2,43 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class CryoGunTower extends Tower {
+    private Random random;
 
     public CryoGunTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
-        setDamage(20);
-        setFireRate(1000);
-        setRange(new Circle(x, y, 100));
-        //setProjectileImagePath();
+        setDamage(10);
+        setFireRate(0.1);
+        setRange(new Circle(x, y, 500));
+        setProjectileImagePath("resources/Projectiles/CryoBullet.png");
         //setDamageType();
-        setProjectileSpeed(50);
-        setProjectileExplosionRadius(0);setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/CryoGunBody.png"));
+        setProjectileSpeed(1000);
+        setProjectileExplosionRadius(0);
+        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/CryoGunBody.png"));
+        random = new Random();
     }
 
+    @Override
     public void attack(double elapsedTime){
-        //create an array of enemies within its range
-        //setWithin(findTargets());
-        //fires at the enemy closest to base
-        if(getWithin() != null) {
-            setTarget(getWithin().getFirst());
-            //Creates action listener updates projectile based on timer
-            ActionListener shoot = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setTargetX(getWithin().get(0).getX());
-                    setTargetY(getWithin().get(0).getY());
-                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-                }
-            };
-            Timer t = new Timer((int) (getFireRate()), shoot);
-            t.start();
+        //fires at random enemy
+        if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
+            setTarget(getWithin().get(random.nextInt(getWithin().size())));
+            Projectile p =
+                    new Projectile(
+                            this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
+                    );
+            p.setSlow(new double[]{5, 1});
+            getProjectiles().add(p);
+            setAttackTime(getFireRate());
+            SoundPlayer.playSound("CryoGun.wav");
+        }else {
+            setAttackTime(getAttackTime() - elapsedTime);
         }
     }
+
 }

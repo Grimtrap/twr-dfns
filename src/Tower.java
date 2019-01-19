@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 
 abstract class Tower {
@@ -35,7 +36,15 @@ abstract class Tower {
     }
 
     public void draw(Graphics g){
-        g.drawImage(image, (int) x, (int) y, null);
+        g.setColor(Color.RED);
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform backup = g2d.getTransform();
+        if(target!=null) {
+            AffineTransform a = AffineTransform.getRotateInstance(Calculations.getAngle(x, y, target.getX(), target.getY()), x, y);
+            g2d.setTransform(a);
+        }
+        g2d.drawImage(image, (int)Calculations.Center(x,64), (int)Calculations.Center(y,64), null);
+        g2d.setTransform(backup);
     }
 
     public void setDamage(double dmg){
@@ -54,25 +63,45 @@ abstract class Tower {
         return this.rate;
     }
 
-    public void update(double timeElapsed){
+    public void update(double timeElapsed) {
+        findTargets();
+        attack(timeElapsed);
+        LinkedList<Projectile> projectiles = getProjectiles();
+        for(int i = 0; i < projectiles.size(); i++) {
+            Projectile current = projectiles.get(i);
+            if(!current.isActive()) {
+                projectiles.remove(i);
+            } else {
+                current.update(timeElapsed);
+            }
+        }
     }
 
     public synchronized void findTargets(){
         LinkedList<Enemy> within = new LinkedList<>();
-        for (int i = 0; i < enemies.size(); i++){
-            Enemy current = enemies.get(i);
-                    if (Math.hypot((current.getX() -x), (current.getY() - y)) <= range.getRadius()){
-                    if (current != null && !current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) {
-                        if(!(i >= enemies.size())) {
-                             try {
-                            within.add(current);
-                             } catch (Exception e1) {
-                            e1.printStackTrace();
+
+        if(!enemies.isEmpty()) {
+            for (int i = 0; i < enemies.size(); i++) {
+                try {
+                    if (enemies.get(i) != null) {
+                        Enemy current;
+                        try {
+                            current = enemies.get(i);
+                        } catch (Exception e) {
+                            break;
+                        }
+                        if (Math.hypot((current.getX() - x), (current.getY() - y)) <= range.getRadius()) {
+                            if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) {
+                                within.add(current);
                             }
+                        }
                     }
+                } catch(NullPointerException e1) {
+                    i--;
                 }
             }
         }
+
         this.setWithin(within);
     }
 
