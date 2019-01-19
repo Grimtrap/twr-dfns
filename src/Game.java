@@ -62,8 +62,14 @@ public class Game {
         this.gold += amount;
     }
 
+    public void spendGold(int amount){this.gold -= amount;}
+
     public double getGold(){
         return this.gold;
+    }
+
+    public double getLivesLeft(){
+        return this.livesLeft;
     }
 
     public Tower getSelected() {

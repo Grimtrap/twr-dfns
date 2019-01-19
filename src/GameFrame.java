@@ -34,12 +34,17 @@ public class GameFrame extends JFrame {
                 int y = me.getY();
                 game.getSelected().setX(x);
                 game.getSelected().setY(y);
-                towers.add(game.getSelected());
-                TowersThread t = new TowersThread(towers, enemies);
-                t.start();
-                game.getTowerThread().interrupt();
-                game.setTowerThread(t);
-                game.setSelected(null);
+                if(game.getGold() >= game.getSelected().getCost()) {
+                    towers.add(game.getSelected());
+                    TowersThread t = new TowersThread(towers, enemies);
+                    t.start();
+                    game.getTowerThread().interrupt();
+                    game.setTowerThread(t);
+                    game.spendGold(game.getSelected().getCost());
+                    game.setSelected(null);
+                }else{
+                    System.out.println("Not enough Gold");
+                }
             }
         });
 
@@ -86,6 +91,7 @@ public class GameFrame extends JFrame {
             super.paintComponent(g);
             setDoubleBuffered(true);
             g.drawRect(0,400,500,500);
+            g.drawString("Gold: " + Integer.toString((int)(game.getGold())) + "Lives: " + Integer.toString((int)(game.getLivesLeft())), 5,15);
 
             drawPath(g);
 
