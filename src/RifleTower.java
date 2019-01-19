@@ -27,14 +27,16 @@ public class RifleTower extends Tower {
         attack(timeElapsed);
         LinkedList<Projectile> projectiles = getProjectiles();
         for(int i = 0; i < projectiles.size(); i++) {
-            if(!projectiles.get(i).isActive()) {
+            Projectile current = projectiles.get(i);
+            if(!current.isActive()) {
                 projectiles.remove(i);
             } else {
-                projectiles.get(i).update(timeElapsed);
+                current.update(timeElapsed);
             }
         }
     }
 
+    @Override
     public void attack(double elapsedTime) {
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().getFirst());
