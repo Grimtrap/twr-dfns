@@ -112,6 +112,13 @@ public class GameFrame extends JFrame {
                 }
             }
 
+            if(game.getLivesLeft() == 0) {
+                new EndScreen(game);
+                setVisible(false);
+                dispose();
+                game.getTowerMenu().setVisible(false);
+                game.getTowerMenu().dispose();
+            }
 
             repaint();
         }

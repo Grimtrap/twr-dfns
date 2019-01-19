@@ -112,7 +112,7 @@ public class TowerMenu extends Frame {
             }
         } );*/
         sellButton = new JButton("SELL", GoldImage);
-        BasicGun.addActionListener(new ActionListener() {
+        sellButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //insert code here
             }
@@ -142,8 +142,4 @@ public class TowerMenu extends Frame {
         });
 
     }
-
-    //public static void main(String[] args) {
-        //TowerMenu menu = new TowerMenu();
-    //}
 }

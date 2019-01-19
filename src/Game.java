@@ -27,6 +27,7 @@ public class Game {
     private double livesLeft;
     private TowerMenu towerMenu;
     private Tower selected = null;
+    private boolean selling = false;
 
     /**
      * creates a new game
@@ -86,5 +87,21 @@ public class Game {
 
     public void setTowerThread(TowersThread towerThread) {
         this.towerThread = towerThread;
+    }
+
+    public TowerMenu getTowerMenu() {
+        return towerMenu;
+    }
+
+    public void setTowerMenu(TowerMenu towerMenu) {
+        this.towerMenu = towerMenu;
+    }
+
+    public boolean isSelling() {
+        return selling;
+    }
+
+    public void setSelling(boolean selling) {
+        this.selling = selling;
     }
 }
