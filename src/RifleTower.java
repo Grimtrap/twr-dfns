@@ -10,7 +10,7 @@ public class RifleTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(50);
-        setFireRate(1);
+        setFireRate(0.5);
         setRange(new Circle(x, y, 1100));
         setProjectileImagePath("resources/Projectiles/StandardBullet.png");
         setProjectileSpeed(600);
