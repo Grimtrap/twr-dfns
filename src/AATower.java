@@ -12,7 +12,7 @@ public class AATower extends RifleTower {
         setAirTargeting(true);
         setDamage(50);
         setCost(250);
-        setFireRate(0.2);
+        setFireRate(0.1);
         setProjectileExplosionRadius(100);
         setRange(new Circle(x, y, 350));
         setProjectileSpeed(5000);

@@ -9,6 +9,8 @@ import java.io.File;
 /**
  * TowerMenu.java
  * does menu things
+ * @author Michael T.
+ * Last Updated: January 29, 2019
  */
 public class TowerMenu extends Frame {
     private JButton BasicGun;
