@@ -1,3 +1,5 @@
+import sun.awt.image.ImageWatched;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,6 +9,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Projectile {
     private Tower tower;
@@ -54,6 +57,25 @@ public class Projectile {
 
     }*/
 
+    public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
+        this.tower = tower;
+        this.imagePath = imagePath;
+        this.damageType = damageType;
+        this.damage = damage;
+        this.speed = speed;
+        this.explosionRadius = explosionRadius;
+        this.x = x;
+        this.y = y;
+        try {
+            image = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.ex = ex;
+        this.ey = ey;
+
+    }
+
     public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
         this.tower = tower;
         this.imagePath = imagePath;
@@ -74,25 +96,6 @@ public class Projectile {
 
     }
 
-    public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, double[] burn, double[] slow, Enemy target){
-        this.tower = tower;
-        this.imagePath = imagePath;
-        this.damageType = damageType;
-        this.damage = damage;
-        this.speed = speed;
-        this.explosionRadius = explosionRadius;
-        this.x = x;
-        this.y = y;
-        try {
-            image = ImageIO.read(new File(imagePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.ex = ex;
-        this.ey = ey;
-        this.target = target;
-
-    }
 
     public void update(double elapsedTime){
         double dy = target.getY() - y;
@@ -107,16 +110,52 @@ public class Projectile {
             this.setActive(false);
         }
         if (this.hit(x,y,this.target.getBoundingBox())){
-            target.takeDmg(damage, damageType);
-            if(burn != null) {
-                target.becomeBurned(burn[0], burn[1]);
+            if(this.explosionRadius <= 0) {
+                target.takeDmg(damage, damageType);
+                if (burn != null) {
+                    target.becomeBurned(burn[0], burn[1]);
+                }
+                if (slow != null) {
+                    target.becomeSlowed(slow[0], slow[1]);
+                }
+                this.setActive(false);
+            } else {
+                LinkedList<Enemy> nearby = findWithin(tower.getEnemies());
+                for(int i = 0; i < nearby.size(); i++) {
+                    nearby.get(i).takeDmg(damage, damageType);
+                        if (burn != null) {
+                            nearby.get(i).becomeBurned(burn[0], burn[1]);
+                        }
+                        if (slow != null) {
+                            nearby.get(i).becomeSlowed(slow[0], slow[1]);
+                        }
+                }
+                this.setActive(false);
             }
-            if(slow != null) {
-                target.becomeSlowed(slow[0], slow[1]);
-            }
-            this.setActive(false);
             // need to stop timer and remove projectile from screen
         }
+    }
+
+    private LinkedList<Enemy> findWithin(LinkedList<Enemy> enemies) {
+        //find enemy within explosion radius
+        LinkedList<Enemy> within = new LinkedList<>();
+        for(int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i) != null) {
+                Enemy current;
+                try {
+                    current = enemies.get(i);
+                } catch (Exception e) {
+                    break;
+                }
+                if (Math.hypot((current.getX() - x), (current.getY() - y)) <= explosionRadius) {
+                    if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) { //extreme paranoid error checking
+                        within.add(current);
+                    }
+                }
+            }
+        }
+
+        return within;
     }
 
     public void draw(Graphics g) {
@@ -131,14 +170,6 @@ public class Projectile {
 
     private boolean hit(double x, double y, Rectangle box){
         return x > box.x && x < (box.x + box.width) && y > box.y && y < (box.y + box.height);
-    }
-
-    public boolean isDrawn() {
-        return drawn;
-    }
-
-    public void setDrawn(boolean drawn) {
-        this.drawn = drawn;
     }
 
     public boolean isActive() {

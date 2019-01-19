@@ -3,6 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * FlamethrowerTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Eric Ke, Kyle To
+ * Last Updated: December 19 2019
+ */
 public class FlamethrowerTower extends Tower {
 
     public FlamethrowerTower(double x, double y, Game game) {

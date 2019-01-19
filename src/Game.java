@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * Game.java
  * This is the class that handles the game and its operations and stuff
  * @author Eric Ke
- * Created: 2019/1/16
+ * Created: 2019/1/16 (because that was when i actually realized i needed this)
  */
 public class Game {
 
@@ -32,7 +32,7 @@ public class Game {
         towerMenu = new TowerMenu();
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
-        towers.add(new CryoGunTower(100,100, this));
+        towers.add(new ShotgunTower(100,100, this));
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
         spawner.generateWave(0);

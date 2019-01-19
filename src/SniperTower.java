@@ -3,39 +3,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SniperTower extends Tower {
+
+/**
+ * SniperTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Eric Ke, Kyle To
+ * Last Updated: December 19 2019
+ */
+public class SniperTower extends RifleTower {
 
     public SniperTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(50);
-        setFireRate(2.5);
-        setRange(new Circle(x, y, 100));
-        //setProjectileImagePath();
-        //setDamageType();
-        setProjectileSpeed(50);
+        setDamage(180);
+        setDamageType(DamageTypes.PIERCE);
+        setFireRate(3);
+        setRange(new Circle(x, y, 800));
+        setSoundName("SniperRifle.wav");
+        setProjectileSpeed(3000);
+        setProjectileImagePath("resources/Projectiles/SniperBullet.png");
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/SniperRifleBody.png"));
     }
 
-    public void attack(double elapsedTime){
-        //create an array of enemies within its range
-        //setWithin(findTargets());
-        //fires at the enemy closest to base
-        if(getWithin() != null) {
-            setTarget(getWithin().getFirst());
-            //Creates action listener updates projectile based on timer
-            ActionListener shoot = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setTargetX(getWithin().get(0).getX());
-                    setTargetY(getWithin().get(0).getY());
-                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-                }
-            };
-            Timer t = new Timer((int) (getFireRate()), shoot);
-            t.start();
-        }
-    }
 }

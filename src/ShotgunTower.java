@@ -2,40 +2,45 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
+/**
+ * ShotgunTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Eric Ke, Kyle To
+ * Last Updated: December 19 2019
+ */
 public class ShotgunTower extends Tower {
 
     public ShotgunTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(30);
+        setProjectileImagePath("resources/Projectiles/ShotgunBullet.png");
+        setDamage(60);
+        setDamageType(DamageTypes.NORMAL);
         setFireRate(2);
-        setRange(new Circle(x, y, 100));
-        //setProjectileImagePath();
-        //setDamageType();
-        setProjectileSpeed(50);
-        setProjectileExplosionRadius(0);
+        setRange(new Circle(x, y, 500)); //set to 200 later
+        setProjectileSpeed(2500);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShotgunBody.png"));
     }
 
+    @Override
     public void attack(double elapsedTime){
-        //create an array of enemies within its range
-        //setWithin(findTargets());
-        //fires at the enemy closest to base
-        if(getWithin() != null) {
-            setTarget(getWithin().getFirst());
-            //Creates action listener updates projectile based on timer
-            ActionListener shoot = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setTargetX(getWithin().get(0).getX());
-                    setTargetY(getWithin().get(0).getY());
-                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-                }
-            };
-            Timer t = new Timer((int) (getFireRate()), shoot);
-            t.start();
+        Random random = new Random();
+        if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
+            for(int i = 0; i < 3; i++) {
+                setTarget(getWithin().get(random.nextInt(getWithin().size())));
+                Projectile p =
+                        new Projectile(
+                                this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
+                        );
+                getProjectiles().add(p);
+            }
+            setAttackTime(getFireRate());
+            SoundPlayer.playSound("Shotgun.wav");
+        }else {
+            setAttackTime(getAttackTime() - elapsedTime);
         }
     }
 }

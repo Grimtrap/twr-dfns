@@ -1,23 +1,37 @@
 import java.awt.*;
 import java.util.LinkedList;
 
+/**
+ * RifleTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Eric Ke, Kyle To
+ * Last Updated: December 19 2019
+ */
 public class RifleTower extends Tower {
     int count;
     private double fireRate;
+    private String soundName;
 
     public RifleTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
+        setCost(100);
         setDamage(50);
+        setDamageType(DamageTypes.NORMAL);
+        setSoundName("BasicGun.wav");
         setFireRate(1);
-        setRange(new Circle(x, y, 1100));
+        setRange(new Circle(x, y, 400));
         setProjectileImagePath("resources/Projectiles/StandardBullet.png");
         setProjectileSpeed(600);
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/BasicGunBody.png"));
         setClock(new Clock());
         count = 0;
+    }
+
+    public void setSoundName(String soundLink) {
+        soundName = soundLink;
     }
 
     @Override
@@ -45,7 +59,7 @@ public class RifleTower extends Tower {
                     );
             getProjectiles().add(p);
             setAttackTime(getFireRate());
-            SoundPlayer.playSound("BasicGun.wav");
+            SoundPlayer.playSound(soundName);
         }else {
             setAttackTime(getAttackTime() - elapsedTime);
         }
