@@ -17,6 +17,7 @@ public class AATower extends RifleTower {
         setRange(new Circle(x, y, 350));
         setProjectileSpeed(5000);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/AAGunBody.png"));
+        setSoundName("AAGun.wav");
     }
 
 }
