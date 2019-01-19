@@ -8,7 +8,7 @@ public class RifleTower extends Tower {
     public RifleTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
-        setAirTargeting(true);
+        setAirTargeting(false);
         setDamage(50);
         setFireRate(1);
         setRange(new Circle(x, y, 1100));

@@ -8,7 +8,7 @@ public class SniperTower extends Tower {
     public SniperTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
-        setAirTargeting(true);
+        setAirTargeting(false);
         setDamage(50);
         setFireRate(2.5);
         setRange(new Circle(x, y, 100));

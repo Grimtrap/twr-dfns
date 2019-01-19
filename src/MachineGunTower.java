@@ -8,7 +8,7 @@ public class MachineGunTower extends Tower {
     public MachineGunTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
-        setAirTargeting(true);
+        setAirTargeting(false);
         setDamage(7);
         setFireRate(0.1);
         setRange(new Circle(x, y, 100));
