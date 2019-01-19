@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 
+//DELETE THIS CLASS LATER
 public class ProjectileThread extends Thread{
     private LinkedList<Projectile> projectiles;
     public boolean running;

@@ -6,6 +6,10 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * TowerMenu.java
+ * does menu things
+ */
 public class TowerMenu extends Frame {
     private JButton BasicGun;
     private JButton MachineGun;

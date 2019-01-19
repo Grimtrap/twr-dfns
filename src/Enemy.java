@@ -7,6 +7,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Enemy.java
+ * enemy that you have to kill with towers in the game
+ * @author Eric Ke, Kyle To
+ * Date: December 26, 2018
+ * Last Updated: January 19, 2019
+ */
 public class Enemy implements Cloneable {
 
     private String imagePath;

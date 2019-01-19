@@ -7,6 +7,8 @@ abstract class Tower {
     private Image image;
     private Clock clock;
     private double x;
+    private Game game;
+    private int cost;
     private double y;
     private double targetX;
     private double targetY;
@@ -29,6 +31,7 @@ abstract class Tower {
     public Tower (double x, double y, Game game){
         this.x = x;
         this.y = y;
+        this.game = game;
         enemies = game.getEnemies();
         within = new LinkedList<>();
         projectiles = new LinkedList<>();
@@ -85,14 +88,18 @@ abstract class Tower {
                 try {
                     if (enemies.get(i) != null) {
                         Enemy current;
+
                         try {
                             current = enemies.get(i);
                         } catch (Exception e) {
                             break;
                         }
-                        if (Math.hypot((current.getX() - x), (current.getY() - y)) <= range.getRadius()) {
-                            if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) {
-                                within.add(current);
+
+                        if(canTarget(current)) {
+                            if (Math.hypot((current.getX() - x), (current.getY() - y)) <= range.getRadius()) {
+                                if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) {
+                                    within.add(current);
+                                }
                             }
                         }
                     }
@@ -103,6 +110,19 @@ abstract class Tower {
         }
 
         this.setWithin(within);
+    }
+
+    private boolean canTarget(Enemy enemy) {
+        if(groundTargeting && airTargeting) {
+            return true;
+        } else {
+            Attributes a = enemy.getAttributes();
+            if((a.isFlying() && airTargeting) || (!a.isFlying() && groundTargeting)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     abstract void attack(double elapsedTime);
@@ -273,5 +293,13 @@ abstract class Tower {
 
     public void setAttackTime(double attackTime) {
         this.attackTime = attackTime;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }

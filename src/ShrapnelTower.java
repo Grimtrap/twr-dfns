@@ -2,7 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
+/**
+ * ShrapnelTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Eric Ke, Kyle To
+ * Last Updated: December 19 2019
+ */
 public class ShrapnelTower extends Tower {
 
     public ShrapnelTower(double x, double y, Game game) {
@@ -12,30 +19,17 @@ public class ShrapnelTower extends Tower {
         setDamage(20);
         setFireRate(1);
         setRange(new Circle(x, y, 100));
-        //setProjectileImagePath();
-        //setDamageType();
-        setProjectileSpeed(50);
-        setProjectileExplosionRadius(0);
+        setDamageType(DamageTypes.EXPLOSIVE);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShrapnelTower.png"));
     }
 
     public void attack(double elapsedTime) {
-        //create an array of enemies within its range
-        //setWithin(findTargets());
-        //fires at closest enemy
+
         if (getWithin() != null) {
-            setTarget(getWithin().getFirst());
-            //Creates action listener updates projectile based on timer
-            ActionListener shoot = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setTargetX(getWithin().get(0).getX());
-                    setTargetY(getWithin().get(0).getY());
-                    //new Projectile(getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget());
-                }
-            };
-            Timer t = new Timer((int) (getFireRate()), shoot);
-            t.start();
+            LinkedList<Enemy> within = getWithin();
+            for(int i = 0; i < within.size(); i++){
+                within.get(i).takeDmg(getDamage(), getDamageType());
+            }
         }
     }
 }
