@@ -44,8 +44,7 @@ public class RifleTower extends Tower {
                     )
             );
             setAttackTime(fireRate);
-            count++;
-            System.out.println(count);
+            SoundPlayer.playSound("BasicGun.wav");
         }else {
             setAttackTime(getAttackTime() - elapsedTime);
         }

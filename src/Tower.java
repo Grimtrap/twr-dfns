@@ -60,12 +60,15 @@ abstract class Tower {
     public synchronized void findTargets(){
         LinkedList<Enemy> within = new LinkedList<>();
         for (int i = 0; i < enemies.size(); i++){
-            if (Math.hypot((enemies.get(i).getX() -x), (enemies.get(i).getY() - y)) <= range.getRadius()){
-                if(enemies.get(i) != null && !enemies.get(i).hasReachedEnd() && !(enemies.get(i).getCurrentHealth() <=0)) {
-                    try {
-                        within.add(enemies.get(i));
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
+            Enemy current = enemies.get(i);
+                    if (Math.hypot((current.getX() -x), (current.getY() - y)) <= range.getRadius()){
+                    if (current != null && !current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) {
+                        if(!(i >= enemies.size())) {
+                             try {
+                            within.add(current);
+                             } catch (Exception e1) {
+                            e1.printStackTrace();
+                            }
                     }
                 }
             }
