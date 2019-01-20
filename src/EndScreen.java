@@ -14,13 +14,14 @@ public class EndScreen extends Frame {
     private Game game;
     private JLabel label;
     private JButton button;
+    private String soundName;
 
     public EndScreen(Game game) {
         this.game = game;
         setLayout(new GridLayout(2, 1));
-
         label = new JLabel("Game Over",SwingConstants.CENTER);
         button = new JButton("Return to Main Menu");
+        SoundPlayer.playSound("GameOver.wav");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new MainMenu();

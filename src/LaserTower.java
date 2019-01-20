@@ -28,7 +28,7 @@ public class LaserTower extends Tower {
             setTarget(getWithin().getFirst());
             getTarget().takeDmg(getDamage(), getDamageType());
             setAttackTime(getFireRate());
-            SoundPlayer.playSound("resources/Projectiles/LaserGun.wav");
+            SoundPlayer.playSound("LaserGun.wav");
         }else {
             setAttackTime(getAttackTime() - elapsedTime);
         }
