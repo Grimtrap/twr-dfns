@@ -4,9 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class MainMenu extends JFrame {
 
@@ -52,6 +50,7 @@ public class MainMenu extends JFrame {
         this.setSize(500,410);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+        SoundPlayer.playSound("MenuMusic.wav");
 
     }
 
