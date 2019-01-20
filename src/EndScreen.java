@@ -15,19 +15,22 @@ public class EndScreen extends Frame {
     private JLabel label;
     private JButton button;
 
+    /**
+     * creates a game over screen
+     * @param game the game itself
+     */
     public EndScreen(Game game) {
         this.game = game;
         setLayout(new GridLayout(2, 1));
 
         label = new JLabel("Game Over",SwingConstants.CENTER);
         button = new JButton("Return to Main Menu");
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new MainMenu();
-                setVisible(false);
-                dispose();
-            }
-        } );
+        SoundPlayer.playSound("GameOver.wav");
+        button.addActionListener(e -> {
+            new MainMenu();
+            setVisible(false);
+            dispose();
+        });
 
         add(label);
         add(button);

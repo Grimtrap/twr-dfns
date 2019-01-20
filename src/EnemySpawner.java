@@ -3,6 +3,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * EnemySpawner.java
+ * generates and spawns enemies on the map
+ * @author Eric Ke
+ * Date: 2019/1/7
+ */
 public class EnemySpawner {
 
     private int[] enemiesLeft;
@@ -13,20 +19,32 @@ public class EnemySpawner {
     private Random random = new Random();
 
 
+    /**
+     * creates a new enemy generator
+     * @param mapName name of the map
+     */
     public EnemySpawner(String mapName) {
 
         map = new Map(mapName);
         enemiesLeft = new int[]{0};
     }
 
+    /**
+     * generates a wave of enemies
+     * @param difficulty the difficulty of the wave
+     */
     public void generateWave(int difficulty) {
-        //amt of waves is determined by difficulty which is determined by the current wave
+        currentDifficulty = difficulty;
         enemiesLeft = new int[difficulty/100+1];
         Arrays.fill(enemiesLeft, 10);
         currentEnemies = new Enemy[difficulty/100 +1];
         generateEnemies();
     }
 
+    /**
+     * checks whether there are enemies left
+     * @return if there are enemies left in the wave
+     */
     public boolean canSpawnMore() {
         for(int e: enemiesLeft) {
             if(e > 0) {
@@ -37,25 +55,39 @@ public class EnemySpawner {
         return false;
     }
 
-    public Enemy getNextEnemy(int currentIndex) {
+    /**
+     * gets the next enemy to spawn
+     * @return an enemy to spawn
+     */
+    public Enemy getNextEnemy() {
+        return findNextEnemy(0);
+    }
+
+
+    private Enemy findNextEnemy(int currentIndex) {
+        //a method which finds the next suitable enemy to spawn
         if(enemiesLeft[currentIndex] > 0) {
             enemiesLeft[currentIndex] -=1;
             Enemy next = currentEnemies[currentIndex].clone();
             next.setCoords(map.getStart()[0],map.getStart()[1]);
             return next;
         } else if(enemiesLeft.length < currentIndex+1){
-            return getNextEnemy(currentIndex+1); //recursively traverses the array till all enemies are spawned i guess
+            return findNextEnemy(currentIndex+1); //recursively traverses the array till all enemies are spawned i guess
         } else {
             return null;
         }
     }
 
-    public void setDifficulty(int amt) {
-        currentDifficulty = amt;
+    /**
+     * gives what enemies are to spawn in the next wave
+     * @return an array with the enemies to spawn
+     */
+    public Enemy[] getNextWavesEnemies() {
+        return currentEnemies;
     }
 
     private void generateEnemies() {
-
+        //calls several methods to generate enemies to spawn in a wave
         for(int i =0; i < currentEnemies.length; i++) {
             Attributes a = genAttributes();
             double[] healthSpeed = genHealthAndSpeed();
@@ -97,7 +129,7 @@ public class EnemySpawner {
             if(random.nextBoolean()) { //only has a small chance to actually give attributes
                 for (int i : numOfAttributes) {
                     //yes, there is a chance that it'll select one that's already been done and redo it
-                    //it's a feature
+                    //it's a feature to make multiple traits slightly rarer
                     if (random.nextBoolean())
                         i = random.nextInt(4);
                     if (i == 0) {

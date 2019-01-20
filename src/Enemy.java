@@ -40,18 +40,25 @@ public class Enemy implements Cloneable {
     private double y;
     private double distanceLeft;
 
-    public Enemy(int difficulty) {
-
-    }
-
+    /**
+     * creates a new enemy for the game
+     * @param imageName name of the image
+     * @param maxHealth maximum health it can have
+     * @param speed how fast it moves
+     * @param goldGranted how much gold granted on death
+     * @param attributes its special traits
+     * @param pathingQueue the path it should take
+     */
     public Enemy(String imageName, double maxHealth, double speed, int goldGranted, Attributes attributes, LinkedList<Pathing> pathingQueue){
 
         this.imagePath = imageName;
+
         try {
             image = ImageIO.read(new File("resources/Enemies/" + imagePath + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         this.reachedEnd = false;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
@@ -74,7 +81,11 @@ public class Enemy implements Cloneable {
         return path;
     }
 
-    public Enemy clone() { //should i make this more efficient?
+    /**
+     * clones the enemy and all its attributes and paths, etc.
+     * @return a clone of the enemy
+     */
+    public Enemy clone() {
         try {
             Enemy enemy = (Enemy)super.clone();
             enemy.setPathings(this.clonePaths(pathings));
@@ -86,6 +97,11 @@ public class Enemy implements Cloneable {
         }
     }
 
+    /**
+     * updates the enemy's state
+     * @param timeElapsed time since last check
+     * @return whether it has updated or not
+     */
     public boolean update(double timeElapsed) {
         if(currentHealth > 0) {
             try {
@@ -100,10 +116,19 @@ public class Enemy implements Cloneable {
         }
     }
 
+    /**
+     * if the enemy has reached the end
+     * @return whether the enemy has reached the end or not
+     */
     public boolean hasReachedEnd() {
         return reachedEnd;
     }
 
+    /**
+     * sets coordinates of the enemy
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
@@ -167,6 +192,10 @@ public class Enemy implements Cloneable {
         boundingBox.setLocation((int)x,(int)y);
     }
 
+    /**
+     * draws the enemy on the screen with proper orientation
+     * @param g the graphics
+     */
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         if (currentPathing != null){
@@ -182,6 +211,11 @@ public class Enemy implements Cloneable {
         g.fillRect((int)this.x, (int)this.y-20, (int)(60*(currentHealth/maxHealth)), 15);
     }
 
+    /**
+     * makes the enemy lose health based on damage and damage type
+     * @param damage damage dealt
+     * @param dmgType type of damage
+     */
     public void takeDmg(double damage, byte dmgType) {
         if (attributes.getShielding() > 0 && dmgType != DamageTypes.PIERCE) {
             attributes.setShielding(attributes.getShielding() - calculateDmgTaken(damage, dmgType));
@@ -190,16 +224,26 @@ public class Enemy implements Cloneable {
         }
     }
 
-    //fill out this method later
+
     private double calculateDmgTaken(double dmg, byte dmgType) {
         return dmg* Calculations.calcDmg(attributes.getDmgResist(dmgType));
     }
 
+    /**
+     * applies slow
+     * @param amt duration of slow
+     * @param power power of slow
+     */
     public void becomeSlowed(double amt, double power) {
         this.slow[0] = amt* Calculations.calcDmg(attributes.getSlowResist());
         this.slow[1] = power;
     }
 
+    /**
+     * applies burn
+     * @param amt duration of burn
+     * @param power power of burn
+     */
     public void becomeBurned(double amt, double power) {
         this.burn[0] = amt* Calculations.calcDmg(attributes.getBurnResist());
         this.burn[1] = power;
@@ -207,74 +251,74 @@ public class Enemy implements Cloneable {
 
     //getters and setters are below
 
-    public double getMaxHealth() {
-        return maxHealth;
-    }
-
-    public void setMaxHealth(double maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
+    /**
+     * gets current health
+     * @return current health
+     */
     public double getCurrentHealth() {
         return currentHealth;
     }
 
-    public void setCurrentHealth(double currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public int getGoldGranted() {
-        return goldGranted;
-    }
-
-    public void setGoldGranted(int goldGranted) {
-        this.goldGranted = goldGranted;
-    }
-
+    /**
+     * gets special attributes
+     * @return the enemy's attributes
+     */
     public Attributes getAttributes() {
         return attributes;
     }
 
+    /**
+     * sets the attributes of the enemy
+     * @param attributes the attributes to set it to
+     */
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
     }
 
-    public Queue<Pathing> getPathings() {
-        return pathings;
-    }
-
+    /**
+     * sets path for the enemy to take
+     * @param pathings the path to take
+     */
     public void setPathings(LinkedList<Pathing> pathings) {
         this.pathings = pathings;
     }
 
+    /**
+     * gets the hitbox of the enemy
+     * @return the rectangle which is the hitbox
+     */
     public Rectangle getBoundingBox() {
         return boundingBox;
     }
 
-    public void setBoundingBox(Rectangle boundingBox) {
-        this.boundingBox = boundingBox;
-    }
-
+    /**
+     * gets x position of the enemy
+     * @return the x position
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * sets x position of the enemy
+     * @param x the x position to set it to
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * gets y position of the enemy
+     * @return the y position
+     */
     public double getY() {
         return y;
     }
 
+    /**
+     * sets y position of the enemy
+     * @param y the x position to set it to
+     */
     public void setY(int y) {
         this.y = y;
     }

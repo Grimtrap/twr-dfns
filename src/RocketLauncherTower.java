@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * RocketLauncherTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: January 19 2019
  */
 public class RocketLauncherTower extends RifleTower {

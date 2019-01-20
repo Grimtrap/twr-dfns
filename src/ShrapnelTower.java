@@ -4,7 +4,7 @@ import java.util.LinkedList;
 /**
  * ShrapnelTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: January 19 2019
  */
 public class ShrapnelTower extends Tower {
@@ -29,6 +29,10 @@ public class ShrapnelTower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShrapnelTower.png"));
     }
 
+    /**
+     * attacks the targets
+     * @param elapsedTime time passed since last check
+     */
     public void attack(double elapsedTime) {
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             for(int i = 0; i < getWithin().size(); i++) {

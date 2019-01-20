@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * FlamethrowerTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: January 19 2019
  */
 public class FlamethrowerTower extends Tower {
@@ -18,7 +18,7 @@ public class FlamethrowerTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setFireRate(0.07);
+        setFireRate(0.09);
         setDamage(10);
         setRange(new Circle(x, y, 1000));
         setProjectileSpeed(1000);
@@ -27,6 +27,10 @@ public class FlamethrowerTower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/FlamethrowerBody.png"));
     }
 
+    /**
+     * attacks the target
+     * @param elapsedTime time passed since last check
+     */
     public void attack(double elapsedTime){
         //create an array of enemies within its range
         //fires at the enemy closest to base

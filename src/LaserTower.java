@@ -3,11 +3,17 @@ import java.awt.*;
 /**
  * LaserTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: December 19 2019
  */
 public class LaserTower extends Tower {
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public LaserTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
@@ -20,6 +26,10 @@ public class LaserTower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/LaserGunBody.png"));
     }
 
+    /**
+     * attacks the target
+     * @param elapsedTime time passed since last check
+     */
     @Override
     public void attack(double elapsedTime){
         //this is special because it doesn't shoot a projectile
@@ -28,12 +38,16 @@ public class LaserTower extends Tower {
             setTarget(getWithin().getFirst());
             getTarget().takeDmg(getDamage(), getDamageType());
             setAttackTime(getFireRate());
-            SoundPlayer.playSound("resources/Projectiles/LaserGun.wav");
+            SoundPlayer.playSound("LaserGun.wav");
         }else {
             setAttackTime(getAttackTime() - elapsedTime);
         }
     }
 
+    /**
+     * draws the tower and beam
+     * @param g paintComponent graphics
+     */
     @Override
     public void draw(Graphics g) {
         super.draw(g);

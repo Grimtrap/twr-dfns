@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * GameFrame.java
  * JFrame where the game is drawn
- * @author Eric Ke, Kyle To
+ * @author Eric Ke, Kyle To, Michael T.
  * Last Updated: January 19 2019
  */
 public class GameFrame extends JFrame {
@@ -49,6 +49,7 @@ public class GameFrame extends JFrame {
         startWave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.getSpawner().generateWave(game.getWave()*10);
+                SoundPlayer.playSound("WaveStart.wav");
             }
         } );
 
@@ -80,7 +81,9 @@ public class GameFrame extends JFrame {
                     game.getSelected().setY(y);
                     if(game.getGold() >= game.getSelected().getCost()) {
                         towers.add(game.getSelected());
-                        TowersThread t = new TowersThread(towers, enemies);
+                        TowersThread t = new TowersThread(towers);
+                        SoundPlayer.playSound("Money.wav");
+                        SoundPlayer.playSound("TowerBuild.wav");
                         t.start();
                         game.getTowerThread().interrupt();
                         game.setTowerThread(t);
@@ -88,6 +91,7 @@ public class GameFrame extends JFrame {
                         game.setSelected(null);
                     }else{
                         System.out.println("Not enough Gold");
+                        SoundPlayer.playSound("Invalid.wav");
                     }
                 }else if(game.isSelling()){
                     int x = me.getX();
@@ -96,7 +100,9 @@ public class GameFrame extends JFrame {
                         if (towers.get(i).getBox().intersects(x,y)) {
                             game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
-                            TowersThread t = new TowersThread(towers, enemies);
+                            TowersThread t = new TowersThread(towers);
+                            SoundPlayer.playSound("Money.wav");
+                            SoundPlayer.playSound("TowerDestroy.wav");
                             t.start();
                             game.getTowerThread().interrupt();
                             game.setTowerThread(t);
