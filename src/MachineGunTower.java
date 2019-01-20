@@ -11,10 +11,12 @@ public class MachineGunTower extends RifleTower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(50);
-        setFireRate(0.3);
+        setDamage(25);
+        setFireRate(0.1);
         setRange(new Circle(x, y, 290));
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/MachineGunBody.png"));
+        setSoundName("MachineGun.wav");
+        setProjectileImagePath("resources/Projectiles/MachineGunBullet.png");
     }
 
 }
