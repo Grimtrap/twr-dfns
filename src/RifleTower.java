@@ -36,10 +36,18 @@ public class RifleTower extends Tower {
         count = 0;
     }
 
+    /**
+     * sets the sound to play when shooting
+     * @param soundLink path for the sound
+     */
     public void setSoundName(String soundLink) {
         soundName = soundLink;
     }
 
+    /**
+     * updates the tower and performs several operations
+     * @param timeElapsed time since last check
+     */
     @Override
     public void update(double timeElapsed) {
         findTargets();
@@ -55,6 +63,10 @@ public class RifleTower extends Tower {
         }
     }
 
+    /**
+     * attacks the target
+     * @param elapsedTime time passed since last check
+     */
     @Override
     public void attack(double elapsedTime) {
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {

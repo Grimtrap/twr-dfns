@@ -27,6 +27,10 @@ public class FlamethrowerTower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/FlamethrowerBody.png"));
     }
 
+    /**
+     * attacks the target
+     * @param elapsedTime time passed since last check
+     */
     public void attack(double elapsedTime){
         //create an array of enemies within its range
         //fires at the enemy closest to base

@@ -7,6 +7,12 @@ import java.awt.*;
  */
 public class MachineGunTower extends RifleTower {
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public MachineGunTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);

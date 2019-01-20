@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+/**
+ * MainMenu.java
+ * The main menu of the game
+ * @author Eric Ke, Kyle To, Michael T.
+ * Date: 2019/1/20
+ */
 public class MainMenu extends JFrame {
 
     private BufferedImage title;
@@ -15,6 +21,9 @@ public class MainMenu extends JFrame {
     private JButton instructions;
     private JFrame thisFrame;
 
+    /**
+     * makes a main menu for users to start the game with
+     */
     public MainMenu() {
         thisFrame = this;
         setLayout(new BorderLayout());
@@ -34,6 +43,7 @@ public class MainMenu extends JFrame {
         titleLabel = new JLabel();
         titleLabel.setIcon(new ImageIcon(title));
 
+        //start button
         startButton.addActionListener(e -> {
             try {
                 new Game(inputBox.getText());
@@ -44,6 +54,7 @@ public class MainMenu extends JFrame {
 
         });
 
+        //instruction button creates this pane
         instructions.addActionListener(e -> JOptionPane.showMessageDialog(thisFrame, "" +
                 "Welcome to Tower Defense" +
                 "\n\nPlace Towers by clicking on the menu, then on the map" +

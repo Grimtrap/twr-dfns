@@ -26,7 +26,7 @@ public class UpdaterThread extends Thread {
             if(duration <= 0) {
                 duration = 0.5;
                 if(spawner.canSpawnMore()) {
-                    enemies.add(spawner.getNextEnemy(0));
+                    enemies.add(spawner.getNextEnemy());
                 }
             }
             if (!enemies.isEmpty()) {
