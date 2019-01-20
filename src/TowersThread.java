@@ -29,7 +29,7 @@ public class TowersThread extends Thread{
             clock.update();
             if (!towers.isEmpty()) {
                 for (int i = 0; i < towers.size(); i++) {
-                    towers.get(i).update(clock.getElapsedTime());
+                    towers.get(i).update(clock.getElapsedTime()); // this line sometimes throws a null pointer exception
                 }
             }
 
