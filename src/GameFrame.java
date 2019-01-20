@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.*;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
+/**
+ * GameFrame.java
+ * JFrame where the game is drawn
+ * @author Eric Ke, Kyle To
+ * Last Updated: January 19 2019
+ */
 
 public class GameFrame extends JFrame {
 
@@ -55,9 +59,6 @@ public class GameFrame extends JFrame {
                         t.start();
                         game.getTowerThread().interrupt();
                         game.setTowerThread(t);
-                        //game.getTowerThread().interrupt();
-                        //game.getTowerThread().setTowers(towers);
-                        //game.getTowerThread().start();
                         game.spendGold(game.getSelected().getCost());
                         game.setSelected(null);
                     }else{
@@ -69,7 +70,6 @@ public class GameFrame extends JFrame {
                     int y = me.getY();
                     for(int i = 0; i < towers.size(); i++) {
                         if (towers.get(i).getBox().intersects(x,y)) {
-                            //game.setSellSelected(towers.get(i));
                             game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
                             TowersThread t = new TowersThread(towers, enemies);

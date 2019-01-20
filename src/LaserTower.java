@@ -1,12 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * LaserTower.java
  * A tower with unique properties that shoots enemies
- * @author Eric Ke, Kyle To
+ * @author Kyle To, Eric Ke
  * Last Updated: December 19 2019
  */
 public class LaserTower extends Tower {

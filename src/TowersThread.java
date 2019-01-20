@@ -1,5 +1,10 @@
 import java.util.LinkedList;
-
+/**
+ * TowersThread.java
+ * Determines when towers can fire again
+ * @author Kyle To
+ * Last Updated: January 19 2019
+ */
 public class TowersThread extends Thread{
 
     private LinkedList<Tower> towers;
@@ -18,7 +23,7 @@ public class TowersThread extends Thread{
         while(running) {
             clock.update();
             if (!towers.isEmpty()) {
-                for (Tower tower : towers) { //ay yo fix dis later lmao
+                for (Tower tower : towers) {
                     tower.update(clock.getElapsedTime());
                 }
             }

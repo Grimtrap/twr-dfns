@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * TowerMenu.java
  * does menu things
- * @author Michael T., Kyle T.
+ * @author Michael T., Kyle To
  * Last Updated: January 19, 2019
  */
 public class TowerMenu extends Frame {

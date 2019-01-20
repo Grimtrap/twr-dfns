@@ -1,13 +1,10 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 /**
  * SniperTower.java
  * A tower with unique properties that shoots enemies
- * @author Eric Ke, Kyle To
+ * @author Kyle To, Eric Ke
  * Last Updated: January 19 2019
  */
 public class SniperTower extends RifleTower {

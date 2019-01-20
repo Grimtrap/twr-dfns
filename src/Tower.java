@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
-
+/**
+ * Tower.java
+ * Tower class with all properties that towers need
+ * @author Kyle To, Eric Ke
+ * Last Updated: January 19 2019
+ */
 abstract class Tower {
 
     private Image image;

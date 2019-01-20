@@ -1,16 +1,12 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.LinkedList;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 /**
  * Game.java
  * This is the class that handles the game and its operations and stuff
- * @author Eric Ke
+ * @author Eric Ke, Kyle To
  * Created: 2019/1/16 (because that was when i actually realized i needed this)
+ * Last Updated: January 19 2019
  */
 public class Game {
 
@@ -49,7 +45,7 @@ public class Game {
         towerThread.start();
         SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map, this));
         gold = 400;
-        livesLeft = 100;
+        livesLeft = 10;
     }
 
     public LinkedList<Enemy> getEnemies() {

@@ -2,8 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
+/**
+ * EndScreen.java
+ * Screen for when game ends
+ * @author Kyle To, Eric Ke
+ * Last Updated: January 19 2019
+ */
 
 public class EndScreen extends Frame {
     private Game game;

@@ -1,3 +1,9 @@
+/**
+ * Box.java
+ * Box for the bounding box of towers
+ * @author Kyle To
+ * Last Updated: January 19 2019
+ */
 
 public class Box {
     private double x;

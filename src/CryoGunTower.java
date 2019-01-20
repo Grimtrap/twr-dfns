@@ -1,10 +1,11 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import java.util.Random;
-
+/**
+ * CryoGunTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Kyle To, Eric Ke
+ * Last Updated: January 19 2019
+ */
 public class CryoGunTower extends Tower {
     private Random random;
 

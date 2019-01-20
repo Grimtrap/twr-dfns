@@ -1,8 +1,10 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+/**
+ * MachineGunTower.java
+ * A tower with unique properties that shoots enemies
+ * @author Kyle To, Eric Ke
+ * Last Updated: January 19 2019
+ */
 public class MachineGunTower extends RifleTower {
 
     public MachineGunTower(double x, double y, Game game) {
