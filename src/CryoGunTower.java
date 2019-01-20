@@ -9,6 +9,12 @@ import java.util.Random;
 public class CryoGunTower extends Tower {
     private Random random;
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public CryoGunTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
@@ -17,13 +23,17 @@ public class CryoGunTower extends Tower {
         setFireRate(0.5);
         setRange(new Circle(x, y, 500));
         setProjectileImagePath("resources/Projectiles/CryoBullet.png");
-        //setDamageType();
+        setDamageType(DamageTypes.NORMAL);
         setProjectileSpeed(1000);
         setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/CryoGunBody.png"));
         random = new Random();
     }
 
+    /**
+     * attacks the target
+     * @param elapsedTime time passed since last check
+     */
     @Override
     public void attack(double elapsedTime){
         //fires at random enemy to spread the slow

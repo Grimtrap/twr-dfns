@@ -1,13 +1,14 @@
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-
+/**
+ * Calculations.java
+ * Class that contains methods for easy calculations
+ * @author Eric Ke
+ * Date: 2018/12/27
+ */
 public class Calculations {
 
 
     /**
-     * calculates final damage or status effect duration
+     * calculates final damage or status effect duration with a specific formula
      * @param resistValue amount of resistance
      * @return the finished calculation
      */
@@ -37,10 +38,12 @@ public class Calculations {
         return angle;
     }
 
-    public static double getMiddle(double n, double size) {
-        return n+size/2;
-    }
-
+    /**
+     * gets the edge of a coordinate so that something is drawn centered
+     * @param n original coordinate
+     * @param size size of item
+     * @return new coordinate
+     */
     public static double Center(double n, double size) {
         return n-size/2;
     }

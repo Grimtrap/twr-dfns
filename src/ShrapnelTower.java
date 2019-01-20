@@ -29,6 +29,10 @@ public class ShrapnelTower extends Tower {
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShrapnelTower.png"));
     }
 
+    /**
+     * attacks the targets
+     * @param elapsedTime time passed since last check
+     */
     public void attack(double elapsedTime) {
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             for(int i = 0; i < getWithin().size(); i++) {
