@@ -114,7 +114,7 @@ public class TowerMenu extends Frame {
         sellButton = new JButton("SELL", GoldImage);
         sellButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //insert code here
+                game.setSelling(true);
             }
         } );
         add(BasicGun);

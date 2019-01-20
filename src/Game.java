@@ -28,6 +28,7 @@ public class Game {
     private TowerMenu towerMenu;
     private Tower selected = null;
     private boolean selling = false;
+    private Tower sellSelected = null;
 
     /**
      * creates a new game
@@ -48,7 +49,7 @@ public class Game {
         towerThread.start();
         SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map, this));
         gold = 400;
-        livesLeft = 10;
+        livesLeft = 100;
     }
 
     public LinkedList<Enemy> getEnemies() {
@@ -103,5 +104,29 @@ public class Game {
 
     public void setSelling(boolean selling) {
         this.selling = selling;
+    }
+
+    public Tower getSellSelected() {
+        return sellSelected;
+    }
+
+    public void setSellSelected(Tower sellSelected) {
+        this.sellSelected = sellSelected;
+    }
+
+    public LinkedList<Tower> getTowers() {
+        return towers;
+    }
+
+    public void setTowers(LinkedList<Tower> towers) {
+        this.towers = towers;
+    }
+
+    public EnemySpawner getSpawner() {
+        return spawner;
+    }
+
+    public void setSpawner(EnemySpawner spawner) {
+        this.spawner = spawner;
     }
 }

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -14,6 +16,8 @@ public class GameFrame extends JFrame {
     private Map map;
     private double[][] pathCoords;
     private Game game;
+    JButton startWave;
+    GamePanel gamePanel;
 
     public GameFrame(LinkedList<Enemy> enemies, LinkedList<Tower> towers, Map map, Game game){
         super("Tower Defense");
@@ -23,27 +27,61 @@ public class GameFrame extends JFrame {
         this.enemies = enemies;
         this.towers = towers;
         this.game = game;
+
+        startWave = new JButton("Start Wave");
+        startWave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.getSpawner().generateWave(0);
+            }
+        } );
+
         this.setSize(1920,1080);
-        this.add(new GamePanel());
+        gamePanel = new GamePanel();
+        gamePanel.add(startWave);
+        this.add(gamePanel);
         coordsForPathing();
         this.setVisible(true);
 
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
-                int x = me.getX();
-                int y = me.getY();
-                game.getSelected().setX(x);
-                game.getSelected().setY(y);
-                if(game.getGold() >= game.getSelected().getCost()) {
-                    towers.add(game.getSelected());
-                    TowersThread t = new TowersThread(towers, enemies);
-                    t.start();
-                    game.getTowerThread().interrupt();
-                    game.setTowerThread(t);
-                    game.spendGold(game.getSelected().getCost());
-                    game.setSelected(null);
-                }else{
-                    System.out.println("Not enough Gold");
+                if (game.getSelected() != null){
+                    int x = me.getX();
+                    int y = me.getY();
+                    game.getSelected().setX(x);
+                    game.getSelected().setY(y);
+                    if(game.getGold() >= game.getSelected().getCost()) {
+                        towers.add(game.getSelected());
+                        TowersThread t = new TowersThread(towers, enemies);
+                        t.start();
+                        game.getTowerThread().interrupt();
+                        game.setTowerThread(t);
+                        //game.getTowerThread().interrupt();
+                        //game.getTowerThread().setTowers(towers);
+                        //game.getTowerThread().start();
+                        game.spendGold(game.getSelected().getCost());
+                        game.setSelected(null);
+                    }else{
+                        System.out.println("Not enough Gold");
+                    }
+                }else if(game.isSelling()){
+                    //System.out.println("selling");
+                    int x = me.getX();
+                    int y = me.getY();
+                    for(int i = 0; i < towers.size(); i++) {
+                        if ((int)Calculations.Center(towers.get(i).getX(),64) >= x && (int)Calculations.Center(towers.get(i).getY(),64) >= y) {
+                            System.out.println("selling");
+                            //game.setSellSelected(towers.get(i));
+                            towers.remove(towers.get(i));
+                            TowersThread t = new TowersThread(towers, enemies);
+                            t.start();
+                            game.getTowerThread().interrupt();
+                            game.setTowerThread(t);
+                            //game.getTowerThread().setTowers(towers);
+                            game.gainGold(towers.get(i).getCost());
+                            game.setSellSelected(null);
+                            game.setSelling(false);
+                        }
+                    }
                 }
             }
         });
@@ -91,7 +129,7 @@ public class GameFrame extends JFrame {
             super.paintComponent(g);
             setDoubleBuffered(true);
             g.drawRect(0,400,500,500);
-            g.drawString("Gold: " + Integer.toString((int)(game.getGold())) + "Lives: " + Integer.toString((int)(game.getLivesLeft())), 5,15);
+            g.drawString("Gold: " + Integer.toString((int)(game.getGold())) + " Lives: " + Integer.toString((int)(game.getLivesLeft())), 5,15);
 
             drawPath(g);
 
