@@ -81,7 +81,7 @@ public class GameFrame extends JFrame {
                     game.getSelected().setY(y);
                     if(game.getGold() >= game.getSelected().getCost()) {
                         towers.add(game.getSelected());
-                        TowersThread t = new TowersThread(towers, enemies);
+                        TowersThread t = new TowersThread(towers);
                         t.start();
                         game.getTowerThread().interrupt();
                         game.setTowerThread(t);
@@ -98,7 +98,7 @@ public class GameFrame extends JFrame {
                         if (towers.get(i).getBox().intersects(x,y)) {
                             game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
-                            TowersThread t = new TowersThread(towers, enemies);
+                            TowersThread t = new TowersThread(towers);
                             t.start();
                             game.getTowerThread().interrupt();
                             game.setTowerThread(t);

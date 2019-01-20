@@ -50,8 +50,8 @@ public class EnemySpawner {
         }
     }
 
-    public void setDifficulty(int amt) {
-        currentDifficulty = amt;
+    public Enemy[] getNextWavesEnemies() {
+        return currentEnemies;
     }
 
     private void generateEnemies() {
@@ -97,7 +97,7 @@ public class EnemySpawner {
             if(random.nextBoolean()) { //only has a small chance to actually give attributes
                 for (int i : numOfAttributes) {
                     //yes, there is a chance that it'll select one that's already been done and redo it
-                    //it's a feature
+                    //it's a feature to make multiple traits slightly rarer
                     if (random.nextBoolean())
                         i = random.nextInt(4);
                     if (i == 0) {

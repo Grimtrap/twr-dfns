@@ -4,7 +4,6 @@
  * @author Kyle To
  * Last Updated: January 19 2019
  */
-
 public class Circle {
     private double x;
     private double y;

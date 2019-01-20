@@ -4,7 +4,7 @@ import java.util.LinkedList;
 /**
  * Game.java
  * This is the class that handles the game and its operations and stuff
- * @author Eric Ke, Kyle To
+ * @author Eric Ke, Kyle To, Michael T.
  * Created: 2019/1/16 (because that was when i actually realized i needed this)
  * Last Updated: January 19 2019
  */
@@ -41,7 +41,7 @@ public class Game {
         wave = 0;
         enemyThread = new UpdaterThread(enemies, spawner, this);
         enemyThread.start();
-        towerThread = new TowersThread(towers, enemies);
+        towerThread = new TowersThread(towers);
         towerThread.start();
         SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map, this));
         gold = 400;
