@@ -7,6 +7,7 @@ public class UpdaterThread extends Thread {
     private EnemySpawner spawner;
     private double duration;
     private Game game;
+    private int num;
 
     public UpdaterThread(LinkedList<Enemy> enemies, EnemySpawner spawner, Game game) {
         this.enemies = enemies;
@@ -33,14 +34,20 @@ public class UpdaterThread extends Thread {
                     enemies.get(i).update(clock.getElapsedTime());
                     if(enemies.get(i).getCurrentHealth() <=0) {
                         enemies.remove(i);
+                        num = (int) (Math.random()* 2 + 1);
+                        if (num == 1){
+                            SoundPlayer.playSound("Explosion.wav");
+                        }
+                        else{
+                            SoundPlayer.playSound("Explosion2.wav");
+                        }
                     } else if(enemies.get(i).hasReachedEnd()) {
                         game.loseLife();
+                        SoundPlayer.playSound("LifeLost.wav");
                         enemies.remove(i);
                     }
                 }
-
             }
-
         }
     }
 }

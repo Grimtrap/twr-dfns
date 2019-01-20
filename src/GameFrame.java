@@ -82,6 +82,8 @@ public class GameFrame extends JFrame {
                     if(game.getGold() >= game.getSelected().getCost()) {
                         towers.add(game.getSelected());
                         TowersThread t = new TowersThread(towers);
+                        SoundPlayer.playSound("Money.wav");
+                        SoundPlayer.playSound("TowerBuild.wav");
                         t.start();
                         game.getTowerThread().interrupt();
                         game.setTowerThread(t);
@@ -99,6 +101,8 @@ public class GameFrame extends JFrame {
                             game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
                             TowersThread t = new TowersThread(towers);
+                            SoundPlayer.playSound("Money.wav");
+                            SoundPlayer.playSound("TowerDestroy.wav");
                             t.start();
                             game.getTowerThread().interrupt();
                             game.setTowerThread(t);
