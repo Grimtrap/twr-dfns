@@ -27,6 +27,7 @@ abstract class Tower {
     private byte damageType;
     private double projectileSpeed;
     private double projectileExplosionRadius;
+    private Box box;
 
     public Tower (double x, double y, Game game){
         this.x = x;
@@ -47,6 +48,8 @@ abstract class Tower {
             g2d.setTransform(a);
         }
         g2d.drawImage(image, (int)Calculations.Center(x,64), (int)Calculations.Center(y,64), null);
+        Box box = new Box((int)(Calculations.Center(x,64)+32), (int)(Calculations.Center(y,64)+32), 64, 64);
+        this.setBox(box);
         g2d.setTransform(backup);
     }
 
@@ -305,5 +308,13 @@ abstract class Tower {
 
     public int getCost() {
         return cost;
+    }
+
+    public Box getBox() {
+        return box;
+    }
+
+    public void setBox(Box box) {
+        this.box = box;
     }
 }

@@ -68,7 +68,7 @@ public class GameFrame extends JFrame {
                     int x = me.getX();
                     int y = me.getY();
                     for(int i = 0; i < towers.size(); i++) {
-                        if ((int)(towers.get(i).getX()) == x && (int)(towers.get(i).getY()) == y) {
+                        if (towers.get(i).getBox().intersects(x,y)) {
                             //game.setSellSelected(towers.get(i));
                             game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
