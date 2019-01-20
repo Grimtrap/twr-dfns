@@ -14,19 +14,29 @@ public class ShrapnelTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(20);
-        setFireRate(1);
+        setCost(200);
+        setFireRate(1.5);
+        setProjectileSpeed(1500);
         setRange(new Circle(x, y, 100));
         setDamageType(DamageTypes.EXPLOSIVE);
+        setProjectileImagePath("resources/Projectiles/ShrapnelBullet.png");
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShrapnelTower.png"));
     }
 
     public void attack(double elapsedTime) {
-
-        if (getWithin() != null) {
-            LinkedList<Enemy> within = getWithin();
-            for(int i = 0; i < within.size(); i++){
-                within.get(i).takeDmg(getDamage(), getDamageType());
+        if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
+            for(int i = 0; i < getWithin().size(); i++) {
+                setTarget(getWithin().get(i));
+                Projectile p =
+                        new Projectile(
+                                this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
+                        );
+                getProjectiles().add(p);
             }
+            setAttackTime(getFireRate());
+            SoundPlayer.playSound("ShrapnelTower.wav");
+        }else {
+            setAttackTime(getAttackTime() - elapsedTime);
         }
     }
 }

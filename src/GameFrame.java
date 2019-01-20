@@ -1,9 +1,14 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -20,6 +25,8 @@ public class GameFrame extends JFrame {
     private Map map;
     private double[][] pathCoords;
     private Game game;
+    private BufferedImage cityImage;
+    private BufferedImage backgroundImage;
     JButton startWave;
     GamePanel gamePanel;
 
@@ -35,11 +42,23 @@ public class GameFrame extends JFrame {
         startWave = new JButton("Start Wave");
         startWave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.getSpawner().generateWave(0);
+                game.getSpawner().generateWave(game.getWave()*10);
             }
         } );
 
-        this.setSize(1920,1080);
+        try {
+            cityImage = ImageIO.read(new File("resources/city.png"));
+        } catch(IOException e1) {
+            System.out.println("City file not found");
+        }
+
+        try {
+            backgroundImage = ImageIO.read(new File("resources/background.jpg"));
+        } catch(IOException e1) {
+            System.out.println("Background not found");
+        }
+
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         gamePanel = new GamePanel();
         gamePanel.add(startWave);
         this.add(gamePanel);
@@ -65,7 +84,6 @@ public class GameFrame extends JFrame {
                         System.out.println("Not enough Gold");
                     }
                 }else if(game.isSelling()){
-                    //System.out.println("selling");
                     int x = me.getX();
                     int y = me.getY();
                     for(int i = 0; i < towers.size(); i++) {
@@ -91,8 +109,8 @@ public class GameFrame extends JFrame {
         LinkedList<Pathing> pathings = map.getPathings();
         pathCoords = new double[pathings.size()+1][2];
         double[] start = map.getStart();
-        pathCoords[0][0] = 0+start[0];
-        pathCoords[0][1] = 0+start[1];
+        pathCoords[0][0] = 0+start[0]-50;
+        pathCoords[0][1] = 0+start[1]-50;
         for(int i = 0; i < pathCoords.length-1; i++) {
             Pathing current = pathings.get(i);
             if(current.getDirection() == Directions.EAST) {
@@ -126,8 +144,9 @@ public class GameFrame extends JFrame {
 
             super.paintComponent(g);
             setDoubleBuffered(true);
-            g.drawRect(0,400,500,500);
-            g.drawString("Gold: " + Integer.toString((int)(game.getGold())) + " Lives: " + Integer.toString((int)(game.getLivesLeft())), 5,15);
+
+            g.drawImage(backgroundImage, 0,0, 1920, 1080, this);
+            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,15);
 
             drawPath(g);
 
@@ -166,8 +185,12 @@ public class GameFrame extends JFrame {
                 if(pathings.get(i).getDirection() == Directions.EAST || pathings.get(i).getDirection() == Directions.WEST) {
                     g.fillRect((int)pathCoords[i][0], (int)pathCoords[i][1], (int)(pathCoords[i+1][0]-pathCoords[i][0]), 100);
                 } else {
-                    g.fillRect((int)pathCoords[i][0], (int)pathCoords[i][1], 100, (int)(pathCoords[i+1][1] - pathCoords[i][1]));
+                    g.fillRect((int)pathCoords[i][0], (int)pathCoords[i][1]+100, 100, (int)(pathCoords[i+1][1] - pathCoords[i][1]));
                 }
+                if(i == pathCoords.length-2) {
+                    g.drawImage(cityImage, (int)pathCoords[i+1][0], (int)pathCoords[i+1][1], 100,100,this);
+                }
+
             }
         }
     }

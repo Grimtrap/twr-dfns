@@ -68,4 +68,12 @@ public class Attributes implements Cloneable{
     public void setFlying(boolean flying) {
         this.flying = flying;
     }
+
+    public double[] getDmgResists() {
+        return dmgResists;
+    }
+
+    public void setDmgResists(double[] dmgResists) {
+        this.dmgResists = dmgResists;
+    }
 }

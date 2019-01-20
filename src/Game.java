@@ -17,6 +17,7 @@ public class Game {
     private EnemySpawner spawner;
     private UpdaterThread enemyThread;
     private TowersThread towerThread;
+
     private int wave;
     private boolean isSpawning;
     private double gold;
@@ -37,7 +38,6 @@ public class Game {
         towers = new LinkedList<>();
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
-        spawner.generateWave(0);
         wave = 0;
         enemyThread = new UpdaterThread(enemies, spawner, this);
         enemyThread.start();
@@ -124,5 +124,13 @@ public class Game {
 
     public void setSpawner(EnemySpawner spawner) {
         this.spawner = spawner;
+    }
+
+    public int getWave() {
+        return wave;
+    }
+
+    public void setWave(int wave) {
+        this.wave = wave;
     }
 }

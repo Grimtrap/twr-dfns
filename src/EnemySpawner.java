@@ -14,7 +14,9 @@ public class EnemySpawner {
 
 
     public EnemySpawner(String mapName) {
+
         map = new Map(mapName);
+        enemiesLeft = new int[]{0};
     }
 
     public void generateWave(int difficulty) {
@@ -66,11 +68,11 @@ public class EnemySpawner {
     private String determineImage(Attributes a, double health) {
         String name = "";
         double multiplier = health/(100+currentDifficulty);
-        if(multiplier >= 0.8 && multiplier < 0.9) {
+        if(multiplier >= 0.6 && multiplier < 0.8) {
             name+="Tiny";
-        } else if(multiplier >= 0.9 && multiplier <= 1.0) {
+        } else if(multiplier >= 0.8 && multiplier <= 1.0) {
             name+="Small";
-        } else if(multiplier >= 1.0 && multiplier <= 1.1) {
+        } else if(multiplier >= 1.0 && multiplier <= 1.2) {
             name+="Medium";
         } else {
             name+="Large";
@@ -118,6 +120,12 @@ public class EnemySpawner {
                 }
             }
 
+            //once again is only chance of having damage resistances or weaknesses
+            if(random.nextBoolean()) {
+                double[] resists = {random.nextInt(20)-10, random.nextInt(20)-10, random.nextInt(20)-10};
+                a.setDmgResists(resists);
+            }
+
         }
         return a;
     }
@@ -126,7 +134,7 @@ public class EnemySpawner {
         double multiplier = genMultiplier();
         double[] healthAndSpeed = new double[2]; //0 for health, 1 for speed
         healthAndSpeed[0] = (100+currentDifficulty)*multiplier;
-        healthAndSpeed[1] = 3*(1+(1-multiplier));
+        healthAndSpeed[1] = 2*(1+(1-multiplier));
         return healthAndSpeed;
     }
 

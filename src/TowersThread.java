@@ -23,8 +23,8 @@ public class TowersThread extends Thread{
         while(running) {
             clock.update();
             if (!towers.isEmpty()) {
-                for (Tower tower : towers) {
-                    tower.update(clock.getElapsedTime());
+                for (int i = 0; i < towers.size(); i++) {
+                    towers.get(i).update(clock.getElapsedTime());
                 }
             }
 

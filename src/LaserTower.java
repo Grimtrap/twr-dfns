@@ -13,13 +13,14 @@ public class LaserTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(25);
-        setCost(600);
+        setCost(400);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(0.1);
         setRange(new Circle(x, y, 350));
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/LaserGunBody.png"));
     }
 
+    @Override
     public void attack(double elapsedTime){
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().getFirst());
@@ -29,5 +30,15 @@ public class LaserTower extends Tower {
         }else {
             setAttackTime(getAttackTime() - elapsedTime);
         }
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        super.draw(g);
+        g.setColor(Color.RED);
+        if(getTarget() != null && getGame().getEnemies().contains(getTarget())) {
+            g.drawLine((int) this.getX(), (int) this.getY(), (int) getTarget().getX(), (int) getTarget().getY());
+        }
+
     }
 }
