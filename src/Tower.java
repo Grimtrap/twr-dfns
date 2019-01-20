@@ -50,6 +50,10 @@ abstract class Tower {
         shots = new LinkedList<>();
     }
 
+    /**
+     * draws the tower on the screen
+     * @param g paintComponent graphics
+     */
     public void draw(Graphics g){
         g.setColor(Color.RED);
         Graphics2D g2d = (Graphics2D) g;
@@ -64,14 +68,26 @@ abstract class Tower {
         g2d.setTransform(backup);
     }
 
+    /**
+     * sets the amount of damage dealt
+     * @param dmg the damage the tower should deal
+     */
     public void setDamage(double dmg){
         this.dmg = dmg;
     }
 
+    /**
+     * gets the amount of damage dealt
+     * @return tower's damage
+     */
     public double getDamage(){
         return this.dmg;
     }
 
+    /**
+     * sets how fast the tower fires
+     * @param rate the rate per second that the tower fires at
+     */
     public void setFireRate(double rate){
         this.rate = rate;
     }

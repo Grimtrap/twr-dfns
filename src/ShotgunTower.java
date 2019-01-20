@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * ShotgunTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To Eric Ke
+ * @author Kyle To, Eric Ke
  * Last Updated: January 19 2019
  */
 public class ShotgunTower extends Tower {
@@ -23,11 +23,15 @@ public class ShotgunTower extends Tower {
         setDamage(60);
         setDamageType(DamageTypes.NORMAL);
         setFireRate(2);
-        setRange(new Circle(x, y, 500)); //set to 200 later
+        setRange(new Circle(x, y, 200));
         setProjectileSpeed(2500);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShotgunBody.png"));
     }
 
+    /**
+     * attacks the target(s) when the attack is available
+     * @param elapsedTime time passed since last check
+     */
     @Override
     public void attack(double elapsedTime){
         Random random = new Random();

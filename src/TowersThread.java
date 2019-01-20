@@ -8,17 +8,22 @@ import java.util.LinkedList;
 public class TowersThread extends Thread{
 
     private LinkedList<Tower> towers;
-    private LinkedList<Enemy> enemies;
     public boolean running;
     private Clock clock;
 
-    public TowersThread(LinkedList<Tower> towers, LinkedList<Enemy> enemies) {
+    /**
+     * creates a thread which updates towers
+     * @param towers towers in the game
+     */
+    public TowersThread(LinkedList<Tower> towers) {
         this.towers = towers;
-        this.enemies = enemies;
         this.running = true;
         clock = new Clock();
     }
 
+    /**
+     * runs the thread, which will update the towers in the game
+     */
     public synchronized void run() {
         while(running) {
             clock.update();
@@ -31,10 +36,18 @@ public class TowersThread extends Thread{
         }
     }
 
+    /**
+     * gets the towers in the game
+     * @return the towers in the game
+     */
     public LinkedList<Tower> getTowers() {
         return towers;
     }
 
+    /**
+     * sets the towers in the game
+     * @param towers the towers in the game
+     */
     public void setTowers(LinkedList<Tower> towers) {
         this.towers = towers;
     }

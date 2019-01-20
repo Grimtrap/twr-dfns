@@ -53,10 +53,6 @@ public class Attributes implements Cloneable{
         this.shielding = shielding;
     }
 
-    public double getRegen() {
-        return regen;
-    }
-
     public void setRegen(double regen) {
         this.regen = regen;
     }
@@ -67,10 +63,6 @@ public class Attributes implements Cloneable{
 
     public void setFlying(boolean flying) {
         this.flying = flying;
-    }
-
-    public double[] getDmgResists() {
-        return dmgResists;
     }
 
     public void setDmgResists(double[] dmgResists) {
