@@ -25,6 +25,7 @@ public class EndScreen extends Frame {
 
         label = new JLabel("Game Over",SwingConstants.CENTER);
         button = new JButton("Return to Main Menu");
+        SoundPlayer.playSound("GameOver.wav");
         button.addActionListener(e -> {
             new MainMenu();
             setVisible(false);

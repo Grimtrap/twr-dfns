@@ -4,7 +4,7 @@ import java.awt.*;
 /**
  * SniperTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: January 19 2019
  */
 public class SniperTower extends RifleTower {

@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * GameFrame.java
  * JFrame where the game is drawn
- * @author Eric Ke, Kyle To
+ * @author Eric Ke, Kyle To, Michael T.
  * Last Updated: January 19 2019
  */
 public class GameFrame extends JFrame {
@@ -49,6 +49,7 @@ public class GameFrame extends JFrame {
         startWave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.getSpawner().generateWave(game.getWave()*10);
+                SoundPlayer.playSound("WaveStart.wav");
             }
         } );
 
@@ -88,6 +89,7 @@ public class GameFrame extends JFrame {
                         game.setSelected(null);
                     }else{
                         System.out.println("Not enough Gold");
+                        SoundPlayer.playSound("Invalid.wav");
                     }
                 }else if(game.isSelling()){
                     int x = me.getX();
