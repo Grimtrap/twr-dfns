@@ -8,6 +8,12 @@ import java.awt.*;
  */
 public class RocketLauncherTower extends RifleTower {
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public RocketLauncherTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
@@ -20,7 +26,7 @@ public class RocketLauncherTower extends RifleTower {
         setProjectileImagePath("resources/Projectiles/Missile.png");
         setProjectileSpeed(5000);
         setSoundName("MissileLauncher.wav");
-        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/SAMMissileBody.png"));
+        setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/MissileLauncherBody.png"));
     }
 
 }

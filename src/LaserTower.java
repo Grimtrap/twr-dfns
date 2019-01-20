@@ -22,6 +22,8 @@ public class LaserTower extends Tower {
 
     @Override
     public void attack(double elapsedTime){
+        //this is special because it doesn't shoot a projectile
+        //it just instantly deals damage
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().getFirst());
             getTarget().takeDmg(getDamage(), getDamageType());
@@ -37,6 +39,7 @@ public class LaserTower extends Tower {
         super.draw(g);
         g.setColor(Color.RED);
         if(getTarget() != null && getGame().getEnemies().contains(getTarget())) {
+            //draws a beam, it's pretty cool
             g.drawLine((int) this.getX(), (int) this.getY(), (int) getTarget().getX(), (int) getTarget().getY());
         }
 

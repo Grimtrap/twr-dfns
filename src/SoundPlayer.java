@@ -1,9 +1,4 @@
-/*
- * SoundPlayer.java
- * plays sound
- * @author Eric Ke
- * 6/13/2018
- */
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -11,6 +6,12 @@ import javax.sound.sampled.*;
 import java.io.File;
 import javax.sound.sampled.*;
 
+/**
+ * SoundPlayer.java
+ * plays sound
+ * @author Eric Ke
+ * 2019/1/16
+ */
 public class SoundPlayer {
 
 

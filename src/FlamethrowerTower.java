@@ -8,6 +8,12 @@ import java.awt.*;
  */
 public class FlamethrowerTower extends Tower {
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public FlamethrowerTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
@@ -30,7 +36,7 @@ public class FlamethrowerTower extends Tower {
                     new Projectile(
                             this, getProjectileImagePath(), getDamageType(), getDamage(), getProjectileSpeed(), getProjectileExplosionRadius(), getX(), getY(), getTargetX(), getTargetY(), getTarget()
                     );
-            p.setBurn(new double[]{5, 25});
+            p.setBurn(new double[]{5, 25}); //this tower will apply a burn to the enemy
             getProjectiles().add(p);
             setAttackTime(getFireRate());
             SoundPlayer.playSound("Flamethrower.wav");

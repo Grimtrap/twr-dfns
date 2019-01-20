@@ -11,6 +11,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Projectile.java
+ * bullets which the towers shoot to deal damage
+ * @author Kyle To, edited by Eric Ke
+ */
 public class Projectile {
     private Tower tower;
     private double x; // x
@@ -26,56 +31,23 @@ public class Projectile {
     private double speed;
     private double explosionRadius;
     private BufferedImage image;
-    private boolean active = true;
-    private boolean drawn = false;
-    private Rectangle boundingBox;
+    private boolean active;
 
-    private Point objectP = new Point();
 
-    /*public Projectile (String imagePath, byte damageType, double[] slow, double[] burn, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
-        this.imagePath = imagePath;
-        this.damageType = damageType;
-        this.slow = slow;
-        this.burn = burn;
-        this.damage = damage;
-        this.speed = speed;
-        this.explosionRadius = explosionRadius;
-        this.x = x;
-        this.y = y;
-        this.ex = ex;
-        this.ey = ey;
-
-        //Creates action listener updates projectile based on timer
-        ActionListener travel = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                update();
-            }
-        };
-        Timer t = new Timer (50, travel);
-        t.start();
-
-    }*/
-
-    public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey){
-        this.tower = tower;
-        this.imagePath = imagePath;
-        this.damageType = damageType;
-        this.damage = damage;
-        this.speed = speed;
-        this.explosionRadius = explosionRadius;
-        this.x = x;
-        this.y = y;
-        try {
-            image = ImageIO.read(new File(imagePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.ex = ex;
-        this.ey = ey;
-
-    }
-
+    /**
+     * creates a projectile from the tower
+     * @param tower the tower that shot it
+     * @param imagePath the image path of the projectile
+     * @param damageType what damage it deals
+     * @param damage how much damage it deals
+     * @param speed how fast it travels
+     * @param explosionRadius how large it explodes
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param ex enemy x
+     * @param ey enemy y
+     * @param target the target to attack
+     */
     public Projectile (Tower tower, String imagePath, byte damageType, double damage, double speed, double explosionRadius, double x, double y, double ex, double ey, Enemy target){
         this.tower = tower;
         this.imagePath = imagePath;
@@ -93,10 +65,15 @@ public class Projectile {
         this.ex = ex;
         this.ey = ey;
         this.target = target;
+        active = true;
 
     }
 
 
+    /**
+     * updates the projectile, moves it, rotates it, etc.
+     * @param elapsedTime time passed since last check
+     */
     public void update(double elapsedTime){
         double dy = target.getY() - y;
         double dx = target.getX() - x;
@@ -158,6 +135,10 @@ public class Projectile {
         return within;
     }
 
+    /**
+     * draws the projectile on screen
+     * @param g paintComponent graphics
+     */
     public void draw(Graphics g) {
         g.setColor(Color.RED);
         Graphics2D g2d = (Graphics2D) g;
@@ -172,34 +153,50 @@ public class Projectile {
         return x > box.x && x < (box.x + box.width) && y > box.y && y < (box.y + box.height);
     }
 
+    /**
+     * gives whether a projectile is active on te screen or not
+     * @return if the projectile is active
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * sets if projectile is active
+     * @param active the state to set it to
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     * gets the tower that shot the projectile
+     * @return the tower that shot the projectile
+     */
     public Tower getTower() {
         return tower;
     }
 
+    /**
+     * sets the tower that shot the projectile
+     * @param tower the tower that shot the projectile
+     */
     public void setTower(Tower tower) {
         this.tower = tower;
     }
 
-    public double[] getSlow() {
-        return slow;
-    }
-
+    /**
+     * sets how much the projectile slows
+     * @param slow a double array containing duration, then power
+     */
     public void setSlow(double[] slow) {
         this.slow = slow;
     }
 
-    public double[] getBurn() {
-        return burn;
-    }
-
+    /**
+     * sets how much the projectile burns
+     * @param burn a double array containing duration, then power
+     */
     public void setBurn(double[] burn) {
         this.burn = burn;
     }

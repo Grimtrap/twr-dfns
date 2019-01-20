@@ -23,8 +23,8 @@ abstract class Tower {
     private boolean groundTargeting;
     private boolean airTargeting;
     private Circle range;
-    private LinkedList<Enemy> enemies = new LinkedList<>(); // stores all enemies in range of tower
-    private LinkedList<Enemy> within;
+    private LinkedList<Enemy> enemies;
+    private LinkedList<Enemy> within; //for storing all enemies within radius
     private LinkedList<Projectile> projectiles;
     private LinkedList<Thread> shots;
     private Enemy target;
@@ -34,6 +34,12 @@ abstract class Tower {
     private double projectileExplosionRadius;
     private Box box;
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public Tower (double x, double y, Game game){
         this.x = x;
         this.y = y;
@@ -159,40 +165,12 @@ abstract class Tower {
         this.y = y;
     }
 
-    public double getDmg() {
-        return dmg;
-    }
-
-    public void setDmg(double dmg) {
-        this.dmg = dmg;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
-    }
-
-    public boolean isGroundTargeting() {
-        return groundTargeting;
-    }
-
     public void setGroundTargeting(boolean groundTargeting) {
         this.groundTargeting = groundTargeting;
     }
 
-    public boolean isAirTargeting() {
-        return airTargeting;
-    }
-
     public void setAirTargeting(boolean airTargeting) {
         this.airTargeting = airTargeting;
-    }
-
-    public Circle getRange() {
-        return range;
     }
 
     public void setRange(Circle range) {
@@ -238,21 +216,12 @@ abstract class Tower {
     public void setProjectileExplosionRadius(double projectileExplosionRadius) {
         this.projectileExplosionRadius = projectileExplosionRadius;
     }
-
     public double getTargetX() {
         return targetX;
     }
 
-    public void setTargetX(double targetX) {
-        this.targetX = targetX;
-    }
-
     public double getTargetY() {
         return targetY;
-    }
-
-    public void setTargetY(double targetY) {
-        this.targetY = targetY;
     }
 
     public Enemy getTarget() {
@@ -271,24 +240,8 @@ abstract class Tower {
         this.within = within;
     }
 
-    public LinkedList<Thread> getShots() {
-        return shots;
-    }
-
-    public void setShots(LinkedList<Thread> shots) {
-        this.shots = shots;
-    }
-
     public LinkedList<Projectile> getProjectiles() {
         return projectiles;
-    }
-
-    public void setProjectiles(LinkedList<Projectile> projectiles) {
-        this.projectiles = projectiles;
-    }
-
-    public Clock getClock() {
-        return clock;
     }
 
     public void setClock(Clock clock) {

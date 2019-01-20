@@ -17,7 +17,6 @@ import java.util.*;
  * @author Eric Ke, Kyle To
  * Last Updated: January 19 2019
  */
-
 public class GameFrame extends JFrame {
 
     private LinkedList<Enemy> enemies;
@@ -30,6 +29,13 @@ public class GameFrame extends JFrame {
     JButton startWave;
     GamePanel gamePanel;
 
+    /**
+     * creates a frame to display the game
+     * @param enemies the enemies in the game
+     * @param towers the towers in the game
+     * @param map the map used in the game
+     * @param game the game itself
+     */
     public GameFrame(LinkedList<Enemy> enemies, LinkedList<Tower> towers, Map map, Game game){
         super("Tower Defense");
 

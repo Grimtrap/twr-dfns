@@ -14,7 +14,7 @@ public class CryoGunTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(10);
-        setFireRate(1.5);
+        setFireRate(0.5);
         setRange(new Circle(x, y, 500));
         setProjectileImagePath("resources/Projectiles/CryoBullet.png");
         //setDamageType();
@@ -26,7 +26,7 @@ public class CryoGunTower extends Tower {
 
     @Override
     public void attack(double elapsedTime){
-        //fires at random enemy
+        //fires at random enemy to spread the slow
         if (getAttackTime() <= 0 && !getWithin().isEmpty()) {
             setTarget(getWithin().get(random.nextInt(getWithin().size())));
             Projectile p =

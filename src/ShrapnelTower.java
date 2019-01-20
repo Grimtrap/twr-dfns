@@ -9,6 +9,12 @@ import java.util.LinkedList;
  */
 public class ShrapnelTower extends Tower {
 
+    /**
+     * creates a new tower
+     * @param x the tower's x position
+     * @param y the tower's y position
+     * @param game the game that the tower is in
+     */
     public ShrapnelTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
