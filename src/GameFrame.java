@@ -68,16 +68,14 @@ public class GameFrame extends JFrame {
                     int x = me.getX();
                     int y = me.getY();
                     for(int i = 0; i < towers.size(); i++) {
-                        if ((int)Calculations.Center(towers.get(i).getX(),64) >= x && (int)Calculations.Center(towers.get(i).getY(),64) >= y) {
-                            System.out.println("selling");
+                        if ((int)(towers.get(i).getX()) == x && (int)(towers.get(i).getY()) == y) {
                             //game.setSellSelected(towers.get(i));
+                            game.gainGold(towers.get(i).getCost());
                             towers.remove(towers.get(i));
                             TowersThread t = new TowersThread(towers, enemies);
                             t.start();
                             game.getTowerThread().interrupt();
                             game.setTowerThread(t);
-                            //game.getTowerThread().setTowers(towers);
-                            game.gainGold(towers.get(i).getCost());
                             game.setSellSelected(null);
                             game.setSelling(false);
                         }
