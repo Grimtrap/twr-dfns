@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * EndScreen.java
  * Screen for when game ends
- * @author Kyle To, Eric Ke
+ * @author Kyle To, Eric Ke, Michael T.
  * Last Updated: January 19 2019
  */
 

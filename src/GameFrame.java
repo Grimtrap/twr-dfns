@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * GameFrame.java
  * JFrame where the game is drawn
- * @author Eric Ke, Kyle To
+ * @author Eric Ke, Kyle To, Michael T.
  * Last Updated: January 19 2019
  */
 public class GameFrame extends JFrame {
