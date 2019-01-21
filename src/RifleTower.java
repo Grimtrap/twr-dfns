@@ -53,7 +53,7 @@ public class RifleTower extends Tower {
         findTargets();
         attack(timeElapsed);
         LinkedList<Projectile> projectiles = getProjectiles();
-        try() {
+        try {
             for (int i = 0; i < projectiles.size(); i++) {
                 Projectile current = projectiles.get(i);
                 if (!current.isActive()) {
