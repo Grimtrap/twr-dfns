@@ -103,7 +103,7 @@ abstract class Tower {
         for(int i = 0; i < projectiles.size(); i++) {
             Projectile current = projectiles.get(i);
             if(!current.isActive()) {
-                projectiles.remove(i);
+                projectiles.remove(i); // found null pointer exception
             } else {
                 current.update(timeElapsed);
             }
@@ -116,7 +116,7 @@ abstract class Tower {
         if(!enemies.isEmpty()) {
             for (int i = 0; i < enemies.size(); i++) {
                 try {
-                    if (enemies.get(i) != null) {
+                    if (enemies.get(i) != null) { // found index exception
                         Enemy current;
 
                         try {
