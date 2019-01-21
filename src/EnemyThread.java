@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 /**
  * EnemyThread.java
- *
+ * thread which updates the enemies in the game
  * @author Eric Ke
  */
 public class EnemyThread extends Thread {
