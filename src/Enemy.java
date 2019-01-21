@@ -322,4 +322,12 @@ public class Enemy implements Cloneable {
     public void setY(int y) {
         this.y = y;
     }
+
+    /**
+     * gets the gold granted
+     * @return gold granted by the enemy
+     */
+    public int getGoldGranted() {
+        return goldGranted;
+    }
 }

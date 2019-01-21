@@ -173,7 +173,7 @@ public class GameFrame extends JFrame {
                     towers.get(i).draw(g);
                     if(!towers.get(i).getProjectiles().isEmpty()) {
                         for (int j = 0; j < towers.get(i).getProjectiles().size(); j++) {
-                            towers.get(i).getProjectiles().get(j).draw(g);
+                            towers.get(i).getProjectiles().get(j).draw(g); // this line sometimes throws a null pointer exception
                         }
                     }
                 }
