@@ -35,9 +35,9 @@ public class EnemySpawner {
      */
     public void generateWave(int difficulty) {
         currentDifficulty = difficulty;
-        enemiesLeft = new int[difficulty/100+1];
+        enemiesLeft = new int[currentDifficulty/100+1];
         Arrays.fill(enemiesLeft, 10);
-        currentEnemies = new Enemy[difficulty/100 +1];
+        currentEnemies = new Enemy[currentDifficulty/100 +1];
         generateEnemies();
     }
 

@@ -50,16 +50,20 @@ public class RifleTower extends Tower {
      */
     @Override
     public void update(double timeElapsed) {
-        findTargets(); // found index exception
+        findTargets();
         attack(timeElapsed);
         LinkedList<Projectile> projectiles = getProjectiles();
-        for(int i = 0; i < projectiles.size(); i++) {
-            Projectile current = projectiles.get(i); // found null pointer exception
-            if(!current.isActive()) {
-                projectiles.remove(i); // found index or null pointer exception
-            } else {
-                current.update(timeElapsed);
+        try() {
+            for (int i = 0; i < projectiles.size(); i++) {
+                Projectile current = projectiles.get(i);
+                if (!current.isActive()) {
+                    projectiles.remove(i);
+                } else {
+                    current.update(timeElapsed);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
