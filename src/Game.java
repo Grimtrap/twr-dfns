@@ -19,14 +19,12 @@ public class Game {
     private TowersThread towerThread;
 
     private int wave;
-    private boolean isSpawning;
     private double gold;
     private double livesLeft;
     private TowerMenu towerMenu;
     private Tower selected = null;
     private boolean selling = false;
     private Tower sellSelected = null;
-    private int musicNum;
 
     /**
      * creates a new game
@@ -39,16 +37,6 @@ public class Game {
         towers = new LinkedList<>();
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
-        musicNum = (int) (Math.random() * 3 + 1);
-        if (musicNum == 1){
-            SoundPlayer.playSound("InGameMusic.wav");
-        }
-        else if (musicNum == 2){
-            SoundPlayer.playSound("InGameMusic2.wav");
-        }
-        else{
-            SoundPlayer.playSound("InGameMusic3.wav");
-        }
         wave = 0;
         enemyThread = new EnemyThread(enemies, spawner, this);
         enemyThread.start();
