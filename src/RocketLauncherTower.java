@@ -18,13 +18,15 @@ public class RocketLauncherTower extends RifleTower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(150);
         setCost(400);
-        setFireRate(2.5);
-        setRange(new Circle(x, y, 400));
-        setProjectileExplosionRadius(40);
+        setDamage(100);
+        setDamageType(DamageTypes.EXPLOSIVE);
+        setFireRate(2);
+        setProjectileExplosionRadius(150);
+        setRange(new Circle(x, y, 300));
+        setClock(new Clock());
         setProjectileImagePath("resources/Projectiles/Missile.png");
-        setProjectileSpeed(5000);
+        setProjectileSpeed(1000);
         setSoundName("MissileLauncher.wav");
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/MissileLauncherBody.png"));
     }

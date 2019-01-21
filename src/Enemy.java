@@ -70,7 +70,7 @@ public class Enemy implements Cloneable {
         this.distanceLeft = currentPathing.getDistance();
         this.slow = new double[]{0,0}; //duration, then power
         this.burn = new double[]{0,0};
-        this.boundingBox = new Rectangle((int)x, (int)y,100,100);
+        this.boundingBox = new Rectangle((int)(x), (int)(y),100,100);
     }
 
     private LinkedList<Pathing> clonePaths(Queue<Pathing> pathingQueue) {

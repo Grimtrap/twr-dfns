@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -26,7 +27,8 @@ public class Game {
     private boolean selling = false;
     private Tower sellSelected = null;
     private boolean showRanges;
-    TowerStats towerStats;
+    private TowerStats towerStats;
+    public static double scaleRatio = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/1920.0;
 
     /**
      * creates a new game
@@ -40,7 +42,7 @@ public class Game {
         towers = new LinkedList<>();
         clock = new Clock();
         spawner = new EnemySpawner(mapName);
-        wave = 0;
+        wave = 1;
         enemyThread = new EnemyThread(enemies, spawner, this);
         enemyThread.start();
         towerThread = new TowersThread(towers);
@@ -210,5 +212,11 @@ public class Game {
         this.showRanges = showRanges;
     }
 
+    public static double getScaleRatio() {
+        return scaleRatio;
+    }
 
+    public void setWave(int wave) {
+        this.wave = wave;
+    }
 }

@@ -71,7 +71,7 @@ public class EnemySpawner {
             Enemy next = currentEnemies[currentIndex].clone();
             next.setCoords(map.getStart()[0],map.getStart()[1]);
             return next;
-        } else if(enemiesLeft.length < currentIndex+1){
+        } else if(currentIndex < enemiesLeft.length){
             return findNextEnemy(currentIndex+1); //recursively traverses the array till all enemies are spawned i guess
         } else {
             return null;
@@ -132,7 +132,7 @@ public class EnemySpawner {
                     //yes, there is a chance that it'll select one that's already been done and redo it
                     //it's a feature to make multiple traits slightly rarer
                     if (random.nextBoolean())
-                        i = random.nextInt(4);
+                        i = random.nextInt(5);
                     if (i == 0) {
                         a.setSlowResist(random.nextInt(500) / 10.0);
                     }

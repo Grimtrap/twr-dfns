@@ -45,24 +45,27 @@ public class EnemyThread extends Thread {
                 }
             }
             if (!enemies.isEmpty()) {
-                for (int i = 0; i < enemies.size(); i++) {
-                    enemies.get(i).update(clock.getElapsedTime());
-                    if(enemies.get(i).getCurrentHealth() <=0) {
-                        game.gainGold(enemies.get(i).getGoldGranted());
-                        enemies.remove(i);
-                        num = (int) (Math.random()* 2 + 1);
-                        if (num == 1){ //randomly selects which death sound to play
-                            SoundPlayer.playSound("Explosion.wav");
+                //try {
+                    for (int i = 0; i < enemies.size(); i++) {
+                        enemies.get(i).update(clock.getElapsedTime());
+                        if (enemies.get(i).getCurrentHealth() <= 0) {
+                            game.gainGold(enemies.get(i).getGoldGranted());
+                            enemies.remove(i);
+                            num = (int) (Math.random() * 2 + 1);
+                            if (num == 1) { //randomly selects which death sound to play
+                                SoundPlayer.playSound("Explosion.wav");
+                            } else {
+                                SoundPlayer.playSound("Explosion2.wav");
+                            }
+                        } else if (enemies.get(i).hasReachedEnd()) {
+                            game.loseLife();
+                            SoundPlayer.playSound("LifeLost.wav");
+                            enemies.remove(i);
                         }
-                        else{
-                            SoundPlayer.playSound("Explosion2.wav");
-                        }
-                    } else if(enemies.get(i).hasReachedEnd()) {
-                        game.loseLife();
-                        SoundPlayer.playSound("LifeLost.wav");
-                        enemies.remove(i);
                     }
-                }
+                //}catch(Exception e){
+                    //e.printStackTrace();
+               //}
             }
         }
     }

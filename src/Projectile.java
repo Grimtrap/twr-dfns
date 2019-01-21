@@ -98,7 +98,9 @@ public class Projectile {
                 this.setActive(false);
             } else {
                 LinkedList<Enemy> nearby = findWithin(tower.getEnemies());
+                target.takeDmg(0, (byte) 0);
                 for(int i = 0; i < nearby.size(); i++) {
+
                     nearby.get(i).takeDmg(damage, damageType);
                         if (burn != null) {
                             nearby.get(i).becomeBurned(burn[0], burn[1]);
@@ -123,7 +125,7 @@ public class Projectile {
                 } catch (Exception e) {
                     break;
                 }
-                if (Math.hypot((current.getX() - x), (current.getY() - y)) <= explosionRadius) {
+                if (Math.hypot((x- current.getX()), (y - current.getY())) <= explosionRadius) {
                     if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) { //extreme paranoid error checking
                         within.add(current);
                     }
