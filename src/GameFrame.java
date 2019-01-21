@@ -47,6 +47,7 @@ public class GameFrame extends JFrame {
 
         startWave = new JButton("Start Wave");
         startWave.addActionListener(e -> {
+            game.setWave(game.getWave()+1);
             game.getSpawner().generateWave(game.getWave()*10);
             SoundPlayer.playSound("WaveStart.wav");
         });
@@ -159,7 +160,7 @@ public class GameFrame extends JFrame {
 
             g.setFont(font);
             g.setColor(Color.WHITE);
-            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,35); //text for gold and lives
+            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()) + " Wave: " + game.getWave(), 5,35); //text for gold and lives
 
             drawPath(g);
 

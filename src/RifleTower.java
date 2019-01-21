@@ -9,7 +9,6 @@ import java.util.LinkedList;
  */
 public class RifleTower extends Tower {
     int count;
-    private double fireRate;
     private String soundName;
 
     /**
@@ -30,7 +29,7 @@ public class RifleTower extends Tower {
         setRange(new Circle(x, y, 300));
         setProjectileImagePath("resources/Projectiles/StandardBullet.png");
         setProjectileSpeed(600);
-        setProjectileExplosionRadius(0);
+        setProjectileExplosionRadius(150);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/BasicGunBody.png"));
         setClock(new Clock());
         count = 0;
