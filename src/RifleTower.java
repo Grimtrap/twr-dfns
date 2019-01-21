@@ -21,7 +21,7 @@ public class RifleTower extends Tower {
     public RifleTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
-        setAirTargeting(false);
+        setAirTargeting(true);
         setCost(100);
         setDamage(50);
         setDamageType(DamageTypes.NORMAL);
@@ -42,29 +42,6 @@ public class RifleTower extends Tower {
      */
     public void setSoundName(String soundLink) {
         soundName = soundLink;
-    }
-
-    /**
-     * updates the tower and performs several operations
-     * @param timeElapsed time since last check
-     */
-    @Override
-    public void update(double timeElapsed) {
-        findTargets();
-        attack(timeElapsed);
-        LinkedList<Projectile> projectiles = getProjectiles();
-        try {
-            for (int i = 0; i < projectiles.size(); i++) {
-                Projectile current = projectiles.get(i);
-                if (!current.isActive()) {
-                    projectiles.remove(i);
-                } else {
-                    current.update(timeElapsed);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**

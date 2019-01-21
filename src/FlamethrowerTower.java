@@ -18,6 +18,7 @@ public class FlamethrowerTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
+        setCost(500);
         setFireRate(0.09);
         setDamage(10);
         setRange(new Circle(x, y, 1000));

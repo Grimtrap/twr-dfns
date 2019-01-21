@@ -20,6 +20,7 @@ public class SniperTower extends RifleTower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(180);
+        setCost(350);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(3);
         setRange(new Circle(x, y, 500));

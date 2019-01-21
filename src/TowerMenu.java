@@ -29,6 +29,10 @@ public class TowerMenu extends Frame {
     private JButton sellButton;
     private Game game;
 
+    /**
+     * Creates a menu for towers to be placed
+     * @param game
+     */
     public TowerMenu(Game game){
         this.game = game;
         ImageIcon BasicGunImage = new ImageIcon("resources/Towers/BasicGunBody.png");
@@ -129,6 +133,7 @@ public class TowerMenu extends Frame {
         add(AAGun);
         //add(SAMLauncher);
         add(sellButton);
+        this.requestFocusInWindow();
         setSize(500,1080);
         setVisible(true);
 

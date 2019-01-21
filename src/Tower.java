@@ -96,17 +96,25 @@ abstract class Tower {
         return this.rate;
     }
 
+    /**
+     * updates the tower and performs several operations
+     * @param timeElapsed time since last check
+     */
     public void update(double timeElapsed) {
-        findTargets(); // found index exception
+        findTargets();
         attack(timeElapsed);
         LinkedList<Projectile> projectiles = getProjectiles();
-        for(int i = 0; i < projectiles.size(); i++) {
-            Projectile current = projectiles.get(i);
-            if(!current.isActive()) {
-                projectiles.remove(i); // found null pointer or index exception
-            } else {
-                current.update(timeElapsed);
+        try {
+            for (int i = 0; i < projectiles.size(); i++) {
+                Projectile current = projectiles.get(i);
+                if (!current.isActive()) {
+                    projectiles.remove(i);
+                } else {
+                    current.update(timeElapsed);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
