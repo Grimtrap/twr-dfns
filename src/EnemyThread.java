@@ -1,6 +1,11 @@
 import java.util.LinkedList;
 
-public class UpdaterThread extends Thread {
+/**
+ * EnemyThread.java
+ *
+ * @author Eric Ke
+ */
+public class EnemyThread extends Thread {
     private LinkedList<Enemy> enemies;
     public boolean running;
     private Clock clock;
@@ -9,7 +14,7 @@ public class UpdaterThread extends Thread {
     private Game game;
     private int num;
 
-    public UpdaterThread(LinkedList<Enemy> enemies, EnemySpawner spawner, Game game) {
+    public EnemyThread(LinkedList<Enemy> enemies, EnemySpawner spawner, Game game) {
         this.enemies = enemies;
         this.clock = new Clock();
         this.running = true;
@@ -30,7 +35,7 @@ public class UpdaterThread extends Thread {
                 }
             }
             if (!enemies.isEmpty()) {
-                for (int i = 0; i < enemies.size(); i++) { //once again i fixed it by not using foreach LOL
+                for (int i = 0; i < enemies.size(); i++) {
                     enemies.get(i).update(clock.getElapsedTime());
                     if(enemies.get(i).getCurrentHealth() <=0) {
                         enemies.remove(i);

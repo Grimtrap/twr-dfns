@@ -34,6 +34,36 @@ public class SoundPlayer {
             e.printStackTrace();
         }
     }
+    public static void playMusic() {
+        Clip clip;
+        try {
+            File audioFile = new File("resources/sound/InGameMusic3.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            DataLine.Info infoThing = new DataLine.Info(Clip.class, audioStream.getFormat());
+            clip = (Clip) AudioSystem.getLine(infoThing);
+            clip.addLineListener(new MusicListener());
+            clip.open(audioStream);
+            clip.start();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    static class MusicListener implements LineListener {
+        /**
+         * closes the music and restarts it when it finishes
+         * @param event the music event
+         */
+        public void update(LineEvent event) {
+            if (event.getType() == LineEvent.Type.STOP) {
+                event.getLine().close();
+                playMusic();
+            }
+        }
+    }
+
     static class SoundListener implements LineListener {
 
         /**

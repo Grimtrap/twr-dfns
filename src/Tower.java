@@ -133,7 +133,7 @@ abstract class Tower {
                             }
                         }
                     }
-                } catch(NullPointerException e1) {
+                } catch(Exception e1) {
                     i--;
                 }
             }

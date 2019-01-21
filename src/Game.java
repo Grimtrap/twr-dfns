@@ -15,7 +15,7 @@ public class Game {
     private LinkedList<Tower> towers;
     private Clock clock;
     private EnemySpawner spawner;
-    private UpdaterThread enemyThread;
+    private EnemyThread enemyThread;
     private TowersThread towerThread;
 
     private int wave;
@@ -50,7 +50,7 @@ public class Game {
             SoundPlayer.playSound("InGameMusic3.wav");
         }
         wave = 0;
-        enemyThread = new UpdaterThread(enemies, spawner, this);
+        enemyThread = new EnemyThread(enemies, spawner, this);
         enemyThread.start();
         towerThread = new TowersThread(towers);
         towerThread.start();
