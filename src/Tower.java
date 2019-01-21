@@ -97,13 +97,13 @@ abstract class Tower {
     }
 
     public void update(double timeElapsed) {
-        findTargets();
+        findTargets(); // found index exception
         attack(timeElapsed);
         LinkedList<Projectile> projectiles = getProjectiles();
         for(int i = 0; i < projectiles.size(); i++) {
             Projectile current = projectiles.get(i);
             if(!current.isActive()) {
-                projectiles.remove(i); // found null pointer exception
+                projectiles.remove(i); // found null pointer or index exception
             } else {
                 current.update(timeElapsed);
             }
