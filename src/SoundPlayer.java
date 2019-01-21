@@ -37,7 +37,7 @@ public class SoundPlayer {
     public static void playMusic() {
         Clip clip;
         try {
-            File audioFile = new File("resources/sound/InGameMusic3.wav");
+            File audioFile = new File("resources/Sounds/InGameMusic3.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             DataLine.Info infoThing = new DataLine.Info(Clip.class, audioStream.getFormat());
             clip = (Clip) AudioSystem.getLine(infoThing);

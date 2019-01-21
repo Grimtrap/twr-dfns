@@ -38,6 +38,7 @@ public class EnemyThread extends Thread {
                 for (int i = 0; i < enemies.size(); i++) {
                     enemies.get(i).update(clock.getElapsedTime());
                     if(enemies.get(i).getCurrentHealth() <=0) {
+                        game.gainGold(enemies.get(i).getGoldGranted());
                         enemies.remove(i);
                         num = (int) (Math.random()* 2 + 1);
                         if (num == 1){
