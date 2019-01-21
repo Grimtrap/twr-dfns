@@ -19,9 +19,9 @@ public class ShrapnelTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(20);
+        setDamage(76);
         setCost(200);
-        setFireRate(1.5);
+        setFireRate(1.2);
         setProjectileSpeed(1500);
         setRange(new Circle(x, y, 100));
         setDamageType(DamageTypes.EXPLOSIVE);

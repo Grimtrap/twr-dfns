@@ -62,10 +62,12 @@ abstract class Tower {
             AffineTransform a = AffineTransform.getRotateInstance(Calculations.getAngle(x, y, target.getX(), target.getY()), x, y);
             g2d.setTransform(a);
         }
-        g2d.drawImage(image, (int)Calculations.Center(x,64), (int)Calculations.Center(y,64), null);
-        Box box = new Box((int)(Calculations.Center(x,64)+32), (int)(Calculations.Center(y,64)+32), 64, 64);
+        g2d.drawImage(image, (int)Calculations.center(x,64), (int)Calculations.center(y,64), null);
+        Box box = new Box((int)(Calculations.center(x,64)+32), (int)(Calculations.center(y,64)+32), 64, 64);
         this.setBox(box);
         g2d.setTransform(backup);
+        g2d.setColor(Color.BLUE);
+        g2d.drawOval((int)(x-range.getRadius()), (int)(y-range.getRadius()), (int)range.getRadius()*2, (int)range.getRadius()*2);
     }
 
     /**
@@ -118,7 +120,7 @@ abstract class Tower {
         }
     }
 
-    public synchronized void findTargets(){
+    private synchronized void findTargets(){
         LinkedList<Enemy> within = new LinkedList<>();
 
         if(!enemies.isEmpty()) {

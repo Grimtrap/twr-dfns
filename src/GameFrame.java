@@ -140,16 +140,14 @@ public class GameFrame extends JFrame {
         }
     }
 
+    //inner game panel JPanel
     private class GamePanel extends JPanel {
-        private Clock clock;
-        private double duration;
 
         public GamePanel() {
-            clock = new Clock();
-            duration = 0.5;
         }
 
 
+        //draws the graphics on the screen
         protected synchronized void paintComponent(Graphics g) {
 
             super.paintComponent(g);
@@ -161,7 +159,7 @@ public class GameFrame extends JFrame {
 
             g.setFont(font);
             g.setColor(Color.WHITE);
-            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,35);
+            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,35); //text for gold and lives
 
             drawPath(g);
 

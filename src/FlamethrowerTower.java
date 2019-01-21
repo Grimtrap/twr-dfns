@@ -29,7 +29,7 @@ public class FlamethrowerTower extends Tower {
     }
 
     /**
-     * attacks the target
+     * attacks the target but also burns them because this is a flamethrower
      * @param elapsedTime time passed since last check
      */
     public void attack(double elapsedTime){

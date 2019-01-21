@@ -44,7 +44,7 @@ public class Calculations {
      * @param size size of item
      * @return new coordinate
      */
-    public static double Center(double n, double size) {
+    public static double center(double n, double size) {
         return n-size/2;
     }
 
