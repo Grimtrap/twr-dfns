@@ -22,7 +22,7 @@ public class SniperTower extends RifleTower {
         setDamage(180);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(3);
-        setRange(new Circle(x, y, 800));
+        setRange(new Circle(x, y, 500));
         setSoundName("SniperRifle.wav");
         setProjectileSpeed(3000);
         setProjectileImagePath("resources/Projectiles/SniperBullet.png");
