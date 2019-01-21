@@ -8,7 +8,6 @@ import java.util.LinkedList;
 public class TowersThread extends Thread{
 
     private LinkedList<Tower> towers;
-    public boolean running;
     private Clock clock;
 
     /**
@@ -17,7 +16,6 @@ public class TowersThread extends Thread{
      */
     public TowersThread(LinkedList<Tower> towers) {
         this.towers = towers;
-        this.running = true;
         clock = new Clock();
     }
 
