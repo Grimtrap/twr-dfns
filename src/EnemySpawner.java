@@ -98,6 +98,7 @@ public class EnemySpawner {
     }
 
     private String determineImage(Attributes a, double health) {
+        //checks which image should be used for the enemy
         String name = "";
         double multiplier = health/(100+currentDifficulty);
         if(multiplier >= 0.6 && multiplier < 0.8) {
@@ -163,6 +164,7 @@ public class EnemySpawner {
     }
 
     private double[] genHealthAndSpeed() {
+        //generates the health and speed values for an enemy
         double multiplier = genMultiplier();
         double[] healthAndSpeed = new double[2]; //0 for health, 1 for speed
         healthAndSpeed[0] = (100+currentDifficulty)*multiplier;
@@ -171,7 +173,8 @@ public class EnemySpawner {
     }
 
     private double genMultiplier() {
-        return (random.nextInt(60) + 90)/100.0;
+        //multiplier which is random value between 60 and 120
+        return (random.nextInt(61) + 60)/100.0;
     }
 
     public int getEnemiesLeft(int i) {
