@@ -28,6 +28,7 @@ public class Enemy implements Cloneable {
     private double[] burn;
 
     private boolean reachedEnd;
+    private boolean showRanges;
 
     private int goldGranted;
     private Attributes attributes;
@@ -71,6 +72,7 @@ public class Enemy implements Cloneable {
         this.slow = new double[]{0,0}; //duration, then power
         this.burn = new double[]{0,0};
         this.boundingBox = new Rectangle((int)x, (int)y,100,100);
+        this.showRanges = false;
     }
 
     private LinkedList<Pathing> clonePaths(Queue<Pathing> pathingQueue) {
@@ -205,10 +207,28 @@ public class Enemy implements Cloneable {
             g2d.drawImage(image, (int)x, (int)y, null);
             g2d.setTransform(backup);
          }
-        g.setColor(Color.RED);
-        g.fillRect((int)this.x, (int)this.y-20, 60, 15);
-        g.setColor(Color.GREEN);
-        g.fillRect((int)this.x, (int)this.y-20, (int)(60*(currentHealth/maxHealth)), 15);
+        if(showRanges) {
+            g.setColor(Color.RED);
+            g.fillRect((int) this.x, (int) this.y - 20, 60, 15);
+            g.setColor(Color.GREEN);
+            g.fillRect((int) this.x, (int) this.y - 20, (int) (60 * (currentHealth / maxHealth)), 15);
+        }
+    }
+
+    /**
+     * gets whether to show ranges or not
+     * @return if it should show ranges
+     */
+    public boolean getShowRanges() {
+        return showRanges;
+    }
+
+    /**
+     * sets if it should show ranges or not
+     * @param showRanges if it should show ranges or not
+     */
+    public void setShowRanges(boolean showRanges) {
+        this.showRanges = showRanges;
     }
 
     /**

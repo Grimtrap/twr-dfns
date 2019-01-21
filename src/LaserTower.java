@@ -18,11 +18,11 @@ public class LaserTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
-        setDamage(25);
+        setDamage(20);
         setCost(700);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(0.1);
-        setRange(new Circle(x, y, 350));
+        setRange(new Circle(x, y, 300));
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/LaserGunBody.png"));
     }
 

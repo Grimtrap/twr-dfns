@@ -14,6 +14,12 @@ public class EnemyThread extends Thread {
     private Game game;
     private int num;
 
+    /**
+     * Creates a new thread to update the enemies on
+     * @param enemies the enemies in the game
+     * @param spawner the spawner for the enemies
+     * @param game
+     */
     public EnemyThread(LinkedList<Enemy> enemies, EnemySpawner spawner, Game game) {
         this.enemies = enemies;
         this.clock = new Clock();
@@ -23,6 +29,9 @@ public class EnemyThread extends Thread {
         this.game = game;
     }
 
+    /**
+     * runs the thread, which will update the enemies and make them work
+     */
     public synchronized void run() {
         while(running) {
             clock.update();
@@ -41,7 +50,7 @@ public class EnemyThread extends Thread {
                         game.gainGold(enemies.get(i).getGoldGranted());
                         enemies.remove(i);
                         num = (int) (Math.random()* 2 + 1);
-                        if (num == 1){
+                        if (num == 1){ //randomly selects which death sound to play
                             SoundPlayer.playSound("Explosion.wav");
                         }
                         else{

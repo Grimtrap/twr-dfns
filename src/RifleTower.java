@@ -23,11 +23,11 @@ public class RifleTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(true);
         setCost(100);
-        setDamage(50);
+        setDamage(60);
         setDamageType(DamageTypes.NORMAL);
         setSoundName("BasicGun.wav");
         setFireRate(1);
-        setRange(new Circle(x, y, 400));
+        setRange(new Circle(x, y, 300));
         setProjectileImagePath("resources/Projectiles/StandardBullet.png");
         setProjectileSpeed(600);
         setProjectileExplosionRadius(0);
