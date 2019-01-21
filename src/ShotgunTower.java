@@ -20,8 +20,8 @@ public class ShotgunTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setProjectileImagePath("resources/Projectiles/ShotgunBullet.png");
-        setDamage(60);
-        setCost(250);
+        setDamage(85);
+        setCost(450);
         setDamageType(DamageTypes.NORMAL);
         setFireRate(2);
         setRange(new Circle(x, y, 200));

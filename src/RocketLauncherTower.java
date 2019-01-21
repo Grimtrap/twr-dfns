@@ -18,10 +18,10 @@ public class RocketLauncherTower extends RifleTower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setCost(400);
-        setDamage(100);
+        setCost(600);
+        setDamage(105);
         setDamageType(DamageTypes.EXPLOSIVE);
-        setFireRate(2);
+        setFireRate(2.2);
         setProjectileExplosionRadius(150);
         setRange(new Circle(x, y, 300));
         setClock(new Clock());

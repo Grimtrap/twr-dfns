@@ -21,8 +21,8 @@ public class CryoGunTower extends Tower {
         setAirTargeting(true);
         setDamage(7);
         setFireRate(0.3);
-        setRange(new Circle(x, y, 500));
-        setCost(500);
+        setRange(new Circle(x, y, 300));
+        setCost(800);
         setProjectileImagePath("resources/Projectiles/CryoBullet.png");
         setDamageType(DamageTypes.NORMAL);
         setProjectileSpeed(1000);

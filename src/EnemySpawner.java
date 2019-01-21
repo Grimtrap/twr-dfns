@@ -92,7 +92,7 @@ public class EnemySpawner {
             Attributes a = genAttributes();
             double[] healthSpeed = genHealthAndSpeed();
             LinkedList<Pathing> paths = map.getPathings();
-            this.currentEnemies[i] = new Enemy(determineImage(a, healthSpeed[0]), healthSpeed[0], healthSpeed[1], 10+currentDifficulty/5, a, paths);
+            this.currentEnemies[i] = new Enemy(determineImage(a, healthSpeed[0]), healthSpeed[0], healthSpeed[1], 10+currentDifficulty/20, a, paths);
         }
 
     }

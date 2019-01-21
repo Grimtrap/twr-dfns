@@ -20,10 +20,10 @@ public class ShrapnelTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(76);
-        setCost(200);
+        setCost(500);
         setFireRate(1.2);
         setProjectileSpeed(1500);
-        setRange(new Circle(x, y, 100));
+        setRange(new Circle(x, y, 170));
         setDamageType(DamageTypes.EXPLOSIVE);
         setProjectileImagePath("resources/Projectiles/ShrapnelBullet.png");
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/ShrapnelTower.png"));

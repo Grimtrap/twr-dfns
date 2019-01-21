@@ -37,7 +37,7 @@ public class SoundPlayer {
     public static void playMusic() {
         Clip clip;
         File audioFile;
-        int num = (int)(Math.random()* 3 + 1);
+        int num = (int)(Math.random()* 4 + 1);
         try {
             if (num == 1){
                 audioFile = new File("resources/Sounds/InGameMusic.wav");
@@ -45,8 +45,10 @@ public class SoundPlayer {
             else if (num == 2){
                 audioFile = new File("resources/Sounds/InGameMusic2.wav");
             }
-            else{
+            else if (num == 3){
                 audioFile = new File("resources/Sounds/InGameMusic3.wav");
+            } else {
+                audioFile = new File("resources/Sounds/InGameMusic4.wav");
             }
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             DataLine.Info infoThing = new DataLine.Info(Clip.class, audioStream.getFormat());

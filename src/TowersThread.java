@@ -9,6 +9,8 @@ public class TowersThread extends Thread{
 
     private LinkedList<Tower> towers;
     private Clock clock;
+    private TowersThread thisThread;
+    private boolean running;
 
     /**
      * creates a thread which updates towers
@@ -17,13 +19,15 @@ public class TowersThread extends Thread{
     public TowersThread(LinkedList<Tower> towers) {
         this.towers = towers;
         clock = new Clock();
+        thisThread = this;
+        running = true;
     }
 
     /**
      * runs the thread, which will update the towers in the game
      */
     public synchronized void run() {
-        while(!interrupted()) {
+        while(running) {
             clock.update();
             if (!towers.isEmpty()) {
                 for (int i = 0; i < towers.size(); i++) {
@@ -32,6 +36,14 @@ public class TowersThread extends Thread{
             }
 
         }
+    }
+
+    /**
+     * stops the thread
+     */
+    public void stopThread() {
+        this.running = false;
+        thisThread = null;
     }
 
     /**

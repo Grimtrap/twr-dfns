@@ -45,13 +45,12 @@ public class MainMenu extends JFrame {
 
         //start button
         startButton.addActionListener(e -> {
-            try {
+            if (new File("maps/" + inputBox.getText() + ".txt").exists()) {
                 new Game(inputBox.getText());
                 dispose();
-            } catch(Exception e1) {
-                JOptionPane.showMessageDialog(thisFrame,"File doesn't exist");
+            } else {
+                JOptionPane.showMessageDialog(thisFrame, "File doesn't exist");
             }
-
         });
 
         //instruction button creates this pane
@@ -92,6 +91,7 @@ public class MainMenu extends JFrame {
         this.setSize(500,410);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.pack();
         SoundPlayer.playMusic();
 
     }

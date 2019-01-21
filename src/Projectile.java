@@ -125,7 +125,7 @@ public class Projectile {
                 } catch (Exception e) {
                     break;
                 }
-                if (Math.hypot((x- current.getX()), (y - current.getY())) <= explosionRadius) {
+                if (Math.hypot((target.getX()- current.getX()), (target.getY() - current.getY())) <= explosionRadius) {
                     if (!current.hasReachedEnd() && !(current.getCurrentHealth() <= 0)) { //extreme paranoid error checking
                         within.add(current);
                     }

@@ -19,10 +19,10 @@ public class SniperTower extends RifleTower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setDamage(180);
-        setCost(350);
+        setDamage(160);
+        setCost(600);
         setDamageType(DamageTypes.PIERCE);
-        setFireRate(3);
+        setFireRate(2);
         setRange(new Circle(x, y, 500));
         setSoundName("SniperRifle.wav");
         setProjectileSpeed(3000);

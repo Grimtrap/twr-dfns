@@ -21,7 +21,7 @@ public class RifleTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(true);
-        setCost(100);
+        setCost(150);
         setDamage(60);
         setDamageType(DamageTypes.NORMAL);
         setSoundName("BasicGun.wav");
@@ -29,7 +29,7 @@ public class RifleTower extends Tower {
         setRange(new Circle(x, y, 300));
         setProjectileImagePath("resources/Projectiles/StandardBullet.png");
         setProjectileSpeed(600);
-        setProjectileExplosionRadius(150);
+        setProjectileExplosionRadius(0);
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/BasicGunBody.png"));
         setClock(new Clock());
         count = 0;

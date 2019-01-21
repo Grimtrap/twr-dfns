@@ -18,10 +18,10 @@ public class FlamethrowerTower extends Tower {
         super(x, y, game);
         setGroundTargeting(true);
         setAirTargeting(false);
-        setCost(500);
+        setCost(1000);
         setFireRate(0.09);
         setDamage(10);
-        setRange(new Circle(x, y, 1000));
+        setRange(new Circle(x, y, 300));
         setProjectileSpeed(1000);
         setProjectileExplosionRadius(0);
         setProjectileImagePath("resources/Projectiles/FlamethrowerBullet.png");
