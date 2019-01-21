@@ -27,6 +27,7 @@ public class TowerMenu extends Frame {
     private JButton AAGun;
     private JButton SAMLauncher;
     private JButton sellButton;
+    private JButton ranges;
     private Game game;
 
     /**
@@ -121,6 +122,16 @@ public class TowerMenu extends Frame {
                 game.setSelling(true);
             }
         } );
+        ranges = new JButton("SHOW RANGES");
+        ranges.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (game.getShowRanges()){
+                    game.setShowRanges(false);
+                }else{
+                    game.setShowRanges(true);
+                }
+            }
+        } );
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
@@ -133,6 +144,7 @@ public class TowerMenu extends Frame {
         add(AAGun);
         add(SAMLauncher);
         add(sellButton);
+        add(ranges);
         this.requestFocusInWindow();
         setSize(500,1080);
         setVisible(true);

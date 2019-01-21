@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * TowerStats.java
  * Displays stats of a selected tower
- * @author Kyle To, Eric Ke, Michael T.
+ * @author Kyle To
  * Last Updated: January 19 2019
  */
 public class TowerStats extends JFrame implements ActionListener{

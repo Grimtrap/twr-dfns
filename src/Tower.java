@@ -303,4 +303,8 @@ abstract class Tower {
     public void setBox(Box box) {
         this.box = box;
     }
+
+    public Circle getRange() {
+        return range;
+    }
 }
