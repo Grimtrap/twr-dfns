@@ -50,67 +50,67 @@ public class TowerMenu extends Frame {
         ImageIcon GoldImage = new ImageIcon("resources/Gold.png");
         setLayout(new GridLayout(10, 2));
 
-        BasicGun = new JButton("Rifle 100", BasicGunImage);
+        BasicGun = new JButton("Rifle $150", BasicGunImage);
         BasicGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new RifleTower(0,0,game));
         }
         } );
-        MachineGun = new JButton("Machine Gun 250", MachineGunImage);
+        MachineGun = new JButton("Machine Gun $250", MachineGunImage);
         MachineGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new MachineGunTower(0,0,game));
             }
         } );
-        ShotGun = new JButton("Shotgun 250", ShotGunImage);
+        ShotGun = new JButton("Shotgun $250", ShotGunImage);
         ShotGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new ShotgunTower(0,0,game));
             }
         } );
-        SniperRifle = new JButton("Sniper 350", SniperRifleImage);
+        SniperRifle = new JButton("Sniper $350", SniperRifleImage);
         SniperRifle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new SniperTower(0,0,game));
             }
         } );
-        ShrapnelTower = new JButton("Shrapnel 200", ShrapnelTowerImage);
+        ShrapnelTower = new JButton("Shrapnel $200", ShrapnelTowerImage);
         ShrapnelTower.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new ShrapnelTower(0,0,game));
             }
         } );
-        MissileLauncher = new JButton("Missile 400", MissileLauncherImage);
+        MissileLauncher = new JButton("Missile $400", MissileLauncherImage);
         MissileLauncher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new RocketLauncherTower(0,0,game));
             }
         } );
-        FlameThrower = new JButton("Flamethrower 500", FlameThrowerImage);
+        FlameThrower = new JButton("Flamethrower $500", FlameThrowerImage);
         FlameThrower.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new FlamethrowerTower(0,0,game));
             }
         } );
-        LaserGun = new JButton("Laser 700", LaserGunImage);
+        LaserGun = new JButton("Laser $700", LaserGunImage);
         LaserGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new LaserTower(0,0,game));
             }
         } );
-        CryoGun = new JButton("Cryo 500", CryoGunImage);
+        CryoGun = new JButton("Cryo $500", CryoGunImage);
         CryoGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new CryoGunTower(0,0,game));
             }
         } );
-        AAGun = new JButton("AA GUN 250", AAGunImage);
+        AAGun = new JButton("AA Gun $250", AAGunImage);
         AAGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new AATower(0,0,game));
             }
         } );
-        SAMLauncher = new JButton("SAM Launcher 400", SAMLauncherImage);
+        SAMLauncher = new JButton("SAM Launcher $400", SAMLauncherImage);
         SAMLauncher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new SAMTower(0,0,game));
