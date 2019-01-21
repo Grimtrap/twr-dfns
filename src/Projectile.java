@@ -81,10 +81,10 @@ public class Projectile {
 
         distance = Math.sqrt(dx * dx + dy * dy);
 
-        x += (int)(dx/distance * speed)*elapsedTime;
-        y += (int)(dy/distance * speed)*elapsedTime;
+        x += (int)(dx/distance * speed)*elapsedTime; //gets the x speed by dividing x distance by entire distance to use as a ratio
+        y += (int)(dy/distance * speed)*elapsedTime; //same as above but for y speed
         if(target == null || target.hasReachedEnd() || target.getCurrentHealth() <= 0) {
-            this.setActive(false);
+            this.setActive(false); //mark the projectile for removal when it is no longer needed
         }
         if (this.hit(x,y,this.target.getBoundingBox())){
             if(this.explosionRadius <= 0) {
@@ -109,7 +109,6 @@ public class Projectile {
                 }
                 this.setActive(false);
             }
-            // need to stop timer and remove projectile from screen
         }
     }
 
@@ -143,7 +142,7 @@ public class Projectile {
         g.setColor(Color.RED);
         Graphics2D g2d = (Graphics2D) g;
         AffineTransform backup = g2d.getTransform();
-        AffineTransform a = AffineTransform.getRotateInstance(Calculations.getAngle(x,y,target.getX(),target.getY()), x, y);
+        AffineTransform a = AffineTransform.getRotateInstance(Calculations.getAngle(x,y,target.getX(),target.getY()), x, y); //rotates projectile based on angle
         g2d.setTransform(a);
         g2d.drawImage(image, (int)x, (int)y, null);
         g2d.setTransform(backup);

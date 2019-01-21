@@ -46,12 +46,10 @@ public class GameFrame extends JFrame {
         this.game = game;
 
         startWave = new JButton("Start Wave");
-        startWave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                game.getSpawner().generateWave(game.getWave()*10);
-                SoundPlayer.playSound("WaveStart.wav");
-            }
-        } );
+        startWave.addActionListener(e -> {
+            game.getSpawner().generateWave(game.getWave()*10);
+            SoundPlayer.playSound("WaveStart.wav");
+        });
 
         try {
             cityImage = ImageIO.read(new File("resources/city.png"));
@@ -157,18 +155,23 @@ public class GameFrame extends JFrame {
             super.paintComponent(g);
             setDoubleBuffered(true);
 
+            Font font = new Font("Arial", Font.BOLD, 20);
+
             g.drawImage(backgroundImage, 0,0, 1920, 1080, this);
-            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,15);
+
+            g.setFont(font);
+            g.setColor(Color.WHITE);
+            g.drawString("Gold: " + (int) (game.getGold()) + " Lives: " + (int) (game.getLivesLeft()), 5,35);
 
             drawPath(g);
 
-            synchronized (enemies) { //don't use foreach here, it causes weird exception
+            synchronized (enemies) { //draw enemies
                 for(int i = 0; i<enemies.size(); i++) {
                     enemies.get(i).draw(g);
                 }
             }
 
-            synchronized (towers){
+            synchronized (towers){ //draw towers
                 for(int i = 0; i<towers.size(); i++) {
                     towers.get(i).draw(g);
                     if(!towers.get(i).getProjectiles().isEmpty()) {
@@ -191,6 +194,7 @@ public class GameFrame extends JFrame {
         }
 
         private void drawPath(Graphics g) {
+            //draws the path the enemies walk along
             g.setColor(Color.DARK_GRAY);
             for(int i=0; i<pathCoords.length-1; i++) {
                 LinkedList<Pathing> pathings = map.getPathings();

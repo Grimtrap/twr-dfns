@@ -66,10 +66,20 @@ public class MainMenu extends JFrame {
                 "\n- Shielding" +
                 "\n- Flying" +
                 "\n\n In addition to that, each tower has a specific damage type:" +
-                        "\nNormal, Pierce, and Explosive" +
+                "\nNormal, Pierce, and Explosive" +
                 "\nEnemies may also resist or be weak to each damage type" +
-                        "\nYou lose lives if the enemy reaches the end. You lose if you lose all lives" +
-                        "\n\nGood luck"
+                "\nYou lose lives if the enemy reaches the end. You lose if you lose all lives" +
+                "\n\nGood luck" +
+                "\n\nTo create your own map: " +
+                "\nCreate a text file inside the maps folder" +
+                "\nThe first line are the x and y coordinate, separated by a space" +
+                "\nThe next lines are the cardinal direction, followed by the distance to go through" +
+                "\n\nExample:" +
+                "\n\n0 500" +
+                "\ns 500" +
+                "\ne 200" +
+                "\nn 200" +
+                "\nw 100"
                 ));
 
         this.add(titleLabel, BorderLayout.NORTH);

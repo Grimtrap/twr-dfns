@@ -25,7 +25,7 @@ public class TowersThread extends Thread{
      * runs the thread, which will update the towers in the game
      */
     public synchronized void run() {
-        while(running) {
+        while(!interrupted()) {
             clock.update();
             if (!towers.isEmpty()) {
                 for (int i = 0; i < towers.size(); i++) {

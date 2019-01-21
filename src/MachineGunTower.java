@@ -18,6 +18,7 @@ public class MachineGunTower extends RifleTower {
         setGroundTargeting(true);
         setAirTargeting(false);
         setDamage(25);
+        setCost(250);
         setFireRate(0.1);
         setRange(new Circle(x, y, 290));
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/MachineGunBody.png"));

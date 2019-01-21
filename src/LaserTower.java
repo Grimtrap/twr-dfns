@@ -19,7 +19,7 @@ public class LaserTower extends Tower {
         setGroundTargeting(true);
         setAirTargeting(true);
         setDamage(25);
-        setCost(400);
+        setCost(700);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(0.1);
         setRange(new Circle(x, y, 350));
