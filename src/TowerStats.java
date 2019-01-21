@@ -42,28 +42,28 @@ public class TowerStats extends JFrame implements ActionListener{
     }
 
     private void updateLabel(String tower) {
-        if (tower == "Rifle"){
-            description.setText("<html>Rifle<br/>Range: 400<br/>Rate of Fire: 1s<br/>Damage: 60<br/>DamageType: Normal<br/>Status Ailments: None</html>");
-        }else if (tower == "Machine Gun"){
-            description.setText("<html>Machine Gun<br/>Range: 290<br/>Rate of Fire: 0.15s<br/>Damage: 25<br/>DamageType: Normal<br/>Status Ailments: None</html>");
-        }else if (tower == "Shotgun"){
-            description.setText("<html>Shotgun<br/>Range: 200<br/>Rate of Fire: 2s<br/>Damage: 85<br/>DamageType: Normal<br/>Status Ailments: None</html>");
-        }else if (tower == "Sniper"){
-            description.setText("<html>Sniper<br/>Range: 500<br/>Rate of Fire: 2s<br/>Damage: 160<br/>DamageType: Pierce<br/>Status Ailments: None</html>");
-        }else if (tower == "Shrapnel"){
-            description.setText("<html>Shrapnel<br/>Range: 170<br/>Rate of Fire: 1.5s<br/>Damage: 76<br/>DamageType: Explosive<br/>Status Ailments: None</html>");
-        }else if (tower == "Missile"){
-            description.setText("<html>Missile<br/>Range: 400<br/>Rate of Fire: 2.2s<br/>Damage: 150<br/>DamageType: Explosive<br/>Status Ailments: None</html>");
-        }else if (tower == "Flamethrower"){
-            description.setText("<html>Flamethrower<br/>Range: 300<br/>Rate of Fire: 0.09s<br/>Damage: 10<br/>DamageType: Explosive<br/>Status Ailments: Burn</html>");
-        }else if (tower == "Laser"){
-            description.setText("<html>Laser<br/>Range: 300<br/>Rate of Fire: 0.1s<br/>Damage: 25<br/>DamageType: Pierce<br/>Status Ailments: None</html>");
-        }else if (tower == "Cryo"){
-            description.setText("<html>Cryo<br/>Range: 300<br/>Rate of Fire: 0.3s<br/>Damage: 7<br/>DamageType: Normal<br/>Status Ailments: Slow</html>");
-        }else if (tower == "AA Gun"){
-            description.setText("<html>AA Gun<br/>Range: 350<br/>Rate of Fire: 0.5s<br/>Damage: 50<br/>DamageType: Normal<br/>Status Ailments: None</html>");
-        }else if (tower == "SAM Launcher"){
-            description.setText("<html>SAM Launcher<br/>Range: 400<br/>Rate of Fire: 2.2s<br/>Damage: 150<br/>DamageType: Explosive<br/>Status Ailments: None</html>");
+        if (tower.equals("Rifle")){
+            description.setText("<html>Rifle<br/>Range: 300<br/>Rate of Fire: 1s<br/>Damage: 60<br/>DamageType: Normal<br/>Status Ailments: None<br/>Targets: Ground and Air</html>");
+        }else if (tower.equals("Machine Gun")){
+            description.setText("<html>Machine Gun<br/>Range: 290<br/>Rate of Fire: 0.15s<br/>Damage: 25<br/>DamageType: Normal<br/>Status Ailments: None<br/>Targets: Ground</html>");
+        }else if (tower.equals("Shotgun")){
+            description.setText("<html>Shotgun<br/>Range: 200<br/>Rate of Fire: 2s<br/>Damage: 85<br/>DamageType: Normal<br/>Status Ailments: None<br/>Targets: Ground</html>");
+        }else if (tower.equals("Sniper")){
+            description.setText("<html>Sniper<br/>Range: 600<br/>Rate of Fire: 2s<br/>Damage: 160<br/>DamageType: Pierce<br/>Status Ailments: None<br/>Targets: Ground and Air</html>");
+        }else if (tower.equals("Shrapnel")){
+            description.setText("<html>Shrapnel<br/>Range: 170<br/>Rate of Fire: 1.2s<br/>Damage: 76<br/>DamageType: Explosive<br/>Status Ailments: None<br/>Targets: Ground</html>");
+        }else if (tower.equals("Missile")){
+            description.setText("<html>Missile<br/>Range: 300<br/>Rate of Fire: 2.2s<br/>Damage: 105<br/>DamageType: Explosive<br/>Status Ailments: None<br/>Targets: Ground</html>");
+        }else if (tower.equals("Flamethrower")){
+            description.setText("<html>Flamethrower<br/>Range: 300<br/>Rate of Fire: 0.09s<br/>Damage: 10<br/>DamageType: Explosive<br/>Status Ailments: Burn<br/>Targets: Ground</html>");
+        }else if (tower.equals("Laser")){
+            description.setText("<html>Laser<br/>Range: 300<br/>Rate of Fire: 0.1s<br/>Damage: 22<br/>DamageType: Pierce<br/>Status Ailments: None<br/>Targets: Ground and Air</html>");
+        }else if (tower.equals("Cryo")){
+            description.setText("<html>Cryo<br/>Range: 300<br/>Rate of Fire: 0.3s<br/>Damage: 7<br/>DamageType: Normal<br/>Status Ailments: Slow<br/>Targets: Ground and Air</html>");
+        }else if (tower.equals("AA Gun")){
+            description.setText("<html>AA Gun<br/>Range: 350<br/>Rate of Fire: 0.5s<br/>Damage: 50<br/>DamageType: Normal<br/>Status Ailments: None<br/>Targets: Air</html>");
+        }else if (tower.equals("SAM Launcher")){
+            description.setText("<html>SAM Launcher<br/>Range: 300<br/>Rate of Fire: 2.2s<br/>Damage: 105<br/>DamageType: Explosive<br/>Status Ailments: None<br/>Targets: Air</html>");
         }
         this.add(description);
         repaint();

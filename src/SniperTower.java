@@ -18,12 +18,12 @@ public class SniperTower extends RifleTower {
     public SniperTower(double x, double y, Game game) {
         super(x, y, game);
         setGroundTargeting(true);
-        setAirTargeting(false);
+        setAirTargeting(true);
         setDamage(160);
         setCost(600);
         setDamageType(DamageTypes.PIERCE);
         setFireRate(2);
-        setRange(new Circle(x, y, 500));
+        setRange(new Circle(x, y, 600));
         setSoundName("SniperRifle.wav");
         setProjectileSpeed(3000);
         setProjectileImagePath("resources/Projectiles/SniperBullet.png");
