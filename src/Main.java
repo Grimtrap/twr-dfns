@@ -3,7 +3,11 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * runs the game
+     * @param args the args
+     */
+    public static void main(String[] args) {
         new MainMenu();
     }
 
