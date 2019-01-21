@@ -25,6 +25,7 @@ public class Game {
     private Tower selected = null;
     private boolean selling = false;
     private Tower sellSelected = null;
+    private TowerStats towerStats;
 
     /**
      * creates a new game
@@ -32,6 +33,7 @@ public class Game {
      */
     public Game(String mapName) {
         map = new Map(mapName);
+        towerStats = new TowerStats();
         towerMenu = new TowerMenu(this);
         enemies = new LinkedList<>();
         towers = new LinkedList<>();
