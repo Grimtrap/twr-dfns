@@ -60,6 +60,10 @@ public class Map {
         return -1;
     }
 
+    /**
+     * gets the pathings that the map has for enemies to walk on
+     * @return the path the enemies must walk along
+     */
     public LinkedList<Pathing> getPathings() {
         LinkedList<Pathing> path = new LinkedList<Pathing>();
         for(Pathing p: pathings) {
@@ -68,11 +72,11 @@ public class Map {
         return path;
     }
 
+    /**
+     * gets the start of the map
+     * @return x and y coordinate of the start
+     */
     public double[] getStart() {
         return start;
-    }
-
-    public void setStart(double[] start) {
-        this.start = start;
     }
 }

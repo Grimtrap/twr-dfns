@@ -66,8 +66,10 @@ abstract class Tower {
         Box box = new Box((int)(Calculations.center(x,64)+32), (int)(Calculations.center(y,64)+32), 64, 64);
         this.setBox(box);
         g2d.setTransform(backup);
-        g2d.setColor(Color.BLUE);
-        g2d.drawOval((int)(x-range.getRadius()), (int)(y-range.getRadius()), (int)range.getRadius()*2, (int)range.getRadius()*2);
+        if(game.getShowRanges()) {
+            g2d.setColor(Color.BLUE);
+            g2d.drawOval((int) (x - range.getRadius()), (int) (y - range.getRadius()), (int) range.getRadius() * 2, (int) range.getRadius() * 2);
+        }
     }
 
     /**

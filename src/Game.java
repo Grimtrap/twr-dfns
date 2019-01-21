@@ -25,6 +25,7 @@ public class Game {
     private Tower selected = null;
     private boolean selling = false;
     private Tower sellSelected = null;
+    private boolean showRanges;
 
     /**
      * creates a new game
@@ -45,6 +46,7 @@ public class Game {
         SwingUtilities.invokeLater(() -> new GameFrame(enemies, towers, map, this));
         gold = 400;
         livesLeft = 10;
+        showRanges = false;
     }
 
     /**
@@ -189,5 +191,22 @@ public class Game {
     public int getWave() {
         return wave;
     }
+
+    /**
+     * gets whether to show ranges or not
+     * @return if it should show ranges
+     */
+    public boolean getShowRanges() {
+        return showRanges;
+    }
+
+    /**
+     * sets if it should show ranges or not
+     * @param showRanges if it should show ranges or not
+     */
+    public void setShowRanges(boolean showRanges) {
+        this.showRanges = showRanges;
+    }
+
 
 }
