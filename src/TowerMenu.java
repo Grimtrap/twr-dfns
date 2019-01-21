@@ -27,6 +27,7 @@ public class TowerMenu extends Frame {
     private JButton AAGun;
     private JButton SAMLauncher;
     private JButton sellButton;
+    private JButton ranges;
     private Game game;
 
     /**
@@ -49,76 +50,86 @@ public class TowerMenu extends Frame {
         ImageIcon GoldImage = new ImageIcon("resources/Gold.png");
         setLayout(new GridLayout(10, 2));
 
-        BasicGun = new JButton("BASIC GUN", BasicGunImage);
+        BasicGun = new JButton("Rifle 100", BasicGunImage);
         BasicGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new RifleTower(0,0,game));
         }
         } );
-        MachineGun = new JButton("MACHINE GUN", MachineGunImage);
+        MachineGun = new JButton("Machine Gun 250", MachineGunImage);
         MachineGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new MachineGunTower(0,0,game));
             }
         } );
-        ShotGun = new JButton("SHOTGUN", ShotGunImage);
+        ShotGun = new JButton("Shotgun 250", ShotGunImage);
         ShotGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new ShotgunTower(0,0,game));
             }
         } );
-        SniperRifle = new JButton("SNIPER RIFLE", SniperRifleImage);
+        SniperRifle = new JButton("Sniper 350", SniperRifleImage);
         SniperRifle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new SniperTower(0,0,game));
             }
         } );
-        ShrapnelTower = new JButton("SHRAPNEL TOWER", ShrapnelTowerImage);
+        ShrapnelTower = new JButton("Shrapnel 200", ShrapnelTowerImage);
         ShrapnelTower.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new ShrapnelTower(0,0,game));
             }
         } );
-        MissileLauncher = new JButton("MISSILE LAUNCHER", MissileLauncherImage);
+        MissileLauncher = new JButton("Missile 400", MissileLauncherImage);
         MissileLauncher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new RocketLauncherTower(0,0,game));
             }
         } );
-        FlameThrower = new JButton("FLAMETHROWER", FlameThrowerImage);
+        FlameThrower = new JButton("Flamethrower 500", FlameThrowerImage);
         FlameThrower.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new FlamethrowerTower(0,0,game));
             }
         } );
-        LaserGun = new JButton("LASER GUN", LaserGunImage);
+        LaserGun = new JButton("Laser 700", LaserGunImage);
         LaserGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new LaserTower(0,0,game));
             }
         } );
-        CryoGun = new JButton("CRYO GUN", CryoGunImage);
+        CryoGun = new JButton("Cryo 500", CryoGunImage);
         CryoGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new CryoGunTower(0,0,game));
             }
         } );
-        AAGun = new JButton("AA GUN", AAGunImage);
+        AAGun = new JButton("AA GUN 250", AAGunImage);
         AAGun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelected(new AATower(0,0,game));
             }
         } );
-        /*SAMLauncher = new JButton("SAM LAUNCHER", SAMLauncherImage);
+        SAMLauncher = new JButton("SAM Launcher 400", SAMLauncherImage);
         SAMLauncher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.setSelected(new RifleTower(0,0,game));
+                game.setSelected(new SAMTower(0,0,game));
             }
-        } );*/
+        } );
         sellButton = new JButton("SELL", GoldImage);
         sellButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setSelling(true);
+            }
+        } );
+        ranges = new JButton("SHOW RANGES");
+        ranges.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (game.getShowRanges()){
+                    game.setShowRanges(false);
+                }else{
+                    game.setShowRanges(true);
+                }
             }
         } );
         add(BasicGun);
@@ -131,8 +142,9 @@ public class TowerMenu extends Frame {
         add(LaserGun);
         add(CryoGun);
         add(AAGun);
-        //add(SAMLauncher);
+        add(SAMLauncher);
         add(sellButton);
+        add(ranges);
         this.requestFocusInWindow();
         setSize(500,1080);
         setVisible(true);

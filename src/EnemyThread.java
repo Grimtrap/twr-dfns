@@ -32,6 +32,7 @@ public class EnemyThread extends Thread {
     /**
      * runs the thread, which will update the enemies and make them work
      */
+    @Override
     public synchronized void run() {
         while(running) {
             clock.update();

@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * LaserTower.java
  * A tower with unique properties that shoots enemies
- * @author Kyle To, Eric Ke, Michael T.
+ * @author Kyle To, Eric Ke, Michael T.(Images and sounds)
  * Last Updated: December 19 2019
  */
 public class LaserTower extends Tower {
