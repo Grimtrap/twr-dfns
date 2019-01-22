@@ -149,7 +149,6 @@ public class TowerMenu extends Frame {
         setSize(500,1080);
         setVisible(true);
 
-        // This closing method is temporary
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
