@@ -173,8 +173,8 @@ public class EnemySpawner {
     }
 
     private double genMultiplier() {
-        //multiplier which is random value between 60 and 120
-        return (random.nextInt(61) + 60)/100.0;
+        //multiplier which is random value between 60 and 140
+        return (random.nextInt(81) + 60)/100.0;
     }
 
     public int getEnemiesLeft(int i) {
