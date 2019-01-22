@@ -20,6 +20,7 @@ public class AATower extends RifleTower {
         setAirTargeting(true);
         setDamage(50);
         setCost(250);
+        setProjectileImagePath("resources/Projectiles/AAGunBullet.png");
         setFireRate(0.5);
         setProjectileExplosionRadius(0);
         setRange(new Circle(x, y, 350));

@@ -18,7 +18,7 @@ public class SAMTower extends RocketLauncherTower {
         super(x, y, game);
         setGroundTargeting(false);
         setAirTargeting(true);
-        setProjectileImagePath("resources/Projectiles/Missile.png");
+        setProjectileImagePath("resources/Projectiles/SAMMissile.png");
         setSoundName("SAMMissileLauncher.wav");
         setImage(Toolkit.getDefaultToolkit().getImage("resources/Towers/SAMMissileBody.png"));
     }
