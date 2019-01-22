@@ -88,6 +88,8 @@ public class Enemy implements Cloneable {
     public Enemy clone() {
         try {
             Enemy enemy = (Enemy)super.clone();
+            enemy.setSlow(new double[]{0,0});
+            enemy.setBurn(new double[]{0,0});
             enemy.setPathings(this.clonePaths(pathings));
             enemy.setAttributes(this.attributes.clone());
             return enemy;
@@ -329,5 +331,37 @@ public class Enemy implements Cloneable {
      */
     public int getGoldGranted() {
         return goldGranted;
+    }
+
+    /**
+     * gets the slow
+     * @return array containing slow power and duration
+     */
+    public double[] getSlow() {
+        return slow;
+    }
+
+    /**
+     * sets slow amount
+     * @param slow duration and power to set it to
+     */
+    public void setSlow(double[] slow) {
+        this.slow = slow;
+    }
+
+    /**
+     * gets the burn
+     * @return array containing burn power and duration
+     */
+    public double[] getBurn() {
+        return burn;
+    }
+
+    /**
+     * sets burn amount
+     * @param burn duration and power to set it to
+     */
+    public void setBurn(double[] burn) {
+        this.burn = burn;
     }
 }

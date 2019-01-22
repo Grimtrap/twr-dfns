@@ -140,9 +140,8 @@ public class EnemySpawner {
                         a.setBurnResist(random.nextInt(500) / 10.0);
                     }
                     else if (i == 2) {
-                        if (random.nextInt(4) == 0) {
-                            a.setFlying(true);
-                        }
+                        a.setFlying(true);
+
                     }
                     else if (i == 3) {
                         a.setShielding(random.nextInt(currentDifficulty + 100) / 2.0);
