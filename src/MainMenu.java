@@ -92,7 +92,6 @@ public class MainMenu extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.pack();
-        SoundPlayer.playMusic();
 
     }
 
