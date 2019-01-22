@@ -108,6 +108,7 @@ public class Enemy implements Cloneable {
         if(currentHealth > 0) {
             try {
                 move(timeElapsed);
+                regen(timeElapsed);
                 burnDmg(timeElapsed);
             } catch (NullPointerException e) {
                 reachedEnd = true;
@@ -117,6 +118,16 @@ public class Enemy implements Cloneable {
             return false;
         }
     }
+
+    /**
+     * regens hp
+     */
+    private void regen(double elapsedTime) {
+        if(attributes.getRegen() > 0) {
+            this.currentHealth += attributes.getRegen()*elapsedTime;
+        }
+    }
+
 
     /**
      * if the enemy has reached the end

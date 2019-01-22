@@ -121,4 +121,8 @@ public class Attributes implements Cloneable{
     public void setDmgResists(double[] dmgResists) {
         this.dmgResists = dmgResists;
     }
+
+    public double getRegen() {
+        return regen;
+    }
 }
