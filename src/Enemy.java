@@ -206,9 +206,9 @@ public class Enemy implements Cloneable {
             g2d.setTransform(backup);
          }
             g.setColor(Color.RED);
-            g.fillRect((int) this.x, (int) this.y - 20, 60, 15);
+            g.fillRect((int) this.x, (int) this.y - 20, 60, 5);
             g.setColor(Color.GREEN);
-            g.fillRect((int) this.x, (int) this.y - 20, (int) (60 * (currentHealth / maxHealth)), 15);
+            g.fillRect((int) this.x, (int) this.y - 20, (int) (60 * (currentHealth / maxHealth)), 5);
     }
 
     /**
