@@ -159,7 +159,8 @@ public class Enemy implements Cloneable {
 
         byte direction = currentPathing.getDirection();
 
-        if(slow[0] > 0) {
+        //moves accordingly depending on which direction it's supposed to go
+        if(slow[0] > 0) { //if slowed it will go slower
             if(direction == Directions.NORTH){
                 this.y -= (speed*timeElapsed*100)/(slow[1] + 1);
             } else if(direction==Directions.SOUTH) {

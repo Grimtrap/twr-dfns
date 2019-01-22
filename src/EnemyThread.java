@@ -45,7 +45,6 @@ public class EnemyThread extends Thread {
                 }
             }
             if (!enemies.isEmpty()) {
-                //try {
                     for (int i = 0; i < enemies.size(); i++) {
                         enemies.get(i).update(clock.getElapsedTime());
                         if (enemies.get(i).getCurrentHealth() <= 0) {
@@ -63,9 +62,6 @@ public class EnemyThread extends Thread {
                             enemies.remove(i);
                         }
                     }
-                //}catch(Exception e){
-                    //e.printStackTrace();
-               //}
             }
         }
     }

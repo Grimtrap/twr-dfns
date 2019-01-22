@@ -132,6 +132,8 @@ public class TowerMenu extends Frame {
                 }
             }
         } );
+
+        //buttons
         add(BasicGun);
         add(MachineGun);
         add(ShotGun);
