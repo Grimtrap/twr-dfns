@@ -24,6 +24,8 @@ public class EndScreen extends Frame {
         setLayout(new GridLayout(2, 1));
 
         label = new JLabel("Game Over",SwingConstants.CENTER);
+        label.setFont(new Font("Serif", Font.BOLD, 48));
+        label.setForeground(Color.RED);
         button = new JButton("Return to Main Menu");
         SoundPlayer.playSound("GameOver.wav");
         button.addActionListener(e -> {
